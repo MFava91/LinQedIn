@@ -10,7 +10,7 @@ public:
     Profilo pf;
     Rete* rete;
     Username un;
-    Utente(Username u): un(u) {}
+    Utente(Username);
     virtual ~Utente() {}
 };
 

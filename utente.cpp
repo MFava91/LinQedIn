@@ -1,5 +1,3 @@
 #include "utente.h"
 
-Utente::Utente()
-{
-}
+Utente::Utente(Username u):un(u) {}

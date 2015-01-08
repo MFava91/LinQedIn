@@ -7,9 +7,9 @@ class Rete
 {
 public:
     Rete();
-    vector<SmartUtente> net; //da pensare per il vector
-    void add(Username u) {}
-    void remove(Username u) {}
+    //vector<SmartUtente> net; //da pensare per il vector
+    void add(Username) {}
+    void remove(Username) {}
 };
 
 #endif // RETE_H

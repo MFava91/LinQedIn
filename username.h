@@ -1,12 +1,16 @@
 #ifndef USERNAME_H
 #define USERNAME_H
 
+#include<iostream>
+using std::string;
+
 class Username
 {
-public:
-    Username();
+private:
     string login;
-    Username(string s): login(s) {}
+public:
+    Username(string);
+    Username ModificaUsername(Username);
 };
 
 #endif // USERNAME_H

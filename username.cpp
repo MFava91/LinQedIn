@@ -1,5 +1,4 @@
 #include "username.h"
 
-Username::Username()
-{
-}
+Username::Username (string s):login(s) {}
+
