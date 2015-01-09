@@ -1,10 +1,12 @@
 #ifndef XMLINFO_H
 #define XMLINFO_H
 
+#include"info.h"
+
 class Xmlinfo
 {
 public:
-    Xmlinfo();
+    Xmlinfo(Info);
 };
 
 /*

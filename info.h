@@ -3,17 +3,21 @@
 
 
 #include<iostream>
+#include<QString>
 using std::string;
 
 class Info
 {
 private:
-    string nome,cognome,email;
+    QString nome,cognome,email;
+    int telefono;
 public:
-    Info(const string&,const string&,const string&);
-    string getnome() const;
-    string getcognome() const;
-    string getemail() const;
+    Info(const QString&,const QString&,const QString&,const int&);
+    QString getnome() const;
+    QString getcognome() const;
+    QString getemail() const;
+    int gettelefono() const;
+
 };
 
 #endif // INFO_H

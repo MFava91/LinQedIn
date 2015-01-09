@@ -1,15 +1,19 @@
 #include "info.h"
 
-Info::Info(const string& n,const string& c,const string& e) : nome(n),cognome(c),email(e) {}
+Info::Info(const QString& n,const QString& c,const QString& e,const int& t) : nome(n),cognome(c),email(e), telefono(t) {}
 
-string Info::getnome() const {
+QString Info::getnome() const {
     return nome;
 }
 
-string Info::getcognome() const {
+QString Info::getcognome() const {
     return cognome;
 }
 
-string Info::getemail() const {
+QString Info::getemail() const {
     return email;
+}
+
+int Info::gettelefono() const {
+    return telefono;
 }
