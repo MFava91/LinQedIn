@@ -1,22 +1,35 @@
-TEMPLATE = app
-CONFIG += console
-CONFIG -= app_bundle
-CONFIG -= qt
+#-------------------------------------------------
+#
+# Project created by QtCreator 2015-01-09T12:00:48
+#
+#-------------------------------------------------
 
-SOURCES += main.cpp \
+QT       += core gui
+LIBS += -lGL
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = Linquedln
+TEMPLATE = app
+
+
+SOURCES += main.cpp\
+        mainwindow.cpp \
     info.cpp \
     profilo.cpp \
     rete.cpp \
     username.cpp \
-    utente.cpp
+    utente.cpp \
+    xmlinfo.cpp
 
-include(deployment.pri)
-qtcAddDeployment()
-
-HEADERS += \
+HEADERS  += mainwindow.h \
     info.h \
     profilo.h \
     rete.h \
     username.h \
-    utente.h
+    utente.h \
+    xmlinfo.h
+
+FORMS    += mainwindow.ui
+
 
