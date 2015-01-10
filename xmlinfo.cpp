@@ -1,5 +1,6 @@
 #include"xmlinfo.h"
 #include <QXmlStreamWriter>
+#include <QXmlStreamReader>
 #include <QFile>
 #include<iostream>
 
@@ -41,5 +42,45 @@ Xmlinfo::Xmlinfo(Info a)
         xmlWriter->writeEndDocument();
         */
     }
+}
+void Xmlinfo::Xmlread() {
+    QFile file("/home/mattia/Documenti/Linquedln/info.xml");
+    QXmlStreamReader xml(&file);
+    bool open = file.open(QIODevice::ReadOnly | QIODevice::Text);
+    if (!open)
+    {
+        cout << "Couldn't open file" << endl;
+        return;
+    }
+    else
+    {
+        cout << "File opened OK" << endl;
+    }
+
+    while (!xml.atEnd() && !xml.hasError())
+    {
+        xml.readNext();
+        if (xml.isStartElement())
+        {
+            QString name = xml.name().toString();
+            if (name == "Nome" || name == "Cognome" ||
+                name == "Email")
+            {
+                cout << "element name: '" << name.toStdString()  << "'"
+                             << ", text: '" << (xml.readElementText()).toStdString()
+                             << "'" << endl;
+            }
+        }
+    }
+    /*
+     * if (xml.hasError())
+    {
+        cout << "XML error: " << xml.errorString() << endl;
+    }
+    else if (xml.atEnd())
+    {
+        cout << "Reached end, done" << endl;
+    }
+    */
 }
 

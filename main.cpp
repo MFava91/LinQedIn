@@ -16,5 +16,6 @@ int main(/*int argc, char *argv[]*/)
     e="mario@gmail.com";
     Info a(n,c,e,12345);
     Xmlinfo b(a);
+    b.Xmlread();
     return 0;
 }

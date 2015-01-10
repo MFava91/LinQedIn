@@ -7,6 +7,7 @@ class Xmlinfo
 {
 public:
     Xmlinfo(Info);
+    void Xmlread();
 };
 
 /*
