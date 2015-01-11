@@ -2,6 +2,7 @@
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QFile>
+#include <QTextStream>
 #include<iostream>
 
 using std::cout;
@@ -10,39 +11,38 @@ using std::string;
 
 Xmlinfo::Xmlinfo(Info a)
 {
-    QFile file("/home/mattia/Documenti/Linquedln/info.xml");
-    //if (!file.open(QFile::ReadOnly | QFile::Text))
-    if (!file.open(QIODevice::WriteOnly))
-    {
-    cout<<"Read only, The file is in read only mode"<<endl;
-    }
-    else
-    {
-        QXmlStreamWriter stream(&file);
-        stream.setAutoFormatting(true);
-        stream.writeStartDocument();
-        stream.writeStartElement("Info");
-        stream.writeTextElement("Nome", a.getnome());
-        stream.writeTextElement("Cognome", a.getcognome());
-        stream.writeTextElement("Email", a.getemail());
-        stream.writeEndElement();
-        stream.writeEndDocument();
-        /*
-        QXmlStreamWriter* xmlWriter = new QXmlStreamWriter();
-        xmlWriter->setDevice(&file);
-        xmlWriter->setAutoFormatting(true);
-        xmlWriter.writeStartDocument();
-        xmlWriter.writeStartElement("info");
-        stream.writeStartElement("bookmark");
-             stream.writeAttribute("href", "http://qt.nokia.com/");
-             stream.writeTextElement("title", "Qt Home");
-             stream.writeEndElement(); // bookmark
+    QString path("/home/mattia/Documenti/Linquedln/info.xml");
+    QFile file(path);
+    qint64 s = file.size();
+    if (s > 0) {
+        file.open(QFile::ReadWrite);
+        if (file.seek(s))
+            Q_ASSERT(file.pos() == s);
 
-        xmlWriter->writeEndElement();
-        xmlWriter->writeEndDocument();
-        */
+    } else
+        file.open(QFile::WriteOnly);
+
+    QXmlStreamWriter xmlWriter(&file);
+    xmlWriter.setAutoFormatting(true);
+
+    if (s == 0) {
+        xmlWriter.writeStartDocument();
+    }
+
+    xmlWriter.writeStartElement("info");
+    xmlWriter.writeTextElement("Nome", a.getnome());
+    xmlWriter.writeTextElement("Cognome", a.getcognome());
+    xmlWriter.writeTextElement("Email", a.getemail());
+    xmlWriter.writeEndElement();
+
+    if (s == 0) {
+        xmlWriter.writeEndDocument();
     }
 }
+
+
+
+//LEGGE
 void Xmlinfo::Xmlread() {
     QFile file("/home/mattia/Documenti/Linquedln/info.xml");
     QXmlStreamReader xml(&file);
