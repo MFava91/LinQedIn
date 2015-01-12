@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     utente.cpp \
     xmlinfo.cpp \
     datianagrafici.cpp \
-    titolistudio.cpp
+    titolistudio.cpp \
+    competenzelavorative.cpp \
+    lavoro.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -32,7 +34,9 @@ HEADERS  += mainwindow.h \
     utente.h \
     xmlinfo.h \
     datianagrafici.h \
-    titolistudio.h
+    titolistudio.h \
+    competenzelavorative.h \
+    lavoro.h
 
 FORMS    += mainwindow.ui
 
