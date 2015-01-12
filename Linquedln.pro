@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     rete.cpp \
     username.cpp \
     utente.cpp \
-    xmlinfo.cpp
+    xmlinfo.cpp \
+    datianagrafici.cpp \
+    titolistudio.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -28,7 +30,9 @@ HEADERS  += mainwindow.h \
     rete.h \
     username.h \
     utente.h \
-    xmlinfo.h
+    xmlinfo.h \
+    datianagrafici.h \
+    titolistudio.h
 
 FORMS    += mainwindow.ui
 
