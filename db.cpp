@@ -16,7 +16,15 @@ void DB::removeUtete(Username u){
 void DB::save() {
     QString path("/home/mattia/Documenti/Linquedln/prova.xml");
     QFile file(path);
-    bool open = file.open(QIODevice::WriteOnly | QIODevice::Text);
+    qint64 s = file.size();
+    if (s > 0) {
+        file.open(QFile::ReadWrite);
+        if (file.seek(s))
+            Q_ASSERT(file.pos() == s);
+    }
+    else
+        file.open(QFile::WriteOnly);
+    /*bool open = file.open(QIODevice::WriteOnly | QIODevice::Text);
     if (!open)
     {
         std::cout << "Couldn't open file" << std::endl;
@@ -26,9 +34,12 @@ void DB::save() {
     {
         std::cout << "File opened OK" << std::endl;
     }
+    */
     QXmlStreamWriter xmlWriter(&file);
     xmlWriter.setAutoFormatting(true);
-    xmlWriter.writeStartDocument();
+    if (s == 0) {
+        xmlWriter.writeStartDocument();
+    }
     for(std::map<QString,Utente*>::iterator it=dbUtenti.begin();it!=dbUtenti.end();++it)
     {
         xmlWriter.writeStartElement("Utente");
@@ -72,6 +83,10 @@ void DB::save() {
             xmlWriter.writeEndElement();
         }
         xmlWriter.writeEndElement();
-        xmlWriter.writeEndDocument();
+        xmlWriter.writeEndElement();
+        xmlWriter.writeEndElement();
+        if (s == 0) {
+            xmlWriter.writeEndDocument();
+        }
     }
 }
