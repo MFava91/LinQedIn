@@ -1,5 +1,6 @@
 #include "datianagrafici.h"
 
+DatiAnagrafici::DatiAnagrafici() {}
 DatiAnagrafici::DatiAnagrafici(const QString& n,const QString& c,const QString& e,const QDate& d,const QString& l,const QString& r):nome(n),cognome(c),email(e),dataNascita(d),luogoNascita(l),residenza(r){}
 
 QString DatiAnagrafici::getNome() const {

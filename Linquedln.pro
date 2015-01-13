@@ -24,7 +24,13 @@ SOURCES += main.cpp\
     datianagrafici.cpp \
     titolistudio.cpp \
     competenzelavorative.cpp \
-    lavoro.cpp
+    lavoro.cpp \
+    utentebasic.cpp \
+    utentebusiness.cpp \
+    utenteexecutive.cpp \
+    db.cpp \
+    linqclient.cpp \
+    linqadmin.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -36,7 +42,13 @@ HEADERS  += mainwindow.h \
     datianagrafici.h \
     titolistudio.h \
     competenzelavorative.h \
-    lavoro.h
+    lavoro.h \
+    utentebasic.h \
+    utentebusiness.h \
+    utenteexecutive.h \
+    db.h \
+    linqclient.h \
+    linqadmin.h
 
 FORMS    += mainwindow.ui
 

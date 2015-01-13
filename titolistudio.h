@@ -11,10 +11,12 @@ private:
     QString diploma;
     vector<QString> laurea;
 public:
-    TitoliStudio();
+    //TitoliStudio();
     TitoliStudio(const QString&);
     TitoliStudio(const QString& ="",const QString& ="");
     void AggiungiLaurea(const QString&);
+    QString getDiploma();
+    vector<QString> getLaurea();
     //elimina un elemento
     //distruttore di default
 };

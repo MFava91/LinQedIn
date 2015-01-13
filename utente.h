@@ -5,14 +5,14 @@
 
 class Utente
 {
-private:
-    QString login;
 public:
-    Utente(const Username&,const Profilo&);
-    Profilo pf;
+    Utente();
+    Utente(const Username&);
+    Username login;
+    Profilo info;
     Rete* rete;
-    Username un;
     virtual ~Utente();
+    virtual void find() =0;
 };
 
 /*MEGA ONEROSA --> RICERCO SU TUTTO IL DATABASE, QUANDO ELIMINO UTENTE, CERCO SU TUTTE LE RETI
@@ -25,16 +25,14 @@ public:
  * -O LOAD AL CARICAMENTO
  * -MI SALVO GLI USERNAME E CARICO SE SERVE
  *
- * LISTA PER COME SALVARE UTENTI (NO SMARTP) PROBABILMENTE LIST
+ * LISTA PER COME SALVARE UTENTI (NO SMARTP) PROBABILMENTE LIST FORSE ANCHE SET
  *
  * GERARCHIA DI CLASSI VERTICALI
  *
  *
  */
 
-class UtenteBasic: public Utente {};
-class UtenteBusiness: public UtenteBasic {};
-class UtenteExecutive: public UtenteBusiness {};
+
 
 
 /* DUBBI A RIGUARDO

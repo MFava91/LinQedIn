@@ -12,6 +12,7 @@ public:
     CompetenzeLavorative();
     CompetenzeLavorative(const Lavoro&);
     void AggiungiLavoro(const Lavoro&);
+    vector<Lavoro> getEsperienze() const;
 
 };
 

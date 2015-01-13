@@ -16,6 +16,7 @@ private:
     QString residenza;
 public:
     //Costruttore
+    DatiAnagrafici();
     DatiAnagrafici(const QString&,const QString&,const QString&,const QDate&,const QString&,const QString&);
     //Selettori
     QString getNome() const;

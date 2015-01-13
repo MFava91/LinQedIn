@@ -14,6 +14,11 @@ private:
     QDate fine;
 public:
     Lavoro(const QString&,const QString&,const QString&,const QDate&,const QDate&);
+    QString getAzienda() const;
+    QString getTitolo() const;
+    QString getCitta() const;
+    QDate getInizio() const;
+    QDate getFine() const;
 };
 
 #endif // LAVORO_H

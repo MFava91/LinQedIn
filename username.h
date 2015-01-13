@@ -2,15 +2,17 @@
 #define USERNAME_H
 
 #include<iostream>
-using std::string;
+#include<QString>
 
 class Username
 {
 private:
-    string login;
+    QString login;
 public:
-    Username(string);
-    Username ModificaUsername(Username);
+    Username();
+    Username(const QString&);
+    Username ModificaUsername(const QString&);
+    QString getUsername();
 };
 
 #endif // USERNAME_H

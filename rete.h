@@ -2,14 +2,20 @@
 #define RETE_H
 
 #include"username.h"
+#include<set>
 
-class Rete
-{
+using std::set;
+class Rete{
+private:
+    //Following
+    set<QString> follow;
+    //Follower
+    set<QString> follower;
 public:
     Rete();
-    //vector<SmartUtente> net; //da pensare per il vector
-    void add(Username) {}
-    void remove(Username) {}
+
+    void addFollow(Username);
+    void removeFollow(Username);
 };
 
 #endif // RETE_H
