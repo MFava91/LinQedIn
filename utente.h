@@ -11,8 +11,8 @@ public:
     Username login;
     Profilo info;
     Rete* rete;
-    virtual ~Utente();
-    virtual void find() =0;
+    //virtual ~Utente();
+    //virtual void find() =0;
 };
 
 /*MEGA ONEROSA --> RICERCO SU TUTTO IL DATABASE, QUANDO ELIMINO UTENTE, CERCO SU TUTTE LE RETI
