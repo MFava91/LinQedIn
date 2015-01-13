@@ -23,14 +23,17 @@ int main(/*int argc, char *argv[]*/)
     b.Xmlread();
     */
     //PROVA SCRITTURA SU FILE XML
-    QString nome,cognome,email,lnascita,residenza;
+    QString nome,cognome,email,lnascita,residenza,nome2;
     QDate dnascita(1992,2,1);
     nome="Enrico";
+    nome2="CERYYYYYYYYYYYYYYYY";
     cognome="Infinity";
     email="einfinity@houncazzoenorme.com";
     lnascita="TrevisoLammoda";
     residenza="CazzoVoglio";
     DatiAnagrafici a(nome,cognome,email,dnascita,lnascita,residenza);
+    DatiAnagrafici a2(nome2,cognome,email,dnascita,lnascita,residenza);
+
 
     QString diploma,laurea;
     diploma="infinito";
@@ -45,23 +48,35 @@ int main(/*int argc, char *argv[]*/)
     citta="Treviso";
     Lavoro l(azienda,titolo,citta,inizio,fine);
     CompetenzeLavorative c(l);
-    Profilo p;
+    Profilo p,p2;
     p.datiPersonali=a;
     p.studi=b;
     p.curriculum=c;
 
-    QString user;
-    user="Infinityplusplus";
-    Username us(user);
+    p2.datiPersonali=a2;
+    p2.studi=b;
+    p2.curriculum=c;
 
-    Utente u;
+    QString user,user2;
+    user="Infinityplusplus";
+    user2="MONAAAAAAAAAAAAA";
+    Username us(user);
+    Username us2(user2);
+
+    Utente u,u2;
     u.info=p;
     u.login=us;
     Utente *punt=&u;
 
+    u2.info=p2;
+    u2.login=us2;
+    Utente *punt2=&u2;
+
+
     //SCRIVO NEL DB
     DB db;
     db.addUtente(u.login,punt);
+    db.addUtente(u2.login,punt2);
     db.save();
     return 0;
 }
