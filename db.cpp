@@ -35,58 +35,58 @@ void DB::save() {
         std::cout << "File opened OK" << std::endl;
     }
     */
-    QXmlStreamWriter xmlWriter(&file);
-    xmlWriter.setAutoFormatting(true);
+    QXmlStreamWriter write(&file);
+    write.setAutoFormatting(true);
     if (s == 0) {
-        xmlWriter.writeStartDocument();
+        write.writeStartDocument();
     }
     for(std::map<QString,Utente*>::iterator it=dbUtenti.begin();it!=dbUtenti.end();++it)
     {
-        xmlWriter.writeStartElement("Utente");
-        xmlWriter.writeStartElement("Profilo");
-        xmlWriter.writeStartElement("DatiAnagrafici");
-        xmlWriter.writeTextElement("Nome",(*it).second->info.datiPersonali.getNome());
-        xmlWriter.writeTextElement("Cognome",(*it).second->info.datiPersonali.getCognome());
-        xmlWriter.writeTextElement("Email",(*it).second->info.datiPersonali.getEmail());
-        xmlWriter.writeTextElement("Data",(*it).second->info.datiPersonali.getDataNascita().toString());
-        xmlWriter.writeTextElement("Luogo_Nascita",(*it).second->info.datiPersonali.getLuogoNascita());
-        xmlWriter.writeTextElement("Residenza",(*it).second->info.datiPersonali.getResidenza());
-        xmlWriter.writeEndElement();
-        xmlWriter.writeStartElement("Titoli_Studio");
-        xmlWriter.writeTextElement("Diploma",(*it).second->info.studi.getDiploma());
+        write.writeStartElement("Utente");
+        write.writeStartElement("Profilo");
+        write.writeStartElement("DatiAnagrafici");
+        write.writeTextElement("Nome",(*it).second->info.datiPersonali.getNome());
+        write.writeTextElement("Cognome",(*it).second->info.datiPersonali.getCognome());
+        write.writeTextElement("Email",(*it).second->info.datiPersonali.getEmail());
+        write.writeTextElement("Data",(*it).second->info.datiPersonali.getDataNascita().toString());
+        write.writeTextElement("Luogo_Nascita",(*it).second->info.datiPersonali.getLuogoNascita());
+        write.writeTextElement("Residenza",(*it).second->info.datiPersonali.getResidenza());
+        write.writeEndElement();
+        write.writeStartElement("Titoli_Studio");
+        write.writeTextElement("Diploma",(*it).second->info.studi.getDiploma());
 
         int sizeStudi=(*it).second->info.studi.getLaurea().size();
         for (int i=0;i<sizeStudi;i++) {
-            xmlWriter.writeTextElement("Laurea",(*it).second->info.studi.getLaurea()[i]);
+            write.writeTextElement("Laurea",(*it).second->info.studi.getLaurea()[i]);
         }
 
         /*OLD
         for (vector<QString>::iterator itv = (*it).second->info.studi.getLaurea().begin(); itv != (*it).second->info.studi.getLaurea().end(); ++itv) {
-            xmlWriter.writeTextElement("Laurea",*itv);
+            write.writeTextElement("Laurea",*itv);
         }
         */
-        xmlWriter.writeEndElement();
+        write.writeEndElement();
 
-        xmlWriter.writeStartElement("Esperienze_Lavorative");
+        write.writeStartElement("Esperienze_Lavorative");
         int sizeLavori=(*it).second->info.curriculum.getEsperienze().size();
 
         //OLD  for (vector<Lavoro>::iterator itl = (*it).second->info.curriculum.getEsperienze().begin(); itl != (*it).second->info.curriculum.getEsperienze().end(); itl++)
         for(int i=0;i<sizeLavori;i++)
         {
 
-            xmlWriter.writeStartElement("Lavoro");
-            xmlWriter.writeTextElement("Azienda",(*it).second->info.curriculum.getEsperienze()[i].getAzienda());
-            xmlWriter.writeTextElement("Titolo",(*it).second->info.curriculum.getEsperienze()[i].getTitolo());
-            xmlWriter.writeTextElement("Citta",(*it).second->info.curriculum.getEsperienze()[i].getCitta());
-            xmlWriter.writeTextElement("Inizio",(*it).second->info.curriculum.getEsperienze()[i].getInizio().toString());
-            xmlWriter.writeTextElement("Fine",(*it).second->info.curriculum.getEsperienze()[i].getFine().toString());
-            xmlWriter.writeEndElement();
+            write.writeStartElement("Lavoro");
+            write.writeTextElement("Azienda",(*it).second->info.curriculum.getEsperienze()[i].getAzienda());
+            write.writeTextElement("Titolo",(*it).second->info.curriculum.getEsperienze()[i].getTitolo());
+            write.writeTextElement("Citta",(*it).second->info.curriculum.getEsperienze()[i].getCitta());
+            write.writeTextElement("Inizio",(*it).second->info.curriculum.getEsperienze()[i].getInizio().toString());
+            write.writeTextElement("Fine",(*it).second->info.curriculum.getEsperienze()[i].getFine().toString());
+            write.writeEndElement();
         }
-        xmlWriter.writeEndElement();
-        xmlWriter.writeEndElement();
-        xmlWriter.writeEndElement();
+        write.writeEndElement();
+        write.writeEndElement();
+        write.writeEndElement();
         if (s == 0) {
-            xmlWriter.writeEndDocument();
+            write.writeEndDocument();
         }
     }
 }
