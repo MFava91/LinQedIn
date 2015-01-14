@@ -9,6 +9,12 @@ TitoliStudio::TitoliStudio(const QString& d, const QString& l){
         AggiungiLaurea(l);
 }
 
+TitoliStudio TitoliStudio::operator=(const TitoliStudio& a){
+    diploma=a.diploma;
+    laurea=a.laurea;
+    return *this;
+}
+
 void TitoliStudio::AggiungiLaurea(const QString& l) {
     laurea.push_back(l);
 }

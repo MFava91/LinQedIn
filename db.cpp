@@ -1,5 +1,5 @@
 #include "db.h"
-
+#include<iostream>
 DB::DB()
 {
 }
@@ -13,8 +13,195 @@ void DB::removeUtete(Username u){
     //eliminare utete dalla rete amici.
 }
 
-void DB::save() {
+void DB::load() {
     QString path("/home/mattia/Documenti/Linquedln/prova.xml");
+    QFile file(path);
+    /*bool open = file.open(QIODevice::ReadOnly | QIODevice::Text);
+    if (!open) {
+        std::cout << "Couldn't open file" << std::endl;
+        return;
+    }
+    else
+        std::cout << "File opened OK" << std::endl;
+    */
+    file.open(QFile::ReadOnly);
+    QXmlStreamReader read(&file);
+    read.readNext();
+    QString key;
+    DatiAnagrafici a;
+    TitoliStudio b;
+    Lavoro c;
+    std::map<QString,Utente*>::iterator it=dbUtenti.begin();
+    //while (!read.isEndDocument())
+    //{
+    read.readNext();
+        if (read.isStartElement())
+        {
+            std::cout<<read.name().toString().toStdString()<<std::endl;
+            read.readNext();
+            read.readNext();
+            std::cout<<read.name().toString().toStdString()<<std::endl;
+            read.readNext();
+            read.readNext();
+            std::cout<<read.name().toString().toStdString()<<std::endl;
+            if(read.name()=="Username")
+            {
+                key=read.readElementText();
+                std::cout<<key.toStdString()<<std::endl;
+                //(*it).second->login.setUsername(read.readElementText());
+            }
+            read.readNext();
+            read.readNext();
+            std::cout<<read.name().toString().toStdString()<<std::endl;
+
+            if(read.name()=="DatiAnagrafici")
+            {
+
+                read.readNext();
+                read.readNext();
+                QString nome,cognome,email,lnascita,lresidenza;
+                QDate dnascita;
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+                nome=read.readElementText();
+                std::cout<<nome.toStdString()<<std::endl;
+                read.readNext();
+                read.readNext();
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+                cognome=read.readElementText();
+                std::cout<<cognome.toStdString()<<std::endl;
+                read.readNext();
+                read.readNext();
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+                email=read.readElementText();
+                std::cout<<email.toStdString()<<std::endl;
+                read.readNext();
+                read.readNext();
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+                dnascita=QDate::fromString(read.readElementText());
+                std::cout<<dnascita.toString().toStdString()<<std::endl;
+                read.readNext();
+                read.readNext();
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+                lnascita=read.readElementText();
+                std::cout<<lnascita.toStdString()<<std::endl;
+                read.readNext();
+                read.readNext();
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+                lresidenza=read.readElementText();
+                std::cout<<lresidenza.toStdString()<<std::endl;
+                read.readNext();
+                read.readNext();
+                read.readNext();
+                read.readNext();
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+                DatiAnagrafici a1(nome,cognome,email,dnascita,lnascita,lresidenza);
+                a=a1;
+            }
+            if(read.name()=="Titoli_Studio")
+            {
+                read.readNext();
+                read.readNext();
+
+                QString diploma;
+                QString lauree;
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+
+                diploma=read.readElementText();
+                std::cout<<diploma.toStdString()<<std::endl;
+                read.readNext();
+                read.readNext();
+                std::cout<<read.name().toString().toStdString()<<std::endl;
+
+                while(!read.isEndElement())
+                {
+                    lauree=read.readElementText();
+                    std::cout<<lauree.toStdString()<<std::endl;
+                    read.readNext();
+                    read.readNext();
+                }
+                TitoliStudio b1(diploma,lauree);
+                b=b1;
+            }
+            read.readNext();
+            read.readNext();
+            //std::cout<<read.name().toString().toStdString()<<std::endl;
+
+            if(read.name()=="Esperienze_Lavorative")
+            {
+                //while(!read.isEndElement())
+                //{
+                    read.readNext();
+                    read.readNext();
+                     std::cout<<read.name().toString().toStdString()<<std::endl;
+
+                    if(read.name()=="Lavoro")
+                    {
+                        read.readNext();
+                        read.readNext();
+                        std::cout<<read.name().toString().toStdString()<<std::endl;
+                        QString azienda,titolo,citta;
+                        QDate inizio,fine;
+                        azienda=read.readElementText();
+                        std::cout<<azienda.toStdString()<<std::endl;
+                        read.readNext();
+                        read.readNext();
+                        std::cout<<read.name().toString().toStdString()<<std::endl;
+                        titolo=read.readElementText();
+                        std::cout<<titolo.toStdString()<<std::endl;
+                        read.readNext();
+                        read.readNext();
+                        std::cout<<read.name().toString().toStdString()<<std::endl;
+                        citta=read.readElementText();
+                        std::cout<<citta.toStdString()<<std::endl;
+                        read.readNext();
+                        read.readNext();
+                        std::cout<<read.name().toString().toStdString()<<std::endl;
+                        inizio=QDate::fromString(read.readElementText());
+
+                        std::cout<<read.lineNumber()<<std::endl;
+
+
+                        std::cout<<inizio.toString().toStdString()<<std::endl;
+                        std::cout<<read.name().toString().toStdString()<<std::endl;
+
+                        std::cout<<read.lineNumber()<<std::endl;
+                        read.readNext();
+                        std::cout<<read.lineNumber()<<std::endl;
+
+                        fine=QDate::fromString(read.readElementText());
+                        std::cout<<fine.toString().toStdString();
+                        Lavoro l2(azienda,titolo,citta,inizio,fine);
+                        c=l2;
+                    }
+
+                //}
+
+            }
+        }
+        //else
+        /*if (read.isEndElement())
+        {
+            read.readNext();
+        }
+        */
+        CompetenzeLavorative d(c);
+        Profilo p;
+        p.datiPersonali=a;
+        p.studi=b;
+        p.curriculum=d;
+        Utente u;
+        u.login=key;
+        u.info=p;
+        Utente *punt=&u;
+        std::cout<<"ciao"<<u.login.getUsername().toStdString();
+        //addUtente(u.login,punt);
+        ++it;
+    }
+
+
+
+void DB::save() const {
+    QString path("/home/mattia/Documenti/Linquedln/output.xml");
     QFile file(path);
     qint64 s = file.size();
     if (s > 0) {
@@ -40,10 +227,11 @@ void DB::save() {
     if (s == 0) {
         write.writeStartDocument();
     }
-    for(std::map<QString,Utente*>::iterator it=dbUtenti.begin();it!=dbUtenti.end();++it)
+    for(std::map<QString,Utente*>::const_iterator it=dbUtenti.begin();it!=dbUtenti.end();++it)
     {
         write.writeStartElement("Utente");
         write.writeStartElement("Profilo");
+        write.writeTextElement("Username",(*it).second->login.getUsername());
         write.writeStartElement("DatiAnagrafici");
         write.writeTextElement("Nome",(*it).second->info.datiPersonali.getNome());
         write.writeTextElement("Cognome",(*it).second->info.datiPersonali.getCognome());
@@ -89,4 +277,8 @@ void DB::save() {
             write.writeEndDocument();
         }
     }
+}
+
+DB::~DB() {
+
 }

@@ -21,9 +21,10 @@ public:
     DB();
     void addUtente(Username,Utente*);
     void removeUtete(Username);
-    void save();
-    /*void load() {}
-    void save() const {}
+    void save() const;
+    void load();
+    ~DB(); //DA FARE
+    /*
     Utente* find(Username u){
         return new Utente(u);
     }

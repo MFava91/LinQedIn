@@ -3,6 +3,27 @@
 DatiAnagrafici::DatiAnagrafici() {}
 DatiAnagrafici::DatiAnagrafici(const QString& n,const QString& c,const QString& e,const QDate& d,const QString& l,const QString& r):nome(n),cognome(c),email(e),dataNascita(d),luogoNascita(l),residenza(r){}
 
+bool DatiAnagrafici::operator==(const DatiAnagrafici& a) const{
+    return nome==a.nome && cognome==a.cognome && email==a.email &&
+            dataNascita==a.dataNascita && luogoNascita==a.luogoNascita &&
+            residenza==a.residenza;
+}
+
+DatiAnagrafici DatiAnagrafici::operator=(const DatiAnagrafici& a)
+{
+    nome=a.nome;
+    cognome=a.cognome;
+    email=a.email;
+    dataNascita=a.dataNascita;
+    luogoNascita=a.luogoNascita;
+    residenza=a.residenza;
+    return *this;
+}
+
+
+
+
+
 QString DatiAnagrafici::getNome() const {
     return nome;
 }

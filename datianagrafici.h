@@ -18,6 +18,11 @@ public:
     //Costruttore
     DatiAnagrafici();
     DatiAnagrafici(const QString&,const QString&,const QString&,const QDate&,const QString&,const QString&);
+    //Controlli
+    bool operator==(const DatiAnagrafici&) const;
+    //Assegnazione
+    DatiAnagrafici operator=(const DatiAnagrafici&);
+    //bool operator!=(const DatiAnagrafici&) const;
     //Selettori
     QString getNome() const;
     QString getCognome() const;

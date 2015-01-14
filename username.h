@@ -11,7 +11,7 @@ private:
 public:
     Username();
     Username(const QString&);
-    Username ModificaUsername(const QString&);
+    void setUsername(const QString&);
     QString getUsername();
 };
 
