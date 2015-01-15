@@ -10,7 +10,7 @@ public:
     Utente(const Username&);
     Username login;
     Profilo info;
-    Rete* rete;
+    //Rete* rete;
     //virtual ~Utente();
     //virtual void find() =0;
 };

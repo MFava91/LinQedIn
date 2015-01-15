@@ -1,5 +1,9 @@
 #include "db.h"
 #include<iostream>
+
+using std::cout;
+using std::endl;
+
 DB::DB()
 {
 }
@@ -16,187 +20,90 @@ void DB::removeUtete(Username u){
 void DB::load() {
     QString path("/home/mattia/Documenti/Linquedln/prova.xml");
     QFile file(path);
-    /*bool open = file.open(QIODevice::ReadOnly | QIODevice::Text);
-    if (!open) {
-        std::cout << "Couldn't open file" << std::endl;
-        return;
-    }
-    else
-        std::cout << "File opened OK" << std::endl;
-    */
-    file.open(QFile::ReadOnly);
-    QXmlStreamReader read(&file);
-    read.readNext();
+    file.open(QIODevice::ReadOnly);
     QString key;
     DatiAnagrafici a;
     TitoliStudio b;
     Lavoro c;
-    std::map<QString,Utente*>::iterator it=dbUtenti.begin();
-    //while (!read.isEndDocument())
-    //{
-    read.readNext();
-        if (read.isStartElement())
+    QXmlStreamReader read(&file);
+    //std::map<QString,Utente*>::iterator it=dbUtenti.begin();
+    while (!read.atEnd() && !read.hasError())
+    {
+        if(read.name()=="Username" && read.tokenType() != QXmlStreamReader::EndElement)
         {
-            std::cout<<read.name().toString().toStdString()<<std::endl;
-            read.readNext();
-            read.readNext();
-            std::cout<<read.name().toString().toStdString()<<std::endl;
-            read.readNext();
-            read.readNext();
-            std::cout<<read.name().toString().toStdString()<<std::endl;
-            if(read.name()=="Username")
+            key=read.readElementText();
+            read.readNextStartElement();
+        }
+        if(read.name()=="DatiAnagrafici" && read.tokenType() != QXmlStreamReader::EndElement)
+        {
+            read.readNextStartElement();
+            QString nome,cognome,email,lnascita,lresidenza;
+            QDate dnascita;
+            nome=read.readElementText();                                        read.readNextStartElement();
+            cognome=read.readElementText();                                     read.readNextStartElement();
+            email=read.readElementText();                                       read.readNextStartElement();
+            dnascita=QDate::fromString(read.readElementText());                 read.readNextStartElement();
+            lnascita=read.readElementText();                                    read.readNextStartElement();
+            lresidenza=read.readElementText();                                  read.readNextStartElement();
+            DatiAnagrafici a1(nome,cognome,email,dnascita,lnascita,lresidenza);
+            std::cout<<std::endl;
+            std::cout<<nome.toStdString()<<cognome.toStdString()<<" "<<email.toStdString()<<" "<<dnascita.toString().toStdString()<<" "<<lnascita.toStdString()<<" "<<lresidenza.toStdString()<<std::endl;
+            a=a1;
+        }
+        if(read.name()=="Titoli_Studio" && read.tokenType() != QXmlStreamReader::EndElement)
+        {
+            read.readNextStartElement();
+            QString diploma;
+            QString lauree;
+            diploma=read.readElementText();     read.readNextStartElement();
+            while(!read.isEndElement())
             {
-                key=read.readElementText();
-                std::cout<<key.toStdString()<<std::endl;
-                //(*it).second->login.setUsername(read.readElementText());
+                lauree=read.readElementText();  read.readNextStartElement();
             }
-            read.readNext();
-            read.readNext();
-            std::cout<<read.name().toString().toStdString()<<std::endl;
-
-            if(read.name()=="DatiAnagrafici")
+            TitoliStudio b1(diploma,lauree);
+            std::cout<<std::endl;
+            std::cout<<diploma.toStdString()<<" "<<lauree.toStdString()<<endl;
+            b=b1;
+        }
+        if(read.name()=="Esperienze_Lavorative" && read.tokenType() != QXmlStreamReader::EndElement)
+        {
+            while(!read.isEndElement())
             {
-
-                read.readNext();
-                read.readNext();
-                QString nome,cognome,email,lnascita,lresidenza;
-                QDate dnascita;
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-                nome=read.readElementText();
-                std::cout<<nome.toStdString()<<std::endl;
-                read.readNext();
-                read.readNext();
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-                cognome=read.readElementText();
-                std::cout<<cognome.toStdString()<<std::endl;
-                read.readNext();
-                read.readNext();
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-                email=read.readElementText();
-                std::cout<<email.toStdString()<<std::endl;
-                read.readNext();
-                read.readNext();
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-                dnascita=QDate::fromString(read.readElementText());
-                std::cout<<dnascita.toString().toStdString()<<std::endl;
-                read.readNext();
-                read.readNext();
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-                lnascita=read.readElementText();
-                std::cout<<lnascita.toStdString()<<std::endl;
-                read.readNext();
-                read.readNext();
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-                lresidenza=read.readElementText();
-                std::cout<<lresidenza.toStdString()<<std::endl;
-                read.readNext();
-                read.readNext();
-                read.readNext();
-                read.readNext();
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-                DatiAnagrafici a1(nome,cognome,email,dnascita,lnascita,lresidenza);
-                a=a1;
-            }
-            if(read.name()=="Titoli_Studio")
-            {
-                read.readNext();
-                read.readNext();
-
-                QString diploma;
-                QString lauree;
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-
-                diploma=read.readElementText();
-                std::cout<<diploma.toStdString()<<std::endl;
-                read.readNext();
-                read.readNext();
-                std::cout<<read.name().toString().toStdString()<<std::endl;
-
-                while(!read.isEndElement())
+                read.readNextStartElement();
+                if(read.name()=="Lavoro" && read.tokenType() != QXmlStreamReader::EndElement)
                 {
-                    lauree=read.readElementText();
-                    std::cout<<lauree.toStdString()<<std::endl;
-                    read.readNext();
-                    read.readNext();
+                    read.readNextStartElement();
+                    QString azienda,titolo,citta;
+                    QDate inizio,fine;
+                    azienda=read.readElementText();                     read.readNextStartElement();
+                    titolo=read.readElementText();                      read.readNextStartElement();
+                    citta=read.readElementText();                       read.readNextStartElement();
+                    inizio=QDate::fromString(read.readElementText());   read.readNextStartElement();
+                    fine=QDate::fromString(read.readElementText());     read.readNextStartElement();
+                    Lavoro l2(azienda,titolo,citta,inizio,fine);
+                    std::cout<<std::endl;
+                    std::cout<<azienda.toStdString()<<" "<<titolo.toStdString()<<" "<<citta.toStdString()<<" "<<inizio.toString().toStdString()<<" "<<fine.toString().toStdString()<<endl;
+                    c=l2;
                 }
-                TitoliStudio b1(diploma,lauree);
-                b=b1;
-            }
-            read.readNext();
-            read.readNext();
-            //std::cout<<read.name().toString().toStdString()<<std::endl;
-
-            if(read.name()=="Esperienze_Lavorative")
-            {
-                //while(!read.isEndElement())
-                //{
-                    read.readNext();
-                    read.readNext();
-                     std::cout<<read.name().toString().toStdString()<<std::endl;
-
-                    if(read.name()=="Lavoro")
-                    {
-                        read.readNext();
-                        read.readNext();
-                        std::cout<<read.name().toString().toStdString()<<std::endl;
-                        QString azienda,titolo,citta;
-                        QDate inizio,fine;
-                        azienda=read.readElementText();
-                        std::cout<<azienda.toStdString()<<std::endl;
-                        read.readNext();
-                        read.readNext();
-                        std::cout<<read.name().toString().toStdString()<<std::endl;
-                        titolo=read.readElementText();
-                        std::cout<<titolo.toStdString()<<std::endl;
-                        read.readNext();
-                        read.readNext();
-                        std::cout<<read.name().toString().toStdString()<<std::endl;
-                        citta=read.readElementText();
-                        std::cout<<citta.toStdString()<<std::endl;
-                        read.readNext();
-                        read.readNext();
-                        std::cout<<read.name().toString().toStdString()<<std::endl;
-                        inizio=QDate::fromString(read.readElementText());
-
-                        std::cout<<read.lineNumber()<<std::endl;
-
-
-                        std::cout<<inizio.toString().toStdString()<<std::endl;
-                        std::cout<<read.name().toString().toStdString()<<std::endl;
-
-                        std::cout<<read.lineNumber()<<std::endl;
-                        read.readNext();
-                        std::cout<<read.lineNumber()<<std::endl;
-
-                        fine=QDate::fromString(read.readElementText());
-                        std::cout<<fine.toString().toStdString();
-                        Lavoro l2(azienda,titolo,citta,inizio,fine);
-                        c=l2;
-                    }
-
-                //}
-
             }
         }
-        //else
-        /*if (read.isEndElement())
-        {
-            read.readNext();
-        }
-        */
-        CompetenzeLavorative d(c);
-        Profilo p;
-        p.datiPersonali=a;
-        p.studi=b;
-        p.curriculum=d;
-        Utente u;
-        u.login=key;
-        u.info=p;
-        Utente *punt=&u;
-        std::cout<<"ciao"<<u.login.getUsername().toStdString();
-        //addUtente(u.login,punt);
-        ++it;
+        read.readNextStartElement();
     }
+    file.close();
+    CompetenzeLavorative d(c);
+    Profilo p;
+    p.datiPersonali=a;
+    p.studi=b;
+    p.curriculum=d;
+    Utente* u=new Utente();
+    u->login=key;
+    u->info=p;
+    cout<<u->login.getUsername().toStdString();
+    addUtente(u->login,u);
+    //++it;
+}
+
+
 
 
 
