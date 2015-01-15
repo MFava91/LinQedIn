@@ -11,9 +11,9 @@ private:
 public:
     CompetenzeLavorative();
     CompetenzeLavorative(const Lavoro&);
+    CompetenzeLavorative(const vector<Lavoro>&);
     void AggiungiLavoro(const Lavoro&);
     vector<Lavoro> getEsperienze() const;
-
 };
 
 #endif // COMPETENZELAVORATIVE_H

@@ -20,14 +20,24 @@ void DB::removeUtete(Username u){
 void DB::load() {
     QString path("/home/mattia/Documenti/Linquedln/prova.xml");
     QFile file(path);
+    bool trovato=false;
     file.open(QIODevice::ReadOnly);
-    QString key;
-    DatiAnagrafici a;
-    TitoliStudio b;
-    Lavoro c;
+    QString key,nome,cognome,email,lnascita,lresidenza,diploma,laur;
+    QDate dnascita;
+    vector<QString> lauree;
+    vector<Lavoro> vlavoro;
     QXmlStreamReader read(&file);
+    //QXmlStreamReader lines(&file);
+    /*
+    while (!lines.isEndDocument() && !lines.hasError())
+    {
+        cout<<lines.lineNumber()<<" ";
+        lines.readNext();
+        lines.readNext();
+    }
+    */
     //std::map<QString,Utente*>::iterator it=dbUtenti.begin();
-    while (!read.atEnd() && !read.hasError())
+    while (!read.atEnd() /*&& !read.hasError()*/)
     {
         if(read.name()=="Username" && read.tokenType() != QXmlStreamReader::EndElement)
         {
@@ -37,69 +47,83 @@ void DB::load() {
         if(read.name()=="DatiAnagrafici" && read.tokenType() != QXmlStreamReader::EndElement)
         {
             read.readNextStartElement();
-            QString nome,cognome,email,lnascita,lresidenza;
-            QDate dnascita;
-            nome=read.readElementText();                                        read.readNextStartElement();
-            cognome=read.readElementText();                                     read.readNextStartElement();
-            email=read.readElementText();                                       read.readNextStartElement();
-            dnascita=QDate::fromString(read.readElementText());                 read.readNextStartElement();
-            lnascita=read.readElementText();                                    read.readNextStartElement();
-            lresidenza=read.readElementText();                                  read.readNextStartElement();
-            DatiAnagrafici a1(nome,cognome,email,dnascita,lnascita,lresidenza);
-            std::cout<<std::endl;
-            std::cout<<nome.toStdString()<<cognome.toStdString()<<" "<<email.toStdString()<<" "<<dnascita.toString().toStdString()<<" "<<lnascita.toStdString()<<" "<<lresidenza.toStdString()<<std::endl;
-            a=a1;
+
+            nome=read.readElementText();
+            read.readNextStartElement();
+            cognome=read.readElementText();
+            read.readNextStartElement();
+            email=read.readElementText();
+            read.readNextStartElement();
+            dnascita=QDate::fromString(read.readElementText());
+            read.readNextStartElement();
+            lnascita=read.readElementText();
+            read.readNextStartElement();
+            lresidenza=read.readElementText();
+            read.readNextStartElement();
+            //std::cout<<std::endl;
+            //std::cout<<nome.toStdString()<<cognome.toStdString()<<" "<<email.toStdString()<<" "<<dnascita.toString().toStdString()<<" "<<lnascita.toStdString()<<" "<<lresidenza.toStdString()<<std::endl;
+
         }
         if(read.name()=="Titoli_Studio" && read.tokenType() != QXmlStreamReader::EndElement)
         {
             read.readNextStartElement();
-            QString diploma;
-            QString lauree;
-            diploma=read.readElementText();     read.readNextStartElement();
-            while(!read.isEndElement())
+            diploma=read.readElementText();
+            read.readNextStartElement();
+            while(read.name()=="Laurea")
             {
-                lauree=read.readElementText();  read.readNextStartElement();
+                laur=read.readElementText();
+                lauree.push_back(laur);
+                read.readNextStartElement();
             }
-            TitoliStudio b1(diploma,lauree);
-            std::cout<<std::endl;
-            std::cout<<diploma.toStdString()<<" "<<lauree.toStdString()<<endl;
-            b=b1;
+            //std::cout<<std::endl;
+            //std::cout<<diploma.toStdString()<<" "<<lauree.toStdString()<<endl;
         }
         if(read.name()=="Esperienze_Lavorative" && read.tokenType() != QXmlStreamReader::EndElement)
         {
-            while(!read.isEndElement())
+            read.readNextStartElement();
+            while(read.name()=="Lavoro")
             {
                 read.readNextStartElement();
-                if(read.name()=="Lavoro" && read.tokenType() != QXmlStreamReader::EndElement)
-                {
-                    read.readNextStartElement();
-                    QString azienda,titolo,citta;
-                    QDate inizio,fine;
-                    azienda=read.readElementText();                     read.readNextStartElement();
-                    titolo=read.readElementText();                      read.readNextStartElement();
-                    citta=read.readElementText();                       read.readNextStartElement();
-                    inizio=QDate::fromString(read.readElementText());   read.readNextStartElement();
-                    fine=QDate::fromString(read.readElementText());     read.readNextStartElement();
-                    Lavoro l2(azienda,titolo,citta,inizio,fine);
-                    std::cout<<std::endl;
-                    std::cout<<azienda.toStdString()<<" "<<titolo.toStdString()<<" "<<citta.toStdString()<<" "<<inizio.toString().toStdString()<<" "<<fine.toString().toStdString()<<endl;
-                    c=l2;
-                }
+                QString azienda,titolo,citta;
+                QDate inizio,fine;
+                azienda=read.readElementText();
+                read.readNextStartElement();
+                titolo=read.readElementText();
+                read.readNextStartElement();
+                citta=read.readElementText();
+                read.readNextStartElement();
+                inizio=QDate::fromString(read.readElementText());
+                read.readNextStartElement();
+                fine=QDate::fromString(read.readElementText());
+
+                //std::cout<<"---------"<<std::endl;
+                //std::cout<<azienda.toStdString()<<" "<<titolo.toStdString()<<" "<<citta.toStdString()<<" "<<inizio.toString().toStdString()<<" "<<fine.toString().toStdString()<<endl;
+                Lavoro c(azienda,titolo,citta,inizio,fine);
+                vlavoro.push_back(c);
             }
+            trovato=true;
+        }
+        if(trovato)
+        {
+            DatiAnagrafici a(nome,cognome,email,dnascita,lnascita,lresidenza);
+            TitoliStudio b(diploma,lauree);
+            CompetenzeLavorative c(vlavoro);
+            Profilo p;
+            p.datiPersonali=a;
+            p.studi=b;
+            p.curriculum=c;
+            Utente* u=new Utente();
+            u->login=key;
+            u->info=p;
+            //cout<<u->login.getUsername().toStdString();
+            addUtente(u->login,u);
+            trovato=false;
+            lauree.clear(); //pulire il vector
+            vlavoro.clear();
         }
         read.readNextStartElement();
     }
     file.close();
-    CompetenzeLavorative d(c);
-    Profilo p;
-    p.datiPersonali=a;
-    p.studi=b;
-    p.curriculum=d;
-    Utente* u=new Utente();
-    u->login=key;
-    u->info=p;
-    cout<<u->login.getUsername().toStdString();
-    addUtente(u->login,u);
     //++it;
 }
 
@@ -111,10 +135,11 @@ void DB::save() const {
     QString path("/home/mattia/Documenti/Linquedln/output.xml");
     QFile file(path);
     qint64 s = file.size();
+    QString ctag = "</db>\n";
     if (s > 0) {
         file.open(QFile::ReadWrite);
-        if (file.seek(s))
-            Q_ASSERT(file.pos() == s);
+        if (file.seek(s-ctag.length()))
+            Q_ASSERT(file.pos() == s-ctag.length());
     }
     else
         file.open(QFile::WriteOnly);
@@ -129,10 +154,12 @@ void DB::save() const {
         std::cout << "File opened OK" << std::endl;
     }
     */
+
     QXmlStreamWriter write(&file);
     write.setAutoFormatting(true);
     if (s == 0) {
         write.writeStartDocument();
+        write.writeStartElement("db");
     }
     for(std::map<QString,Utente*>::const_iterator it=dbUtenti.begin();it!=dbUtenti.end();++it)
     {
@@ -164,11 +191,9 @@ void DB::save() const {
 
         write.writeStartElement("Esperienze_Lavorative");
         int sizeLavori=(*it).second->info.curriculum.getEsperienze().size();
-
         //OLD  for (vector<Lavoro>::iterator itl = (*it).second->info.curriculum.getEsperienze().begin(); itl != (*it).second->info.curriculum.getEsperienze().end(); itl++)
         for(int i=0;i<sizeLavori;i++)
         {
-
             write.writeStartElement("Lavoro");
             write.writeTextElement("Azienda",(*it).second->info.curriculum.getEsperienze()[i].getAzienda());
             write.writeTextElement("Titolo",(*it).second->info.curriculum.getEsperienze()[i].getTitolo());
@@ -180,10 +205,15 @@ void DB::save() const {
         write.writeEndElement();
         write.writeEndElement();
         write.writeEndElement();
-        if (s == 0) {
-            write.writeEndDocument();
-        }
     }
+    ;
+    if (s == 0) {
+        write.writeEndElement();
+        write.writeEndDocument();
+    }
+    else
+            QTextStream(&file) << "\n" << ctag;
+    file.close();
 }
 
 DB::~DB() {

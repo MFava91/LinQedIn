@@ -1,12 +1,17 @@
 #include "titolistudio.h"
 
-//TitoliStudio::TitoliStudio() {} //usa construttore standard QString
+//TitoliStudio::TitoliStudio() {} //Usa costruttore standard del vector e del QString
 
 TitoliStudio::TitoliStudio(const QString& d, const QString& l){
     if(d!="")
         diploma=d;
     if(l!="")
         AggiungiLaurea(l);
+}
+
+TitoliStudio::TitoliStudio(const QString& d,const vector<QString>& v){
+    diploma=d;
+    laurea=v;
 }
 
 TitoliStudio TitoliStudio::operator=(const TitoliStudio& a){

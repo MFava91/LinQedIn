@@ -2,6 +2,10 @@
 
 CompetenzeLavorative::CompetenzeLavorative() {}
 
+CompetenzeLavorative::CompetenzeLavorative(const vector<Lavoro> & vl){
+    esperienze=vl;
+}
+
 CompetenzeLavorative::CompetenzeLavorative(const Lavoro& l){
     AggiungiLavoro(l);
 }

@@ -13,6 +13,7 @@ private:
 public:
     //TitoliStudio();
     TitoliStudio(const QString&);
+    TitoliStudio(const QString&,const vector<QString>&);
     TitoliStudio(const QString& ="",const QString& ="");
     TitoliStudio operator=(const TitoliStudio&);
     void AggiungiLaurea(const QString&);
