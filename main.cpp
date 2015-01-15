@@ -66,20 +66,21 @@ int main(/*int argc, char *argv[]*/)
     Utente u,u2;
     u.info=p;
     u.login=us;
-    //Utente *punt=&u;
+    u.rete.addFollow(user2);
+    Utente *punt=&u;
 
     u2.info=p2;
     u2.login=us2;
-    //Utente *punt2=&u2;
+    u2.rete.addFollow(user);
+    Utente *punt2=&u2;
 
 
     //SCRIVO NEL DB
+
     DB db;
-    //db.addUtente(u.login,punt);
-    //db.addUtente(u2.login,punt2);
-    db.load();
+    db.addUtente(u.login,punt);
+    db.addUtente(u2.login,punt2);
+    //db.load();
     db.save();
-
-
     return 0;
 }

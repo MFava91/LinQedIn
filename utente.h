@@ -10,7 +10,9 @@ public:
     Utente(const Username&);
     Username login;
     Profilo info;
-    //Rete* rete;
+    Rete rete;
+    void upaddFollow(Utente);
+    void upremoveFollow(Utente);
     //virtual ~Utente();
     //virtual void find() =0;
 };
@@ -30,15 +32,5 @@ public:
  *
  *
  */
-
-
-
-
-/* DUBBI A RIGUARDO
-class SmartUtente {
-public:
-    Utente* u; //puntatore polimorfo
-};
-*/
 
 #endif // UTENTE_H

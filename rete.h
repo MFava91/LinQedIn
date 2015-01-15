@@ -3,8 +3,8 @@
 
 #include"username.h"
 #include<set>
-
 using std::set;
+
 class Rete{
 private:
     //Following
@@ -12,10 +12,10 @@ private:
     //Follower
     set<QString> follower;
 public:
-    Rete();
-
     void addFollow(Username);
+    void addFollower(Username);
     void removeFollow(Username);
+    void removeFollower(Username);
 };
 
 #endif // RETE_H

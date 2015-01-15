@@ -229,7 +229,7 @@ void DB::save() const {
             write.writeTextElement("Laurea",(*it).second->info.studi.getLaurea()[i]);
         }
 
-        /*OLD
+        OLD
         for (vector<QString>::iterator itv = (*it).second->info.studi.getLaurea().begin(); itv != (*it).second->info.studi.getLaurea().end(); ++itv) {
             write.writeTextElement("Laurea",*itv);
         }
