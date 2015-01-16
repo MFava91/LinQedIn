@@ -7,15 +7,11 @@ using std::set;
 
 class Rete{
 private:
-    //Following
     set<QString> follow;
-    //Follower
-    set<QString> follower;
 public:
+    set<QString> getFollow() const;
     void addFollow(Username);
-    void addFollower(Username);
     void removeFollow(Username);
-    void removeFollower(Username);
 };
 
 #endif // RETE_H

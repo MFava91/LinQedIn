@@ -21,7 +21,7 @@ public:
     DB();
     void addUtente(Username,Utente*);
     void removeUtete(Username);
-    void save() const;
+    void save();
     void load();
     ~DB(); //DA FARE
     /*

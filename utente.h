@@ -11,8 +11,7 @@ public:
     Username login;
     Profilo info;
     Rete rete;
-    void upaddFollow(Utente);
-    void upremoveFollow(Utente);
+
     //virtual ~Utente();
     //virtual void find() =0;
 };
