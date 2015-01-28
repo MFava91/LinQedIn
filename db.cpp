@@ -3,6 +3,7 @@
 
 using std::cout;
 using std::endl;
+using std::set;
 
 DB::DB()
 {
@@ -183,21 +184,17 @@ void DB::save() {
         }
         write.writeEndElement();
         write.writeEndElement();
-        /*
-        write.writeStartElement("RetiFollow");
-        QString temp,tempp;
-        for(std::set<QString>::iterator itfollow=(*it).second->rete.getFollow().begin();itfollow!=(*it).second->rete.getFollow().end();++itfollow)
-        {
-            temp=(*itfollow);
-            std::cout<<temp.toStdString()<<" ";
-            //write.writeTextElement("Follow",temp);
+        write.writeStartElement("Rete");
 
-        }
-        write.writeTextElement("Follow",temp);
+
+        set<QString> fol=((*it).second->rete.getFollow());
+        set<QString>::const_iterator itfollow=fol.begin();
+        for(;itfollow!=fol.end();++itfollow)
+            write.writeTextElement("Follow",*itfollow);
+
         write.writeEndElement();
-        */
+        std::cout<<"ehehe";
     }
-    write.writeEndElement();
     write.writeEndDocument();
     file.close();
 }

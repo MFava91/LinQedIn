@@ -69,8 +69,10 @@ int main(/*int argc, char *argv[]*/)
 
     u2.info=p2;
     u2.login=us2;
-    u.rete.addFollow(u2.login);
-    u2.rete.addFollow(u.login);
+    u.rete.addFollow(us2);
+    Username us3("mariomariomario");
+    u.rete.addFollow(us3);
+    u2.rete.addFollow(us);
 
 
     Utente *punt=&u;
@@ -82,9 +84,9 @@ int main(/*int argc, char *argv[]*/)
     DB db;
     db.addUtente(u.login,punt);
     db.addUtente(u2.login,punt2);
-    db.removeUtete(u.login);
-    //std:set<QString>::const_iterator it=u.rete.getFollow().begin();
-    //std::cout<<(*it).toStdString();
+    //db.removeUtete(u.login);
+    set<QString>::const_iterator it=u.rete.getFollow().begin();
+    QString prova=*it;
     //db.load();
 
     db.save();
