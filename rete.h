@@ -9,7 +9,8 @@ class Rete{
 private:
     set<QString> follow;
 public:
-    int num;
+    Rete();
+    Rete(const set<QString>&);
     set<QString> getFollow() const;
     void addFollow(Username);
     void removeFollow(Username);

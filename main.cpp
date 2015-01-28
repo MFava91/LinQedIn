@@ -23,6 +23,7 @@ int main(/*int argc, char *argv[]*/)
     b.Xmlread();
     */
     //PROVA SCRITTURA SU FILE XML
+    /*
     QString nome,cognome,email,lnascita,residenza,nome2;
     QDate dnascita(1992,2,1);
     nome="Enrico";
@@ -78,17 +79,18 @@ int main(/*int argc, char *argv[]*/)
     Utente *punt=&u;
     Utente *punt2=&u2;
 
-
+    */
     //SCRIVO NEL DB
 
     DB db;
-    db.addUtente(u.login,punt);
+    /*db.addUtente(u.login,punt);
     db.addUtente(u2.login,punt2);
     //db.removeUtete(u.login);
     set<QString>::const_iterator it=u.rete.getFollow().begin();
     QString prova=*it;
-    //db.load();
-
+    */
+    db.load();
     db.save();
+
     return 0;
 }

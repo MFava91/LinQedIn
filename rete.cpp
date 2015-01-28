@@ -1,5 +1,8 @@
 #include "rete.h"
 
+Rete::Rete() {};
+Rete::Rete(const set<QString>& r):follow(r){}
+
 set<QString> Rete::getFollow() const{
     return follow;
 }

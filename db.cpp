@@ -36,8 +36,9 @@ void DB::load() {
     QDate dnascita;
     vector<QString> lauree;
     vector<Lavoro> vlavoro;
+    set<QString> rete;
     QXmlStreamReader read(&file);
-    //QXmlStreamReader lines(&file);
+    QXmlStreamReader lines(&file);
     /*
     while (!lines.isEndDocument() && !lines.hasError())
     {
@@ -111,6 +112,17 @@ void DB::load() {
                 Lavoro c(azienda,titolo,citta,inizio,fine);
                 vlavoro.push_back(c);
             }
+
+        }
+        if(read.name()=="Rete_Follow" && read.tokenType() != QXmlStreamReader::EndElement)
+        {
+            read.readNextStartElement();
+            while(read.name()=="Follow")
+            {
+                QString follow=read.readElementText();
+                rete.insert(follow);
+                read.readNextStartElement();
+            }
             trovato=true;
         }
         if(trovato)
@@ -119,22 +131,25 @@ void DB::load() {
             TitoliStudio b(diploma,lauree);
             CompetenzeLavorative c(vlavoro);
             Profilo p;
+            Rete r(rete);
             p.datiPersonali=a;
             p.studi=b;
             p.curriculum=c;
             Utente* u=new Utente();
             u->login=key;
             u->info=p;
+            u->rete=r;
+
             //cout<<u->login.getUsername().toStdString();
             addUtente(u->login,u);
             trovato=false;
             lauree.clear(); //pulire il vector
             vlavoro.clear();
+            rete.clear();
         }
         read.readNextStartElement();
     }
     file.close();
-    //++it;
 }
 
 
@@ -184,7 +199,7 @@ void DB::save() {
         }
         write.writeEndElement();
         write.writeEndElement();
-        write.writeStartElement("Rete");
+        write.writeStartElement("Rete_Follow");
 
 
         set<QString> fol=((*it).second->rete.getFollow());
@@ -193,7 +208,6 @@ void DB::save() {
             write.writeTextElement("Follow",*itfollow);
 
         write.writeEndElement();
-        std::cout<<"ehehe";
     }
     write.writeEndDocument();
     file.close();
