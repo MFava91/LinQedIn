@@ -5,15 +5,17 @@
 
 class Utente
 {
-public:
-    Utente();
-    Utente(const Username&);
+private:
     Username login;
     Profilo info;
     Rete rete;
-
-    //virtual ~Utente();
-    //virtual void find() =0;
+public:
+    Utente();
+    Utente(const Username&);
+    Username getLogin() const;
+    Profilo getInfo() const;
+    Rete getRete() const;
+    virtual ~Utente();
 };
 
 /*MEGA ONEROSA --> RICERCO SU TUTTO IL DATABASE, QUANDO ELIMINO UTENTE, CERCO SU TUTTE LE RETI

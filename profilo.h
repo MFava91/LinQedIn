@@ -8,10 +8,14 @@
 
 class Profilo
 {
-public:
+private:
     DatiAnagrafici datiPersonali;
     TitoliStudio studi;
     CompetenzeLavorative curriculum;
+public:
+    DatiAnagrafici getDati() const;
+    TitoliStudio getStudi() const;
+    CompetenzeLavorative getLavori() const;
     //void modificaProfilo() {}
     //Info* visualizzaProfilo() const {return 0; }
 };

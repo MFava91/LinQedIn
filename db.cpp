@@ -16,10 +16,10 @@ void DB::addUtente(Username u,Utente* p){
 void DB::removeUtete(Username u){
     for(std::map<QString,Utente*>::iterator it=dbUtenti.begin();it!=dbUtenti.end();++it)
     {
-        for(std::set<QString>::iterator itf=(*it).second->rete.getFollow().begin();itf!=(*it).second->rete.getFollow().end();++itf)
+        for(std::set<QString>::iterator itf=(*it).second->getRete().getFollow().begin();itf!=(*it).second->getRete().getFollow().end();++itf)
         {
             if((*itf)==u.getUsername())
-                (*it).second->rete.removeFollow(u);
+                (*it).second->getRete().removeFollow(u);
         }
     }
     dbUtenti.erase(u.getUsername());
@@ -132,16 +132,16 @@ void DB::load() {
             CompetenzeLavorative c(vlavoro);
             Profilo p;
             Rete r(rete);
-            p.datiPersonali=a;
-            p.studi=b;
-            p.curriculum=c;
+            p.getDati()=a;
+            p.getStudi()=b;
+            p.getLavori()=c;
             Utente* u=new Utente();
-            u->login=key;
-            u->info=p;
-            u->rete=r;
+            u->getLogin()=key;
+            u->getInfo()=p;
+            u->getRete()=r;
 
             //cout<<u->login.getUsername().toStdString();
-            addUtente(u->login,u);
+            addUtente(u->getLogin(),u);
             trovato=false;
             lauree.clear(); //pulire il vector
             vlavoro.clear();
@@ -166,35 +166,35 @@ void DB::save() {
     {
         write.writeStartElement("Utente");
         write.writeStartElement("Profilo");
-        write.writeTextElement("Username",(*it).second->login.getUsername());
+        write.writeTextElement("Username",(*it).second->getLogin().getUsername());
         write.writeStartElement("DatiAnagrafici");
-        write.writeTextElement("Nome",(*it).second->info.datiPersonali.getNome());
-        write.writeTextElement("Cognome",(*it).second->info.datiPersonali.getCognome());
-        write.writeTextElement("Email",(*it).second->info.datiPersonali.getEmail());
-        write.writeTextElement("Data",(*it).second->info.datiPersonali.getDataNascita().toString());
-        write.writeTextElement("Luogo_Nascita",(*it).second->info.datiPersonali.getLuogoNascita());
-        write.writeTextElement("Residenza",(*it).second->info.datiPersonali.getResidenza());
+        write.writeTextElement("Nome",(*it).second->getInfo().getDati().getNome());
+        write.writeTextElement("Cognome",(*it).second->getInfo().getDati().getCognome());
+        write.writeTextElement("Email",(*it).second->getInfo().getDati().getEmail());
+        write.writeTextElement("Data",(*it).second->getInfo().getDati().getDataNascita().toString());
+        write.writeTextElement("Luogo_Nascita",(*it).second->getInfo().getDati().getLuogoNascita());
+        write.writeTextElement("Residenza",(*it).second->getInfo().getDati().getResidenza());
         write.writeEndElement();
         write.writeStartElement("Titoli_Studio");
-        write.writeTextElement("Diploma",(*it).second->info.studi.getDiploma());
+        write.writeTextElement("Diploma",(*it).second->getInfo().getStudi().getDiploma());
 
-        int sizeStudi=(*it).second->info.studi.getLaurea().size();
+        int sizeStudi=(*it).second->getInfo().getStudi().getLaurea().size();
         for (int i=0;i<sizeStudi;i++) {
-            write.writeTextElement("Laurea",(*it).second->info.studi.getLaurea()[i]);
+            write.writeTextElement("Laurea",(*it).second->getInfo().getStudi().getLaurea()[i]);
         }
         write.writeEndElement();
 
         write.writeStartElement("Esperienze_Lavorative");
-        int sizeLavori=(*it).second->info.curriculum.getEsperienze().size();
-        //OLD  for (vector<Lavoro>::iterator itl = (*it).second->info.curriculum.getEsperienze().begin(); itl != (*it).second->info.curriculum.getEsperienze().end(); itl++)
+        int sizeLavori=(*it).second->getInfo().getLavori().getEsperienze().size();
+        //OLD  for (vector<Lavoro>::iterator itl = (*it).second->info.getLavori().getEsperienze().begin(); itl != (*it).second->info.getLavori().getEsperienze().end(); itl++)
         for(int i=0;i<sizeLavori;i++)
         {
             write.writeStartElement("Lavoro");
-            write.writeTextElement("Azienda",(*it).second->info.curriculum.getEsperienze()[i].getAzienda());
-            write.writeTextElement("Titolo",(*it).second->info.curriculum.getEsperienze()[i].getTitolo());
-            write.writeTextElement("Citta",(*it).second->info.curriculum.getEsperienze()[i].getCitta());
-            write.writeTextElement("Inizio",(*it).second->info.curriculum.getEsperienze()[i].getInizio().toString());
-            write.writeTextElement("Fine",(*it).second->info.curriculum.getEsperienze()[i].getFine().toString());
+            write.writeTextElement("Azienda",(*it).second->getInfo().getLavori().getEsperienze()[i].getAzienda());
+            write.writeTextElement("Titolo",(*it).second->getInfo().getLavori().getEsperienze()[i].getTitolo());
+            write.writeTextElement("Citta",(*it).second->getInfo().getLavori().getEsperienze()[i].getCitta());
+            write.writeTextElement("Inizio",(*it).second->getInfo().getLavori().getEsperienze()[i].getInizio().toString());
+            write.writeTextElement("Fine",(*it).second->getInfo().getLavori().getEsperienze()[i].getFine().toString());
             write.writeEndElement();
         }
         write.writeEndElement();
@@ -202,7 +202,7 @@ void DB::save() {
         write.writeStartElement("Rete_Follow");
 
 
-        set<QString> fol=((*it).second->rete.getFollow());
+        set<QString> fol=((*it).second->getRete().getFollow());
         set<QString>::const_iterator itfollow=fol.begin();
         for(;itfollow!=fol.end();++itfollow)
             write.writeTextElement("Follow",*itfollow);

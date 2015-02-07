@@ -73,17 +73,16 @@ int main(/*int argc, char *argv[]*/)
     u.rete.addFollow(us2);
     Username us3("mariomariomario");
     u.rete.addFollow(us3);
-    u2.rete.addFollow(us);
 
 
     Utente *punt=&u;
     Utente *punt2=&u2;
-
     */
     //SCRIVO NEL DB
 
     DB db;
-    /*db.addUtente(u.login,punt);
+    /*
+    db.addUtente(u.login,punt);
     db.addUtente(u2.login,punt2);
     //db.removeUtete(u.login);
     set<QString>::const_iterator it=u.rete.getFollow().begin();
