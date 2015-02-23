@@ -20,7 +20,6 @@ SOURCES += main.cpp\
     rete.cpp \
     username.cpp \
     utente.cpp \
-    xmlinfo.cpp \
     datianagrafici.cpp \
     titolistudio.cpp \
     competenzelavorative.cpp \
@@ -30,7 +29,8 @@ SOURCES += main.cpp\
     utenteexecutive.cpp \
     db.cpp \
     linqclient.cpp \
-    linqadmin.cpp
+    linqadmin.cpp \
+    adminwindow.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -38,7 +38,6 @@ HEADERS  += mainwindow.h \
     rete.h \
     username.h \
     utente.h \
-    xmlinfo.h \
     datianagrafici.h \
     titolistudio.h \
     competenzelavorative.h \
@@ -48,7 +47,8 @@ HEADERS  += mainwindow.h \
     utenteexecutive.h \
     db.h \
     linqclient.h \
-    linqadmin.h
+    linqadmin.h \
+    adminwindow.h
 
 FORMS    += mainwindow.ui
 

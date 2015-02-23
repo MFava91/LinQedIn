@@ -1,5 +1,8 @@
 #include "utentebasic.h"
 
-UtenteBasic::UtenteBasic()
-{
+
+/*
+void Utente::find(const QString& n, const QString& c){
+
 }
+*/

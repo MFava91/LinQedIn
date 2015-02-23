@@ -1,6 +1,7 @@
 #include "utentebusiness.h"
 
-UtenteBusiness::UtenteBusiness()
+/*UtenteBusiness::UtenteBusiness()
 {
 }
 
+*/

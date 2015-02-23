@@ -2,16 +2,16 @@
 #include <QApplication>
 
 #include"utente.h"
-#include"xmlinfo.h"
 #include"db.h"
-int main(/*int argc, char *argv[]*/)
+int main(int argc, char *argv[])
 {
-    //QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
+}
 
-    //return a.exec();
-    /*QString n,c,c2,e;
+/*    /*QString n,c,c2,e;
     n="mario";
     c="rossi";
     c2="menego";
@@ -77,19 +77,16 @@ int main(/*int argc, char *argv[]*/)
 
     Utente *punt=&u;
     Utente *punt2=&u2;
-    */
     //SCRIVO NEL DB
 
     DB db;
-    /*
     db.addUtente(u.login,punt);
     db.addUtente(u2.login,punt2);
     //db.removeUtete(u.login);
     set<QString>::const_iterator it=u.rete.getFollow().begin();
     QString prova=*it;
-    */
     db.load();
     db.save();
 
     return 0;
-}
+*/

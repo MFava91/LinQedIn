@@ -1,6 +1,6 @@
 #include "utenteexecutive.h"
 
-UtenteExecutive::UtenteExecutive()
+/*UtenteExecutive::UtenteExecutive()
 {
 }
-
+*/

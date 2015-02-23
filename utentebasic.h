@@ -1,13 +1,15 @@
 #ifndef UTENTEBASIC_H
 #define UTENTEBASIC_H
 
-#include"utente.h"
+//#include"utente.h"
 
-class UtenteBasic: public Utente
+/*class UtenteBasic: public Utente
 {
 public:
-    UtenteBasic();
+    virtual void find(const QString& =" ",const QString& =" ");
+
 };
+*/
 
 #endif // UTENTEBASIC_H
 
