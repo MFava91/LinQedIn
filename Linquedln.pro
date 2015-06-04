@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     utenteexecutive.cpp \
     db.cpp \
     adminwindow.cpp \
-    userwindow.cpp
+    userwindow.cpp \
+    usercontroller.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -46,7 +47,8 @@ HEADERS  += mainwindow.h \
     utenteexecutive.h \
     db.h \
     adminwindow.h \
-    userwindow.h
+    userwindow.h \
+    usercontroller.h
 
 FORMS    += mainwindow.ui
 

@@ -12,6 +12,7 @@ private:
 public:
     Utente();
     Utente(const Username&);
+    Utente(const Username&, const Profilo&, const Rete&);
     Username getLogin() const;
     Profilo getInfo() const;
     Rete getRete() const;

@@ -7,6 +7,9 @@ Utente::Utente() {
 
 Utente::Utente(const Username& u):login(u) {}
 
+Utente::Utente(const Username& u, const Profilo& p, const Rete& r):
+    login(u),info(p),rete(r) {}
+
 Username Utente::getLogin() const{
     return login;
 }

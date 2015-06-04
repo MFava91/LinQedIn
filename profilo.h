@@ -13,6 +13,8 @@ private:
     TitoliStudio studi;
     CompetenzeLavorative curriculum;
 public:
+    Profilo();
+    Profilo(const DatiAnagrafici&, const TitoliStudio&, const CompetenzeLavorative&);
     DatiAnagrafici getDati() const;
     TitoliStudio getStudi() const;
     CompetenzeLavorative getLavori() const;

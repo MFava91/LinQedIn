@@ -10,6 +10,7 @@
 #include<QGridLayout>
 
 #include"db.h"
+#include"usercontroller.h"
 
 class MainWindow: public QMainWindow {
     Q_OBJECT
@@ -29,15 +30,20 @@ private:
     static QString adminPass;
     static QString adminUser;
 
+    userController* userCtrl;
+
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 signals:
-    void signalPassword(const QString&,const QString&);
+    void signalPasswordUser(const QString&,const QString&);
+    void signalPasswordAdmin(const QString&,const QString&);
 
 public slots:
+    void readCredentialUser();
     void readCredentialAdmin();
+    void loginUser(const QString&,const QString&);
     void loginAdmin(const QString&,const QString&);
 };
 

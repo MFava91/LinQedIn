@@ -28,15 +28,15 @@ void DB::removeUtete(Username u){
 }
 
 Utente* DB::find(const QString& u){
+    Utente* temp = new Utente();
     map<QString,Utente*>::const_iterator it=dbUtenti.begin();
     for(;it!=dbUtenti.end();++it){
         if(((*it).first)==u){
-            Utente* temp = new Utente();
             temp=(*it).second;
             return temp;
         }
     }
-    std::cout<<"NON TROVATO!";
+    return temp;
 }
 
 void DB::load() {
@@ -142,16 +142,9 @@ void DB::load() {
             DatiAnagrafici a(nome,cognome,email,dnascita,lnascita,lresidenza);
             TitoliStudio b(diploma,lauree);
             CompetenzeLavorative c(vlavoro);
-            Profilo p;
+            Profilo p(a,b,c);
             Rete r(rete);
-            p.getDati()=a;
-            p.getStudi()=b;
-            p.getLavori()=c;
-            Utente* u=new Utente();
-            u->getLogin()=key;
-            u->getInfo()=p;
-            u->getRete()=r;
-
+            Utente* u=new Utente(key,p,r);
             //cout<<u->login.getUsername().toStdString();
             addUtente(u->getLogin(),u);
             trovato=false;
@@ -219,6 +212,7 @@ void DB::save() {
         for(;itfollow!=fol.end();++itfollow)
             write.writeTextElement("Follow",*itfollow);
 
+        write.writeEndElement();
         write.writeEndElement();
     }
     write.writeEndDocument();
