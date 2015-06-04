@@ -37,14 +37,14 @@ public:
     ~MainWindow();
 
 signals:
-    void signalPasswordUser(const QString&,const QString&);
-    void signalPasswordAdmin(const QString&,const QString&);
+    void signalPasswordUser(const QString&);
+    void signalPasswordAdmin(const QString&);
 
 public slots:
     void readCredentialUser();
     void readCredentialAdmin();
-    void loginUser(const QString&,const QString&);
-    void loginAdmin(const QString&,const QString&);
+    void loginUser(const QString&);
+    void loginAdmin(const QString&);
 };
 
 

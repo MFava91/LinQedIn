@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 
-QString MainWindow::adminPass = "admin";
 QString MainWindow::adminUser = "admin";
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
@@ -19,17 +18,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     userUsername = new QLineEdit(this);
     userUsername->setGeometry(QRect(QPoint(200, 200),
                                  QSize(200, 50)));
-    userPassword= new QLineEdit (this);
 
     userSubmit = new QPushButton("user",this);
     userSubmit->setGeometry(QRect(QPoint(100, 100),
                                  QSize(200, 50)));
 
+
     //ADMIN LOGIN
     adminUsername = new QLineEdit(this);
     adminUsername->setGeometry(QRect(QPoint(200, 200),
                                  QSize(200, 50)));
-    adminPassword= new QLineEdit (this);
 
     adminSubmit = new QPushButton("admin",this);
     adminSubmit->setGeometry(QRect(QPoint(100, 100),
@@ -37,19 +35,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
 
 
     layout->addWidget(userUsername,0,0);
-    layout->addWidget(userPassword,1,0);
     layout->addWidget(userSubmit,2,0);
 
     layout->addWidget(adminUsername,0,1);
-    layout->addWidget(adminPassword,1,1);
     layout->addWidget(adminSubmit,2,1);
     setLayout(layout);
 
     connect(userSubmit, SIGNAL(clicked()),this, SLOT(readCredentialUser()));
-    connect(this, SIGNAL(signalPasswordUser(QString,QString)), this, SLOT(loginUser(const QString&,const QString&)));
+    connect(this, SIGNAL(signalPasswordUser(QString)), this, SLOT(loginUser(const QString&)));
 
     connect(adminSubmit, SIGNAL(clicked()),this, SLOT(readCredentialAdmin()));
-    connect(this, SIGNAL(signalPasswordAdmin(QString,QString)), this, SLOT(loginAdmin(const QString&,const QString&)));
+    connect(this, SIGNAL(signalPasswordAdmin(QString)), this, SLOT(loginAdmin(const QString&)));
 
 }
 
@@ -60,14 +56,14 @@ MainWindow::~MainWindow(){
 //slot
 
 void MainWindow::readCredentialUser() {
-    emit signalPasswordUser(userUsername->text(),userPassword->text());
+    emit signalPasswordUser(userUsername->text());
 }
 
 void MainWindow::readCredentialAdmin() {
-    emit signalPasswordAdmin(adminUsername->text(),adminPassword->text());
+    emit signalPasswordAdmin(adminUsername->text());
 }
 
-void MainWindow::loginUser(const QString& u, const QString& p){
+void MainWindow::loginUser(const QString& u){
     userCtrl = new userController(u);
     std::cout<<userCtrl->user->getLogin().getUsername().toStdString();
     if(userCtrl->user->getLogin().getUsername() != "")
@@ -76,9 +72,11 @@ void MainWindow::loginUser(const QString& u, const QString& p){
         statusBar->showMessage("eh no!",1000);
 }
 
-void MainWindow::loginAdmin(const QString& u, const QString& p){
-    if(u==adminUser && p==adminPass)
-        statusBar->showMessage("Bella",1000);
+void MainWindow::loginAdmin(const QString& u){
+    if(u==adminUser){
+        centralWidget = new AdminWindow(this);
+        statusBar->showMessage("Autenticato! Bentornato Admin",1000);
+    }
     else
-        statusBar->showMessage("eh no!",1000);
+        statusBar->showMessage("Errore!",1000);
 }

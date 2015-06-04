@@ -21,9 +21,6 @@ DatiAnagrafici DatiAnagrafici::operator=(const DatiAnagrafici& a)
 }
 
 
-
-
-
 QString DatiAnagrafici::getNome() const {
     return nome;
 }
