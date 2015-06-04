@@ -16,7 +16,7 @@ using std::map;
 class DB
 {
 private:
-    map<QString,Utente*> dbUtenti;
+    map<QString,Utente*> dbUtenti; //perchè non ho passato un USERNAME?
 public:
     DB();
     void addUtente(Username,Utente*);
@@ -24,11 +24,8 @@ public:
     void save();
     void load();
     ~DB(); //DA FARE
-    /*
-    Utente* find(Username u){
-        return new Utente(u);
-    }
-    */
+    Utente* find(const QString&);
+
 };
 
 #endif // DB_H

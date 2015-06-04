@@ -28,9 +28,8 @@ SOURCES += main.cpp\
     utentebusiness.cpp \
     utenteexecutive.cpp \
     db.cpp \
-    linqclient.cpp \
-    linqadmin.cpp \
-    adminwindow.cpp
+    adminwindow.cpp \
+    userwindow.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -46,9 +45,8 @@ HEADERS  += mainwindow.h \
     utentebusiness.h \
     utenteexecutive.h \
     db.h \
-    linqclient.h \
-    linqadmin.h \
-    adminwindow.h
+    adminwindow.h \
+    userwindow.h
 
 FORMS    += mainwindow.ui
 

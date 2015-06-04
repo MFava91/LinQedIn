@@ -8,7 +8,7 @@ void Username::setUsername(const QString& u){
     login=u;
 }
 
-QString Username::getUsername(){
+QString Username::getUsername() const{
     return login;
 }
 

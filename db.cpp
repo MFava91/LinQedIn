@@ -27,6 +27,18 @@ void DB::removeUtete(Username u){
     //eliminare utete dalla rete amici.
 }
 
+Utente* DB::find(const QString& u){
+    map<QString,Utente*>::const_iterator it=dbUtenti.begin();
+    for(;it!=dbUtenti.end();++it){
+        if(((*it).first)==u){
+            Utente* temp = new Utente();
+            temp=(*it).second;
+            return temp;
+        }
+    }
+    std::cout<<"NON TROVATO!";
+}
+
 void DB::load() {
     QString path("/home/mattia/Documenti/Linquedln/prova.xml");
     QFile file(path);

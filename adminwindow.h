@@ -2,11 +2,18 @@
 #define ADMINWINDOW_H
 
 #include<QWidget>
+#include<QRadioButton>
+#include <QPushButton>
+#include <QGridLayout>
 
 class AdminWindow : public QWidget{
     Q_OBJECT
 public:
-    AdminWindow();
+    QRadioButton* prova;
+    QPushButton* test;
+    AdminWindow(QWidget *parent = 0);
+    ~AdminWindow();
+    QGridLayout* out;
 };
 
 

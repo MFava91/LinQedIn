@@ -12,7 +12,7 @@ public:
     Username();
     Username(const QString&);
     void setUsername(const QString&);
-    QString getUsername();
+    QString getUsername() const;
 };
 
 #endif // USERNAME_H

@@ -1,40 +1,46 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include<QGroupBox>
-#include<QTextEdit>
-#include<QLabel>
-#include<QLineEdit>
-#include<QPushButton>
 #include"adminwindow.h"
+#include<QMainWindow>
+#include<QStatusBar>
+#include<QWidget>
+#include<QPushButton>
+#include<QLineEdit>
+#include<QGridLayout>
 
-/*
-namespace Ui {
-class MainWindow;
-}
-*/
+#include"db.h"
 
-/*
-class MainWindow : public QMainWindow
-{
+class MainWindow: public QMainWindow {
     Q_OBJECT
+
 private:
-    Ui::MainWindow *ui;
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    main_widget mw;
-    ~MainWindow();
-};
-*/
+    QStatusBar *statusBar;
+    QWidget *centralWidget;
 
-class MainWindow : public QWidget{
-    Q_OBJECT
+    QGridLayout* layout;
+    QPushButton *userSubmit;
+    QPushButton *adminSubmit;
+    QLineEdit *userUsername;
+    QLineEdit *userPassword;
+    QLineEdit *adminUsername;
+    QLineEdit *adminPassword;
+    DB* dataBase;
+    static QString adminPass;
+    static QString adminUser;
+
 public:
-    MainWindow(QWidget *parent =0);
+    MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+
+signals:
+    void signalPassword(const QString&,const QString&);
+
 public slots:
-    void change_stack();
+    void readCredentialAdmin();
+    void loginAdmin(const QString&,const QString&);
 };
+
 
 
 #endif // MAINWINDOW_H
