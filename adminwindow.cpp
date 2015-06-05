@@ -16,7 +16,4 @@ AdminWindow::AdminWindow(QWidget *parent) : QWidget(parent){
 }
 
 AdminWindow::~AdminWindow(){
-    delete out;
-    delete test;
-    delete prova;
 }

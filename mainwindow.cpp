@@ -9,10 +9,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     statusBar = new QStatusBar(this);
     setStatusBar(statusBar);
 
-    centralWidget = new QWidget(this);
-    setCentralWidget(centralWidget);
+    mainWidget = new QWidget(this);
+    setCentralWidget(mainWidget);
 
-    layout = new QGridLayout(centralWidget);
+    layout = new QGridLayout(mainWidget);
     layout->setAlignment(Qt::AlignHCenter);
     //USER LOGIN
     userUsername = new QLineEdit(this);
@@ -65,16 +65,21 @@ void MainWindow::readCredentialAdmin() {
 
 void MainWindow::loginUser(const QString& u){
     userCtrl = new userController(u);
-    std::cout<<userCtrl->user->getLogin().getUsername().toStdString();
     if(userCtrl->user->getLogin().getUsername() != "")
-        statusBar->showMessage("Bella",1000);
+    {
+        mainWidget = new UserWindow(this);
+        setCentralWidget(mainWidget);
+        statusBar->showMessage("Autenticato",1000);
+    }
     else
-        statusBar->showMessage("eh no!",1000);
+        statusBar->showMessage("Errore!",1000);
 }
 
 void MainWindow::loginAdmin(const QString& u){
-    if(u==adminUser){
-        centralWidget = new AdminWindow(this);
+    if(u==adminUser)
+    {
+        mainWidget = new AdminWindow(this);
+        setCentralWidget(mainWidget);
         statusBar->showMessage("Autenticato! Bentornato Admin",1000);
     }
     else

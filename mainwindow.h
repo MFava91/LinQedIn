@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include"adminwindow.h"
 #include<QMainWindow>
 #include<QStatusBar>
 #include<QWidget>
@@ -10,6 +9,8 @@
 #include<QGridLayout>
 
 #include"db.h"
+#include"adminwindow.h"
+#include"userwindow.h"
 #include"usercontroller.h"
 
 class MainWindow: public QMainWindow {
@@ -17,7 +18,7 @@ class MainWindow: public QMainWindow {
 
 private:
     QStatusBar *statusBar;
-    QWidget *centralWidget;
+    QWidget *mainWidget;
 
     QGridLayout* layout;
     QPushButton *userSubmit;
