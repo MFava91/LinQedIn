@@ -11,6 +11,7 @@
 
 #include"usercontroller.h"
 #include"userinfowindow.h"
+#include"userschoolwindow.h"
 
 class UserWindow : public QWidget{
     Q_OBJECT
@@ -24,15 +25,16 @@ public:
     QGridLayout* selectLayout;
 
     QWidget* userInfo;
+    QWidget* userSchool;
 
     QPushButton* info;
     QPushButton* school;
-    QPushButton* works;
+    QPushButton* work;
 
 
 public slots:
     void loadUserInfo();
-//    void loadUserSchool();
+    void loadUserSchool();
 //    void loadUserWorks();
 };
 #endif // USERWINDOW_H

@@ -15,3 +15,7 @@ userController::userController(const QString& username, DB* database){
 void userController::loadUser(const QString& username){
     user = db->find(username);
 }
+
+void userController::updateUserInfo(const DatiAnagrafici & dati){
+    user->getInfo().setDatiPersonali(dati);
+}

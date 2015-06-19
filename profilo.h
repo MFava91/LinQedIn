@@ -18,6 +18,7 @@ public:
     DatiAnagrafici getDati() const;
     TitoliStudio getStudi() const;
     CompetenzeLavorative getLavori() const;
+    void setDatiPersonali(const DatiAnagrafici&);
     //void modificaProfilo() {}
     //Info* visualizzaProfilo() const {return 0; }
 };

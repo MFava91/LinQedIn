@@ -18,3 +18,6 @@ CompetenzeLavorative Profilo::getLavori() const{
     return curriculum;
 }
 
+void Profilo::setDatiPersonali(const DatiAnagrafici& dati){
+    datiPersonali=dati;
+}

@@ -12,6 +12,7 @@ public:
     //metodi
     userController(const QString&, DB* = 0);
     void loadUser(const QString&);
+    void updateUserInfo(const DatiAnagrafici&);
 };
 
 #endif // USERCONTROLLER_H

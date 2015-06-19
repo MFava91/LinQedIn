@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     adminwindow.cpp \
     userwindow.cpp \
     usercontroller.cpp \
-    userinfowindow.cpp
+    userinfowindow.cpp \
+    userschoolwindow.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -50,7 +51,8 @@ HEADERS  += mainwindow.h \
     adminwindow.h \
     userwindow.h \
     usercontroller.h \
-    userinfowindow.h
+    userinfowindow.h \
+    userschoolwindow.h
 
 FORMS    += mainwindow.ui
 

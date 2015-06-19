@@ -1,6 +1,5 @@
 #ifndef USERINFOWINDOW_H
 #define USERINFOWINDOW_H
-#include<QRadioButton>
 #include<QPushButton>
 #include<QGridLayout>
 #include<QTextEdit>
@@ -11,6 +10,7 @@
 #include"usercontroller.h"
 
 class UserInfoWindow : public QWidget{
+    Q_OBJECT
 public:
     UserInfoWindow();
     UserInfoWindow(QWidget *parent, userController*);
@@ -31,6 +31,19 @@ public:
     QLabel* dataLabel;
     QLabel* luogoLabel;
     QLabel* residenzaLabel;
+
+    QPushButton* modifyButton;
+    QPushButton* updateButton;
+    QPushButton* deleteButton;
+
+    userController* clientCtrl;
+
+public slots:
+    void fetchDati();
+    void enableEdit();
+    void disableEdit();
+    void updateInfo();
+
 };
 
 #endif // USERINFOWINDOW_H

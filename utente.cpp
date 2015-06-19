@@ -14,7 +14,7 @@ Username Utente::getLogin() const{
     return login;
 }
 
-Profilo Utente::getInfo() const{
+Profilo& Utente::getInfo(){
     return info;
 }
 
