@@ -23,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     userSubmit->setGeometry(QRect(QPoint(100, 100),
                                  QSize(200, 50)));
 
-
     //ADMIN LOGIN
     adminUsername = new QLineEdit(this);
     adminUsername->setGeometry(QRect(QPoint(200, 200),
@@ -33,13 +32,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     adminSubmit->setGeometry(QRect(QPoint(100, 100),
                                  QSize(200, 50)));
 
-
     layout->addWidget(userUsername,0,0);
     layout->addWidget(userSubmit,2,0);
 
     layout->addWidget(adminUsername,0,1);
     layout->addWidget(adminSubmit,2,1);
-    setLayout(layout);
+    mainWidget->setLayout(layout);
 
     connect(userSubmit, SIGNAL(clicked()),this, SLOT(readCredentialUser()));
     connect(this, SIGNAL(signalPasswordUser(QString)), this, SLOT(loginUser(const QString&)));
@@ -50,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
 }
 
 MainWindow::~MainWindow(){
+    delete mainWidget;
 }
 
 
@@ -67,7 +66,7 @@ void MainWindow::loginUser(const QString& u){
     userCtrl = new userController(u);
     if(userCtrl->user->getLogin().getUsername() != "")
     {
-        mainWidget = new UserWindow(this);
+        mainWidget = new UserWindow(this,userCtrl);
         setCentralWidget(mainWidget);
         statusBar->showMessage("Autenticato",1000);
     }

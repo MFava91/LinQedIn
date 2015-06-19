@@ -4,14 +4,33 @@
 #include<QRadioButton>
 #include<QPushButton>
 #include<QGridLayout>
+#include<QTextEdit>
+#include<QLabel>
+#include<QLineEdit>
+#include<QDateTimeEdit>
+
+#include"usercontroller.h"
 
 class UserWindow : public QWidget{
     Q_OBJECT
 public:
-    QRadioButton* prova;
-    QPushButton* test;
-    UserWindow(QWidget *parent = 0);
+    UserWindow(QWidget *parent, userController*);
     ~UserWindow();
-    QGridLayout* out;
+    QGridLayout* datiLayout;
+    QLineEdit* username;
+    QLabel* nome;
+    QLineEdit* cognome;
+    QLineEdit* email;
+//    QDateTimeEdit* dataNascita;
+    QLineEdit* luogoNascita;
+    QLineEdit* residenza;
+
+    QLabel* usernameLabel;
+    QLabel* nomeLabel;
+    QLabel* cognomeLabel;
+    QLabel* emailLabel;
+    QLabel* dataLabel;
+    QLabel* luogoLabel;
+    QLabel* residenzaLabel;
 };
 #endif // USERWINDOW_H
