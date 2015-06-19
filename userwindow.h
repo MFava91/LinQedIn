@@ -18,10 +18,10 @@ public:
     ~UserWindow();
     QGridLayout* datiLayout;
     QLineEdit* username;
-    QLabel* nome;
+    QLineEdit* nome;
     QLineEdit* cognome;
     QLineEdit* email;
-//    QDateTimeEdit* dataNascita;
+    QDateTimeEdit* dataNascita;
     QLineEdit* luogoNascita;
     QLineEdit* residenza;
 

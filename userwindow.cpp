@@ -9,14 +9,10 @@ UserWindow::UserWindow(QWidget *parent,userController* userCtrl) : QWidget(paren
     username = new QLineEdit(userCtrl->user->getLogin().getUsername());
     username->setReadOnly(true);
 
-//    username = new QTextEdit(userCtrl->user->getLogin().getUsername());
-//    username->setReadOnly(true);
-
-
     nomeLabel = new QLabel("Nome:");
-    nome = new QLabel(userCtrl->user->getInfo().getDati().getNome());
-//    nome = new QTextEdit(userCtrl->user->getInfo().getDati().getNome());
-//    nome->setReadOnly(true);
+    nome = new QLineEdit(userCtrl->user->getInfo().getDati().getNome());
+    nome->setReadOnly(true);
+
     cognomeLabel = new QLabel("Cognome:");
     cognome = new QLineEdit(userCtrl->user->getInfo().getDati().getCognome());
     cognome->setReadOnly(true);
@@ -25,9 +21,9 @@ UserWindow::UserWindow(QWidget *parent,userController* userCtrl) : QWidget(paren
     email = new QLineEdit(userCtrl->user->getInfo().getDati().getEmail());
     email->setReadOnly(true);
 
-//    dataLabel = new QLabel("Data di Nascita:");
-//    dataNascita = new QDateTimeEdit(userCtrl->user->getInfo().getDati().getDataNascita());
-    //dataNascita->setReadOnly(true);
+    dataLabel = new QLabel("Data di Nascita:");
+    dataNascita = new QDateTimeEdit(userCtrl->user->getInfo().getDati().getDataNascita());
+    dataNascita->setReadOnly(true);
 
     luogoLabel = new QLabel("Luogo di Nascita:");
     luogoNascita = new QLineEdit(userCtrl->user->getInfo().getDati().getLuogoNascita());
@@ -49,8 +45,8 @@ UserWindow::UserWindow(QWidget *parent,userController* userCtrl) : QWidget(paren
     datiLayout->addWidget(emailLabel,3,0);
     datiLayout->addWidget(email,3,1);
 
-//    datiLayout->addWidget(dataLabel,4,0);
-//    datiLayout->addWidget(dataNascita,4,1);
+    datiLayout->addWidget(dataLabel,4,0);
+    datiLayout->addWidget(dataNascita,4,1);
 
     datiLayout->addWidget(luogoLabel,5,0);
     datiLayout->addWidget(luogoNascita,5,1);
@@ -62,18 +58,18 @@ UserWindow::UserWindow(QWidget *parent,userController* userCtrl) : QWidget(paren
 }
 
 UserWindow::~UserWindow(){
-    delete username;
-    delete nome;
-    delete cognome;
-    delete email;
-    delete luogoNascita;
-    delete residenza;
-    delete usernameLabel;
-    delete nomeLabel;
-    delete cognomeLabel;
-    delete emailLabel;
+//    delete username;
+//    delete nome;
+//    delete cognome;
+//    delete email;
+//    delete luogoNascita;
+//    delete residenza;
+//    delete usernameLabel;
+//    delete nomeLabel;
+//    delete cognomeLabel;
+//    delete emailLabel;
 //    delete dataLabel;
-    delete luogoLabel;
-    delete residenzaLabel;
-    delete datiLayout;
+//    delete luogoLabel;
+//    delete residenzaLabel;
+//    delete datiLayout;
 }
