@@ -12,7 +12,6 @@ userController::userController(const QString& username, DB* database){
     loadUser(username);
 }
 
-
 void userController::loadUser(const QString& username){
     user = db->find(username);
 }

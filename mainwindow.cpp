@@ -4,7 +4,7 @@ QString MainWindow::adminUser = "admin";
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     setWindowTitle("Linqedin");
-    setGeometry(0,0,400,300);
+    setGeometry(0,0,800,600);
 
     statusBar = new QStatusBar(this);
     setStatusBar(statusBar);

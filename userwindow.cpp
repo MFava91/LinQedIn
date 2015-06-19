@@ -1,75 +1,52 @@
 #include "userwindow.h"
 
 UserWindow::UserWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
-    datiLayout = new QGridLayout();
-    datiLayout->setAlignment(Qt::AlignHCenter);
+    mainLayout = new QGridLayout();
+    mainLayout->setAlignment(Qt::AlignTop);
 
-    //FETCH DATI PERSONALI
-    usernameLabel=new QLabel("Username:");
-    username = new QLineEdit(userCtrl->user->getLogin().getUsername());
-    username->setReadOnly(true);
+    menuLayout = new QGridLayout();
+    menuLayout->setAlignment(Qt::AlignCenter);
 
-    nomeLabel = new QLabel("Nome:");
-    nome = new QLineEdit(userCtrl->user->getInfo().getDati().getNome());
-    nome->setReadOnly(true);
+    selectLayout = new QGridLayout();
+    menuLayout->setAlignment(Qt::AlignCenter);
 
-    cognomeLabel = new QLabel("Cognome:");
-    cognome = new QLineEdit(userCtrl->user->getInfo().getDati().getCognome());
-    cognome->setReadOnly(true);
 
-    emailLabel = new QLabel("Email:");
-    email = new QLineEdit(userCtrl->user->getInfo().getDati().getEmail());
-    email->setReadOnly(true);
+    info = new QPushButton("Info",this);
+    info->setGeometry(QRect(QPoint(100, 100),
+                                 QSize(200, 50)));
 
-    dataLabel = new QLabel("Data di Nascita:");
-    dataNascita = new QDateTimeEdit(userCtrl->user->getInfo().getDati().getDataNascita());
-    dataNascita->setReadOnly(true);
+    school = new QPushButton("Istruzione",this);
+    school->setGeometry(QRect(QPoint(100, 100),
+                                 QSize(200, 50)));
 
-    luogoLabel = new QLabel("Luogo di Nascita:");
-    luogoNascita = new QLineEdit(userCtrl->user->getInfo().getDati().getLuogoNascita());
-    luogoNascita->setReadOnly(true);
+    works = new QPushButton("Lavori",this);
+    works->setGeometry(QRect(QPoint(100, 100),
+                                 QSize(200, 50)));
 
-    residenzaLabel = new QLabel("Residenza:");
-    residenza = new QLineEdit(userCtrl->user->getInfo().getDati().getResidenza());
-    residenza->setReadOnly(true);
+    userInfo = new UserInfoWindow(this,userCtrl);
 
-    datiLayout->addWidget(usernameLabel,0,0);
-    datiLayout->addWidget(username,0,1);
+    menuLayout->addWidget(info,0,0);
+    menuLayout->addWidget(school,1,0);
+    menuLayout->addWidget(works,2,0);
 
-    datiLayout->addWidget(nomeLabel,1,0);
-    datiLayout->addWidget(nome,1,1);
+    selectLayout->addWidget(userInfo,0,0);
 
-    datiLayout->addWidget(cognomeLabel,2,0);
-    datiLayout->addWidget(cognome,2,1);
+    mainLayout->addLayout(menuLayout,0,0);
+    mainLayout->addLayout(selectLayout,0,1);
 
-    datiLayout->addWidget(emailLabel,3,0);
-    datiLayout->addWidget(email,3,1);
+    userInfo->setVisible(false);
+    setLayout(mainLayout);
 
-    datiLayout->addWidget(dataLabel,4,0);
-    datiLayout->addWidget(dataNascita,4,1);
+    connect(info, SIGNAL(clicked()), SLOT(loadUserInfo()));
+//    connect(school, SIGNAL(clicked()), SLOT(loadUserSchool()));
+//    connect(works, SIGNAL(clicked()), SLOT(loadUserWorks()));
 
-    datiLayout->addWidget(luogoLabel,5,0);
-    datiLayout->addWidget(luogoNascita,5,1);
+}
 
-    datiLayout->addWidget(residenzaLabel,6,0);
-    datiLayout->addWidget(residenza,6,1);
-
-    setLayout(datiLayout);
+void UserWindow::loadUserInfo() {
+    userInfo->setVisible(true);
 }
 
 UserWindow::~UserWindow(){
-//    delete username;
-//    delete nome;
-//    delete cognome;
-//    delete email;
-//    delete luogoNascita;
-//    delete residenza;
-//    delete usernameLabel;
-//    delete nomeLabel;
-//    delete cognomeLabel;
-//    delete emailLabel;
-//    delete dataLabel;
-//    delete luogoLabel;
-//    delete residenzaLabel;
-//    delete datiLayout;
+
 }

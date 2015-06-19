@@ -10,27 +10,29 @@
 #include<QDateTimeEdit>
 
 #include"usercontroller.h"
+#include"userinfowindow.h"
 
 class UserWindow : public QWidget{
     Q_OBJECT
+private:
+    userController* clientCtrl;
 public:
     UserWindow(QWidget *parent, userController*);
     ~UserWindow();
-    QGridLayout* datiLayout;
-    QLineEdit* username;
-    QLineEdit* nome;
-    QLineEdit* cognome;
-    QLineEdit* email;
-    QDateTimeEdit* dataNascita;
-    QLineEdit* luogoNascita;
-    QLineEdit* residenza;
+    QGridLayout* mainLayout;
+    QGridLayout* menuLayout;
+    QGridLayout* selectLayout;
 
-    QLabel* usernameLabel;
-    QLabel* nomeLabel;
-    QLabel* cognomeLabel;
-    QLabel* emailLabel;
-    QLabel* dataLabel;
-    QLabel* luogoLabel;
-    QLabel* residenzaLabel;
+    QWidget* userInfo;
+
+    QPushButton* info;
+    QPushButton* school;
+    QPushButton* works;
+
+
+public slots:
+    void loadUserInfo();
+//    void loadUserSchool();
+//    void loadUserWorks();
 };
 #endif // USERWINDOW_H
