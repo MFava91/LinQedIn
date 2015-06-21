@@ -1,4 +1,4 @@
-#include "titolistudio.h"
+ #include "titolistudio.h"
 
 //TitoliStudio::TitoliStudio() {} //Usa costruttore standard del vector e del QString
 

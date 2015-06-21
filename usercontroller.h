@@ -13,6 +13,7 @@ public:
     userController(const QString&, DB* = 0);
     void loadUser(const QString&);
     void updateUserInfo(const DatiAnagrafici&);
+    void updateUserDiploma(const TitoliStudio&);
 };
 
 #endif // USERCONTROLLER_H

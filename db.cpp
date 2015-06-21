@@ -40,7 +40,7 @@ Utente* DB::find(const QString& u){
 }
 
 void DB::load() {
-    QString path("/home/mattia/Documenti/Linquedln/prova.xml");
+    QString path("/home/mattia/Documenti/Linquedln/input.xml");
     QFile file(path);
     bool trovato=false;
     file.open(QIODevice::ReadOnly);

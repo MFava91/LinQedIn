@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
 
     connect(adminSubmit, SIGNAL(clicked()),this, SLOT(readCredentialAdmin()));
     connect(this, SIGNAL(signalPasswordAdmin(QString)), this, SLOT(loginAdmin(const QString&)));
+    //salvataggio nel db da fare
 
 }
 

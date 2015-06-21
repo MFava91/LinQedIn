@@ -21,3 +21,7 @@ CompetenzeLavorative Profilo::getLavori() const{
 void Profilo::setDatiPersonali(const DatiAnagrafici& dati){
     datiPersonali=dati;
 }
+
+void Profilo::setTitoliStudio(const TitoliStudio & scuole){
+    studi=scuole;
+}

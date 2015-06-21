@@ -119,15 +119,7 @@ void UserInfoWindow::updateInfo(){
     DatiAnagrafici x(nome->text(),cognome->text(),email->text(),dataNascita->date(),
                      luogoNascita->text(),residenza->text());
     clientCtrl->updateUserInfo(x);
-    deleteButton->setVisible(false);
-    updateButton->setVisible(false);
-    modifyButton->setVisible(true);
-    nome->setReadOnly(true);
-    cognome->setReadOnly(true);
-    email->setReadOnly(true);
-    dataNascita->setReadOnly(true);
-    luogoNascita->setReadOnly(true);
-    residenza->setReadOnly(true);
+    disableEdit();
 }
 
 UserInfoWindow::~UserInfoWindow(){

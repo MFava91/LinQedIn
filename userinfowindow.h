@@ -14,7 +14,6 @@ class UserInfoWindow : public QWidget{
 public:
     UserInfoWindow();
     UserInfoWindow(QWidget *parent, userController*);
-    ~UserInfoWindow();
     QGridLayout* datiLayout;
     QLineEdit* username;
     QLineEdit* nome;
@@ -37,6 +36,7 @@ public:
     QPushButton* deleteButton;
 
     userController* clientCtrl;
+    ~UserInfoWindow();
 
 public slots:
     void fetchDati();

@@ -19,6 +19,7 @@ public:
     TitoliStudio getStudi() const;
     CompetenzeLavorative getLavori() const;
     void setDatiPersonali(const DatiAnagrafici&);
+    void setTitoliStudio(const TitoliStudio&);
     //void modificaProfilo() {}
     //Info* visualizzaProfilo() const {return 0; }
 };

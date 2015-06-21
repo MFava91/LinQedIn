@@ -19,3 +19,7 @@ void userController::loadUser(const QString& username){
 void userController::updateUserInfo(const DatiAnagrafici & dati){
     user->getInfo().setDatiPersonali(dati);
 }
+
+void userController::updateUserDiploma(const TitoliStudio & diploma){
+    user->getInfo().setTitoliStudio(diploma);
+}
