@@ -10,6 +10,7 @@
 #include<QDateTimeEdit>
 
 #include"usercontroller.h"
+#include"laureawindow.h"
 
 class UserSchoolWindow : public QWidget{
     Q_OBJECT
@@ -18,16 +19,18 @@ public:
     UserSchoolWindow(QWidget *parent, userController*);  
     QGridLayout* schoolLayout;
     QGridLayout* diplomaLayout;
+    QGridLayout* laureeLayout;
     QLineEdit* diploma;
-    QLineEdit* laurea;
     QGroupBox* boxDiploma;
+    QGroupBox* boxLauree;
 
     QLabel* diplomaLabel;
-    QLabel* laureaLabel;
+
     QPushButton* modifyButtonDiploma;
     QPushButton* updateButtonDiploma;
     QPushButton* deleteButtonDiploma;
 
+//    LaureaWindow* laurea;
     userController* clientCtrl;
     ~UserSchoolWindow();
 public slots:
@@ -35,6 +38,12 @@ public slots:
     void enabledEditDiploma();
     void disableEditDiploma();
     void updateDiploma();
+
+    void fetchLaurea();
+//    void enabledEditLaurea();
+//    void disableEditLaurea();
+    void updateLaurea();
+    void removeLaurea(LaureaWindow*);
 };
 
 #endif // USERSCHOOLWINDOW_H

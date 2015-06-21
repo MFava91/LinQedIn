@@ -1,6 +1,7 @@
 #include "userschoolwindow.h"
 
 UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
+    boxLauree = 0;
     clientCtrl = userCtrl;
     schoolLayout = new QGridLayout();
     schoolLayout->setAlignment(Qt::AlignHCenter);
@@ -34,20 +35,18 @@ UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : Q
     diplomaLayout->addWidget(updateButtonDiploma,2,1);
     boxDiploma->setLayout(diplomaLayout);
 
-
-
-
-    //LAUREE
-    laureaLabel = new QLabel("Laurea:");
-
     diplomaLayout->addWidget(diplomaLabel,0,0);
     diplomaLayout->addWidget(diploma,0,1);
     boxDiploma->setLayout(diplomaLayout);
 
     schoolLayout->addWidget(boxDiploma,0,0);
-    schoolLayout->addWidget(laureaLabel,1,0);
-    setLayout(schoolLayout);
 
+    //LAUREE
+
+    fetchLaurea();
+
+
+    //INTERFACCIA GLOBALE
     connect(modifyButtonDiploma, SIGNAL(clicked()), this, SLOT(enabledEditDiploma()));
     connect(deleteButtonDiploma, SIGNAL(clicked()), this, SLOT(disableEditDiploma()));
     connect(updateButtonDiploma, SIGNAL(clicked()), this, SLOT(updateDiploma()));
@@ -84,6 +83,39 @@ void UserSchoolWindow::updateDiploma(){
     //manca scrittura sul database
 }
 
+void UserSchoolWindow::fetchLaurea(){
+    if(boxLauree!=0){
+        schoolLayout->removeWidget(boxLauree);
+        delete boxLauree;
+    }
+    boxLauree = new QGroupBox("Lauree");
+    laureeLayout = new QGridLayout();
+    laureeLayout->setAlignment(Qt::AlignHCenter);
+    vector<QString> lauree =
+            clientCtrl->user->getInfo().getStudi().getLaurea();
+    int size = lauree.size();
+    if(size){
+        for(int i=0;i<size;i++){
+            LaureaWindow* laurea = new LaureaWindow(lauree[i],this);
+            laureeLayout->addWidget(laurea,i,0);
+        }
+    }
+    boxLauree->setLayout(laureeLayout);
+    schoolLayout->addWidget(boxLauree,1,0);
+    setLayout(schoolLayout);
+
+}
+
+
+void UserSchoolWindow::updateLaurea(){
+
+}
+
+void UserSchoolWindow::removeLaurea(LaureaWindow *l){
+    laureeLayout->removeWidget(l);
+    clientCtrl->user->getInfo().wipeLaurea(l->laurea->text());
+    delete l;
+}
 
 UserSchoolWindow::~UserSchoolWindow(){
 }

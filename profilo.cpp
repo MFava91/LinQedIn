@@ -25,3 +25,7 @@ void Profilo::setDatiPersonali(const DatiAnagrafici& dati){
 void Profilo::setTitoliStudio(const TitoliStudio & scuole){
     studi=scuole;
 }
+
+void Profilo::wipeLaurea(const QString& laurea){
+    studi.removeLaurea(laurea);
+}

@@ -31,3 +31,15 @@ QString TitoliStudio::getDiploma(){
 vector<QString> TitoliStudio::getLaurea(){
     return laurea;
 }
+
+void TitoliStudio::removeLaurea(const QString& l){
+    int size=laurea.size();
+    bool trovato=false;
+    for(int i=0;i<size && trovato==false;i++){
+        if(laurea[i]==l)
+        {
+            laurea.erase(laurea.begin()+i);
+            trovato==true;
+        }
+    }
+}
