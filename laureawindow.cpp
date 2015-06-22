@@ -58,6 +58,8 @@ void LaureaWindow::disableEditLaurea(){
     laurea->setReadOnly(true);
 }
 
+//manca salvataggio modifiche
+
 void LaureaWindow::deleteLaurea(){
     emit signalDeleteLaurea(this);
 }

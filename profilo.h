@@ -21,6 +21,8 @@ public:
     void setDatiPersonali(const DatiAnagrafici&);
     void setTitoliStudio(const TitoliStudio&);
     void wipeLaurea(const QString&);
+    void wiperLavoro(const Lavoro&);
+    void aggiungiLaurea(const QString&);
     //void modificaProfilo() {}
     //Info* visualizzaProfilo() const {return 0; }
 };

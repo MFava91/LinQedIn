@@ -8,6 +8,7 @@
 #include<QLabel>
 #include<QLineEdit>
 #include<QDateTimeEdit>
+#include<QDialog>
 
 #include"usercontroller.h"
 #include"laureawindow.h"
@@ -16,7 +17,7 @@ class UserSchoolWindow : public QWidget{
     Q_OBJECT
 public:
     UserSchoolWindow();
-    UserSchoolWindow(QWidget *parent, userController*);  
+    UserSchoolWindow(QWidget *parent, userController*);
     QGridLayout* schoolLayout;
     QGridLayout* diplomaLayout;
     QGridLayout* laureeLayout;
@@ -29,8 +30,17 @@ public:
     QPushButton* modifyButtonDiploma;
     QPushButton* updateButtonDiploma;
     QPushButton* deleteButtonDiploma;
+    QPushButton* addButtonLaurea;
 
-//    LaureaWindow* laurea;
+    //DIALOG
+    QDialog* boxAddLaurea;
+    QGridLayout* addLaureaLayout;
+    QLabel* addLaureaLabel;
+    QLineEdit* newLaurea;
+    QPushButton* addButtonNewLaurea;
+    QPushButton* cancelButtonNewLaurea;
+
+
     userController* clientCtrl;
     ~UserSchoolWindow();
 public slots:
@@ -40,9 +50,8 @@ public slots:
     void updateDiploma();
 
     void fetchLaurea();
-//    void enabledEditLaurea();
-//    void disableEditLaurea();
-    void updateLaurea();
+    void dialogAddLaurea();
+    void addLaurea();
     void removeLaurea(LaureaWindow*);
 };
 

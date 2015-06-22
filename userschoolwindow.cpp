@@ -5,8 +5,6 @@ UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : Q
     clientCtrl = userCtrl;
     schoolLayout = new QGridLayout();
     schoolLayout->setAlignment(Qt::AlignHCenter);
-    schoolLayout->setColumnMinimumWidth(0,100);
-    schoolLayout->setColumnMinimumWidth(1,400);
 
     //DIPLOMA
     diplomaLayout = new QGridLayout();
@@ -44,12 +42,16 @@ UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : Q
     //LAUREE
 
     fetchLaurea();
-
-
+    addButtonLaurea = new QPushButton("Aggiungi laurea",this);
+    addButtonLaurea->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    schoolLayout->addWidget(addButtonLaurea,3,0);
     //INTERFACCIA GLOBALE
     connect(modifyButtonDiploma, SIGNAL(clicked()), this, SLOT(enabledEditDiploma()));
     connect(deleteButtonDiploma, SIGNAL(clicked()), this, SLOT(disableEditDiploma()));
     connect(updateButtonDiploma, SIGNAL(clicked()), this, SLOT(updateDiploma()));
+    connect(addButtonLaurea, SIGNAL(clicked()), this, SLOT(dialogAddLaurea()));
+
 }
 
 void UserSchoolWindow::fetchDiploma(){
@@ -106,9 +108,28 @@ void UserSchoolWindow::fetchLaurea(){
 
 }
 
+void UserSchoolWindow::dialogAddLaurea(){
+    boxAddLaurea = new QDialog();
+    addLaureaLayout = new QGridLayout(boxAddLaurea);
+    addLaureaLabel = new QLabel("Titolo:");
+    newLaurea = new QLineEdit();
+    addButtonNewLaurea = new QPushButton("Aggiungi");
+    cancelButtonNewLaurea = new QPushButton("Annulla");
+    addLaureaLayout->addWidget(addLaureaLabel,0,0);
+    addLaureaLayout->addWidget(newLaurea,0,1);
+    addLaureaLayout->addWidget(addButtonNewLaurea,1,0);
+    addLaureaLayout->addWidget(cancelButtonNewLaurea,1,1);
+    boxAddLaurea->setLayout(addLaureaLayout);
 
-void UserSchoolWindow::updateLaurea(){
+    connect(addButtonNewLaurea, SIGNAL(clicked()), this, SLOT(addLaurea()));
+    connect(cancelButtonNewLaurea, SIGNAL(clicked()), boxAddLaurea, SLOT(close()));
+    boxAddLaurea->exec();
+}
 
+void UserSchoolWindow::addLaurea(){
+    clientCtrl->user->getInfo().aggiungiLaurea(newLaurea->text());
+    boxAddLaurea->close();
+    fetchLaurea();
 }
 
 void UserSchoolWindow::removeLaurea(LaureaWindow *l){

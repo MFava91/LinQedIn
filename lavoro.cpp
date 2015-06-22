@@ -20,6 +20,11 @@ Lavoro Lavoro::operator =(const Lavoro& a){
     return *this;
 }
 
+bool Lavoro::operator ==(const Lavoro& l){
+    return (nomeazienda==l.nomeazienda && titolo==l.titolo && citta==l.citta
+            && inizio==l.inizio && fine==l.fine);
+}
+
 QString Lavoro::getAzienda() const{
     return nomeazienda;
 }
