@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db>
+    <Utente>
+        <Profilo>
+            <Username>mario</Username>
+            <DatiAnagrafici>
+                <Nome>Enrico</Nome>
+                <Cognome>Infinity</Cognome>
+                <Email>einfinity@houncazzoenorme.com</Email>
+                <Data>sab feb 1 1992</Data>
+                <Luogo_Nascita>TrevisoLammoda</Luogo_Nascita>
+                <Residenza>CazzoVoglio</Residenza>
+            </DatiAnagrafici>
+            <Titoli_Studio>
+                <Diploma>infinito</Diploma>
+                <Laurea>tutte</Laurea>
+            </Titoli_Studio>
+            <Esperienze_Lavorative>
+                <Lavoro>
+                    <Azienda>infinitech</Azienda>
+                    <Titolo>CEO</Titolo>
+                    <Citta>Treviso</Citta>
+                    <Inizio>dom gen 1 2012</Inizio>
+                    <Fine>lun gen 2 2012</Fine>
+                </Lavoro>
+            </Esperienze_Lavorative>
+        </Profilo>
+        <Rete_Follow>
+            <Follow>mariomariomario</Follow>
+        </Rete_Follow>
+    </Utente>
+</db>
