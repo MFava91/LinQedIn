@@ -14,6 +14,7 @@ public:
     void loadUser(const QString&);
     void updateUserInfo(const DatiAnagrafici&);
     void updateUserDiploma(const TitoliStudio&);
+    void updateUserLavoro(const Lavoro&,const Lavoro&);
 };
 
 #endif // USERCONTROLLER_H

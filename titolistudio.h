@@ -14,9 +14,9 @@ public:
     TitoliStudio(const QString&,const vector<QString>&);
     TitoliStudio(const QString& ="",const QString& ="");
     TitoliStudio operator=(const TitoliStudio&);
-    void AggiungiLaurea(const QString&);
     QString getDiploma();
     vector<QString> getLaurea();
+    void AggiungiLaurea(const QString&);
     void removeLaurea(const QString&);
     //distruttore di default
 };

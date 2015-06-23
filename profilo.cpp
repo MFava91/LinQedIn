@@ -26,6 +26,10 @@ void Profilo::setTitoliStudio(const TitoliStudio & scuole){
     studi=scuole;
 }
 
+void Profilo::setCurriculum(const Lavoro& temp, const Lavoro& lavoro){
+    curriculum.editEsperienze(temp,lavoro);
+}
+
 void Profilo::wipeLaurea(const QString& laurea){
     studi.removeLaurea(laurea);
 }
@@ -36,4 +40,8 @@ void Profilo::wiperLavoro(const Lavoro& lavoro){
 
 void Profilo::aggiungiLaurea(const QString& laurea){
     studi.AggiungiLaurea(laurea);
+}
+
+void Profilo::aggiungiLavoro(const Lavoro& lavoro){
+    curriculum.AggiungiLavoro(lavoro);
 }

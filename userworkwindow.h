@@ -26,6 +26,16 @@ public:
     //DIALOG
     QDialog* boxAddLavoro;
     QGridLayout* addLavoroLayout;
+    QLabel* addAziendaLabel;
+    QLabel* addTitoloLabel;
+    QLabel* addCittaLabel;
+    QLabel* addInizioLabel;
+    QLabel* addFineLabel;
+    QLineEdit* addAzienda;
+    QLineEdit* addTitolo;
+    QLineEdit* addCitta;
+    QDateTimeEdit* addInizio;
+    QDateTimeEdit* addFine;
     QPushButton* addButtonNewLavoro;
     QPushButton* cancelButtonNewLavoro;
 
@@ -35,8 +45,9 @@ public:
 public slots:
     void fetchLavoro();
     void dialogAddLavoro();
-//    void addLavoro();
+    void addLavoro();
     void removeLavoro(LavoroWindow*);
+    void modificaLavoro(const Lavoro&, const Lavoro&);
 
 };
 

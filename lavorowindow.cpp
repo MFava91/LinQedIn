@@ -63,6 +63,8 @@ LavoroWindow::LavoroWindow(const QString& nomeAzienda, const QString& mansione ,
     connect(cancelButtonLavoro, SIGNAL(clicked()), parent, SLOT(fetchLavoro()));
     connect(deleteButtonLavoro,SIGNAL(clicked()),this, SLOT(deleteLavoro()));
     connect(this, SIGNAL(signalDeleteLavoro(LavoroWindow*)), parent, SLOT(removeLavoro(LavoroWindow*)));
+    connect(updateButtonLavoro, SIGNAL(clicked()), this, SLOT(updateLavoro()));
+    connect(this, SIGNAL(signalUpdateLavoro(const Lavoro&, const Lavoro&)), parent, SLOT(modificaLavoro(const Lavoro&, const Lavoro&)));
 }
 
 void LavoroWindow::enableEditLavoro(){
@@ -75,6 +77,8 @@ void LavoroWindow::enableEditLavoro(){
     citta->setReadOnly(false);
     inizio->setReadOnly(false);
     fine->setReadOnly(false);
+    Lavoro x(azienda->text(),titolo->text(),citta->text(),inizio->date(),fine->date());
+    temp=x;
 }
 
 void LavoroWindow::disableEditLavoro(){
@@ -91,4 +95,13 @@ void LavoroWindow::disableEditLavoro(){
 
 void LavoroWindow::deleteLavoro(){
     emit signalDeleteLavoro(this);
+}
+
+void LavoroWindow::updateLavoro(){
+    Lavoro x(azienda->text(),titolo->text(),citta->text(),inizio->date(),fine->date());
+    emit signalUpdateLavoro(temp,x);
+    disableEditLavoro();
+}
+
+LavoroWindow::~LavoroWindow(){
 }

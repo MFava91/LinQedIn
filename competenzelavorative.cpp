@@ -29,3 +29,15 @@ void CompetenzeLavorative::removeLavoro(const Lavoro &l){
 vector<Lavoro> CompetenzeLavorative::getEsperienze() const{
     return esperienze;
 }
+
+void CompetenzeLavorative::editEsperienze(const Lavoro & temp, const Lavoro & l){
+    int size=esperienze.size();
+    bool trovato=false;
+    for(int i=0;i<size && trovato==false;i++){
+        if(esperienze[i]==temp)
+        {
+            esperienze[i]=l;
+            trovato==true;
+        }
+    }
+}

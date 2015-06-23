@@ -11,6 +11,7 @@ UserWorkWindow::UserWorkWindow(QWidget *parent,userController* userCtrl) : QWidg
                               QSize(200, 50)));
     workLayout->addWidget(addButtonLavoro,1,0);
 
+    connect(addButtonLavoro, SIGNAL(clicked()), this, SLOT(dialogAddLavoro()));
 }
 
 void UserWorkWindow::fetchLavoro(){
@@ -39,7 +40,52 @@ void UserWorkWindow::fetchLavoro(){
 void UserWorkWindow::dialogAddLavoro(){
     boxAddLavoro = new QDialog();
     addLavoroLayout = new QGridLayout(boxAddLavoro);
+    addAziendaLabel = new QLabel("Nome azienda:");
+    addTitoloLabel = new QLabel("Titolo:");
+    addCittaLabel = new QLabel("Città:");
+    addInizioLabel= new QLabel("Inizio lavoro:");
+    addFineLabel= new QLabel("Fine lavoro:");
 
+    addAzienda = new QLineEdit();
+    addTitolo = new QLineEdit();
+    addCitta = new QLineEdit();
+    addInizio = new QDateTimeEdit();
+    addFine = new QDateTimeEdit();
+
+    cancelButtonNewLavoro = new QPushButton("Annulla",this);
+    cancelButtonNewLavoro->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+
+    addButtonNewLavoro = new QPushButton("Aggiorna",this);
+    addButtonNewLavoro->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+
+    addLavoroLayout->addWidget(addAziendaLabel,0,0);
+    addLavoroLayout->addWidget(addAzienda,0,1);
+    addLavoroLayout->addWidget(addTitoloLabel,1,0);
+    addLavoroLayout->addWidget(addTitolo,1,1);
+    addLavoroLayout->addWidget(addCittaLabel,2,0);
+    addLavoroLayout->addWidget(addCitta,2,1);
+    addLavoroLayout->addWidget(addInizioLabel,3,0);
+    addLavoroLayout->addWidget(addInizio,3,1);
+    addLavoroLayout->addWidget(addFineLabel,4,0);
+    addLavoroLayout->addWidget(addFine,4,1);
+    addLavoroLayout->addWidget(cancelButtonNewLavoro,5,0);
+    addLavoroLayout->addWidget(addButtonNewLavoro,5,1);
+    boxAddLavoro->setLayout(addLavoroLayout);
+
+    connect(addButtonNewLavoro, SIGNAL(clicked()), this, SLOT(addLavoro()));
+    connect(cancelButtonNewLavoro, SIGNAL(clicked()), boxAddLavoro, SLOT(close()));
+    boxAddLavoro->exec();
+}
+
+void UserWorkWindow::addLavoro(){
+    Lavoro temp(addAzienda->text(),addTitolo->text(),addCitta->text(),
+                addInizio->date(),addFine->date());
+    clientCtrl->user->getInfo().aggiungiLavoro(temp);
+    boxAddLavoro->close();
+    //riflettere se qua va un delete o meno
+    fetchLavoro();
 }
 
 void UserWorkWindow::removeLavoro(LavoroWindow* l){
@@ -47,6 +93,9 @@ void UserWorkWindow::removeLavoro(LavoroWindow* l){
     clientCtrl->user->getInfo();
 }
 
+void UserWorkWindow::modificaLavoro(const Lavoro& temp, const Lavoro& l){
+    clientCtrl->updateUserLavoro(temp,l);
+}
 
 UserWorkWindow::~UserWorkWindow(){
 }

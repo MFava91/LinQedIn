@@ -23,3 +23,7 @@ void userController::updateUserInfo(const DatiAnagrafici & dati){
 void userController::updateUserDiploma(const TitoliStudio & diploma){
     user->getInfo().setTitoliStudio(diploma);
 }
+
+void userController::updateUserLavoro(const Lavoro &temp, const Lavoro & lavoro){
+    user->getInfo().setCurriculum(temp,lavoro);
+}

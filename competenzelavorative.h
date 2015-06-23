@@ -12,9 +12,10 @@ public:
     CompetenzeLavorative();
     CompetenzeLavorative(const Lavoro&);
     CompetenzeLavorative(const vector<Lavoro>&);
+    vector<Lavoro> getEsperienze() const;
+    void editEsperienze(const Lavoro&,const Lavoro&);
     void AggiungiLavoro(const Lavoro&);
     void removeLavoro(const Lavoro&);
-    vector<Lavoro> getEsperienze() const;
 };
 
 #endif // COMPETENZELAVORATIVE_H
