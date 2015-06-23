@@ -14,6 +14,7 @@ public:
     void loadUser(const QString&);
     void updateUserInfo(const DatiAnagrafici&);
     void updateUserDiploma(const TitoliStudio&);
+    void updateUserLaurea(const QString&, const QString&);
     void updateUserLavoro(const Lavoro&,const Lavoro&);
 };
 

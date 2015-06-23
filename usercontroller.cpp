@@ -24,6 +24,10 @@ void userController::updateUserDiploma(const TitoliStudio & diploma){
     user->getInfo().setTitoliStudio(diploma);
 }
 
+void userController::updateUserLaurea(const QString& temp, const QString& l){
+    user->getInfo().setLaurea(temp,l);
+}
+
 void userController::updateUserLavoro(const Lavoro &temp, const Lavoro & lavoro){
     user->getInfo().setCurriculum(temp,lavoro);
 }

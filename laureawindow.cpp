@@ -40,6 +40,8 @@ LaureaWindow::LaureaWindow(const QString& name, QWidget *parent) : QWidget(paren
      connect(cancelButtonLaurea, SIGNAL(clicked()), parent, SLOT(fetchLaurea()));
      connect(deleteButtonLaurea, SIGNAL(clicked()), this, SLOT(deleteLaurea()));
      connect(this, SIGNAL(signalDeleteLaurea(LaureaWindow*)), parent, SLOT(removeLaurea(LaureaWindow*)));
+     connect(updateButtonLaurea, SIGNAL(clicked()), this, SLOT(modifyLaurea()));
+     connect(this, SIGNAL(signalUpdateLaurea(const QString&, const QString&)), parent, SLOT(updateLaurea(const QString&, const QString&)));
 }
 
 void LaureaWindow::enableEditLaurea(){
@@ -48,6 +50,7 @@ void LaureaWindow::enableEditLaurea(){
     updateButtonLaurea->setVisible(true);
     cancelButtonLaurea->setVisible(true);
     laurea->setReadOnly(false);
+    temp = laurea->text();
 }
 
 void LaureaWindow::disableEditLaurea(){
@@ -58,7 +61,12 @@ void LaureaWindow::disableEditLaurea(){
     laurea->setReadOnly(true);
 }
 
-//manca salvataggio modifiche
+void LaureaWindow::modifyLaurea(){
+    disableEditLaurea();
+    QString x=laurea->text();
+    emit signalUpdateLaurea(temp,x);
+}
+
 
 void LaureaWindow::deleteLaurea(){
     emit signalDeleteLaurea(this);

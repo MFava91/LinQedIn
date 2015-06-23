@@ -53,6 +53,7 @@ public slots:
     void dialogAddLaurea();
     void addLaurea();
     void removeLaurea(LaureaWindow*);
+    void updateLaurea(const QString&,const QString&);
 };
 
 #endif // USERSCHOOLWINDOW_H

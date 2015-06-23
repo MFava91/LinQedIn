@@ -13,6 +13,7 @@ class LaureaWindow : public QWidget{
 public:
     LaureaWindow(const QString&, QWidget *parent = 0);
     ~LaureaWindow();
+    QString temp;
     QGridLayout* laureaLayout;
     QLabel* laureaLabel;
     QLineEdit* laurea;
@@ -23,10 +24,12 @@ public:
     QPushButton* deleteButtonLaurea;
 signals:
     void signalDeleteLaurea(LaureaWindow*);
+    void signalUpdateLaurea(const QString&, const QString&);
 public slots:
     void enableEditLaurea();
     void disableEditLaurea();
     void deleteLaurea();
+    void modifyLaurea();
 };
 
 #endif // LAUREAWINDOW_H

@@ -138,5 +138,9 @@ void UserSchoolWindow::removeLaurea(LaureaWindow *l){
     delete l;
 }
 
+void UserSchoolWindow::updateLaurea(const QString& temp, const QString& laurea){
+    clientCtrl->updateUserLaurea(temp,laurea);
+}
+
 UserSchoolWindow::~UserSchoolWindow(){
 }

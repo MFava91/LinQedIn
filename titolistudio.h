@@ -18,6 +18,7 @@ public:
     vector<QString> getLaurea();
     void AggiungiLaurea(const QString&);
     void removeLaurea(const QString&);
+    void modificaLaurea(const QString&,const QString&);
     //distruttore di default
 };
 

@@ -43,3 +43,15 @@ void TitoliStudio::removeLaurea(const QString& l){
         }
     }
 }
+
+void TitoliStudio::modificaLaurea(const QString& temp, const QString& l){
+    int size=laurea.size();
+    bool trovato=false;
+    for(int i=0;i<size && trovato==false;i++){
+        if(laurea[i]==temp)
+        {
+            laurea[i]=l;
+            trovato==true;
+        }
+    }
+}

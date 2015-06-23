@@ -26,6 +26,10 @@ void Profilo::setTitoliStudio(const TitoliStudio & scuole){
     studi=scuole;
 }
 
+void Profilo::setLaurea(const QString& temp,const QString& l){
+    studi.modificaLaurea(temp,l);
+}
+
 void Profilo::setCurriculum(const Lavoro& temp, const Lavoro& lavoro){
     curriculum.editEsperienze(temp,lavoro);
 }

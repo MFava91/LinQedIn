@@ -20,6 +20,7 @@ public:
     CompetenzeLavorative getLavori() const;
     void setDatiPersonali(const DatiAnagrafici&);
     void setTitoliStudio(const TitoliStudio&);
+    void setLaurea(const QString&, const QString&);
     void setCurriculum(const Lavoro&, const Lavoro&);
     void wipeLaurea(const QString&);
     void wiperLavoro(const Lavoro&);
