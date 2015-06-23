@@ -37,7 +37,8 @@ public:
 
     userController* clientCtrl;
     ~UserInfoWindow();
-
+signals:
+    void signalSave();
 public slots:
     void fetchDati();
     void enableEdit();

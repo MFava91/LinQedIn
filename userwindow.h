@@ -38,5 +38,6 @@ public slots:
     void loadUserInfo();
     void loadUserSchool();
     void loadUserWork();
+    void saveDb();
 };
 #endif // USERWINDOW_H

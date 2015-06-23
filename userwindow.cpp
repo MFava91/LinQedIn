@@ -1,6 +1,7 @@
 #include "userwindow.h"
 
 UserWindow::UserWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
+    clientCtrl = userCtrl;
     mainLayout = new QGridLayout();
     mainLayout->setAlignment(Qt::AlignTop);
 
@@ -66,6 +67,10 @@ void UserWindow::loadUserWork(){
     userInfo->setVisible(false);
     userSchool->setVisible(false);
     userWork->setVisible(true);
+}
+
+void UserWindow::saveDb(){
+    clientCtrl->saveDatabase();
 }
 
 UserWindow::~UserWindow(){

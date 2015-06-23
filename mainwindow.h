@@ -27,7 +27,6 @@ private:
     QLineEdit *userPassword;
     QLineEdit *adminUsername;
     QLineEdit *adminPassword;
-    DB* dataBase;
     static QString adminPass;
     static QString adminUser;
 

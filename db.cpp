@@ -27,6 +27,20 @@ void DB::removeUtete(Username u){
     //eliminare utete dalla rete amici.
 }
 
+void DB::updateUtente(Utente* u){
+    QString user = u->getLogin().getUsername();
+    bool trovato=false;
+    map<QString,Utente*>::iterator it=dbUtenti.begin();
+    for(;it!=dbUtenti.end() && !trovato ;++it)
+    {
+        if(((*it).first)==user)
+        {
+            (*it).second = u;
+            trovato=true;
+        }
+    }
+}
+
 Utente* DB::find(const QString& u){
     Utente* temp = new Utente();
     map<QString,Utente*>::const_iterator it=dbUtenti.begin();
@@ -159,7 +173,7 @@ void DB::load() {
 
 
 void DB::save() {
-    QString path("/home/mattia/Documenti/LinQuedln/output.xml");
+    QString path("/home/mattia/Documenti/LinQuedln/input.xml");
     QFile file(path);
     file.open(QFile::WriteOnly);
 

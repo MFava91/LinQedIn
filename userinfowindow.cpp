@@ -34,6 +34,7 @@ UserInfoWindow::UserInfoWindow(QWidget *parent,userController* userCtrl) : QWidg
     connect(modifyButton, SIGNAL(clicked()), this, SLOT(enableEdit()));
     connect(deleteButton, SIGNAL(clicked()), this, SLOT(disableEdit()));
     connect(updateButton, SIGNAL(clicked()), this, SLOT(updateInfo()));
+    connect(this, SIGNAL(signalSave()), parent, SLOT(saveDb()));
 }
 
 void UserInfoWindow::fetchDati(){
@@ -120,6 +121,7 @@ void UserInfoWindow::updateInfo(){
                      luogoNascita->text(),residenza->text());
     clientCtrl->updateUserInfo(x);
     disableEdit();
+    emit signalSave();
 }
 
 UserInfoWindow::~UserInfoWindow(){

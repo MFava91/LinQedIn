@@ -5,9 +5,10 @@
 
 class userController
 {
+private:
+    DB* db;
 public:
     Utente* user;
-    DB* db;
 
     //metodi
     userController(const QString&, DB* = 0);
@@ -16,6 +17,7 @@ public:
     void updateUserDiploma(const TitoliStudio&);
     void updateUserLaurea(const QString&, const QString&);
     void updateUserLavoro(const Lavoro&,const Lavoro&);
+    void saveDatabase();
 };
 
 #endif // USERCONTROLLER_H

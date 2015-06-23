@@ -31,3 +31,8 @@ void userController::updateUserLaurea(const QString& temp, const QString& l){
 void userController::updateUserLavoro(const Lavoro &temp, const Lavoro & lavoro){
     user->getInfo().setCurriculum(temp,lavoro);
 }
+
+void userController::saveDatabase(){
+    db->updateUtente(user);
+    db->save();
+}
