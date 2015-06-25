@@ -7,11 +7,12 @@
 #include<QPushButton>
 #include<QLineEdit>
 #include<QGridLayout>
-
+#include<QCloseEvent>
 #include"db.h"
 #include"adminwindow.h"
 #include"userwindow.h"
 #include"usercontroller.h"
+#include"admincontroller.h"
 
 class MainWindow: public QMainWindow {
     Q_OBJECT
@@ -29,8 +30,10 @@ private:
     QLineEdit *adminPassword;
     static QString adminPass;
     static QString adminUser;
+    QCloseEvent* close;
 
     userController* userCtrl;
+    AdminController* adminCtrl;
 
 public:
     MainWindow(QWidget *parent = 0);

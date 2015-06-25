@@ -41,6 +41,16 @@ void DB::updateUtente(Utente* u){
     }
 }
 
+bool DB::search(const QString &u){
+    map<QString,Utente*>::const_iterator it=dbUtenti.begin();
+    for(;it!=dbUtenti.end();++it){
+        if(((*it).first)==u){
+            return true;
+        }
+    }
+    return false;
+}
+
 Utente* DB::find(const QString& u){
     Utente* temp = new Utente();
     map<QString,Utente*>::const_iterator it=dbUtenti.begin();

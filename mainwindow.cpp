@@ -78,7 +78,8 @@ void MainWindow::loginUser(const QString& u){
 void MainWindow::loginAdmin(const QString& u){
     if(u==adminUser)
     {
-        mainWidget = new AdminWindow(this);
+        adminCtrl = new AdminController();
+        mainWidget = new AdminWindow(this,adminCtrl);
         setCentralWidget(mainWidget);
         statusBar->showMessage("Autenticato! Bentornato Admin",1000);
     }

@@ -24,6 +24,7 @@ public:
     void updateUtente(Utente*);
     void save();
     void load();
+    bool search(const QString&);
     ~DB(); //DA FARE
     Utente* find(const QString&);
 

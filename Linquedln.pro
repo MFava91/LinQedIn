@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     userschoolwindow.cpp \
     laureawindow.cpp \
     userworkwindow.cpp \
-    lavorowindow.cpp
+    lavorowindow.cpp \
+    admincontroller.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -58,7 +59,8 @@ HEADERS  += mainwindow.h \
     userschoolwindow.h \
     laureawindow.h \
     userworkwindow.h \
-    lavorowindow.h
+    lavorowindow.h \
+    admincontroller.h
 
 FORMS    += mainwindow.ui
 
