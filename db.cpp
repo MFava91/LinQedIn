@@ -51,7 +51,7 @@ bool DB::search(const QString &u){
     return false;
 }
 
-Utente* DB::find(const QString& u){
+Utente* DB::find(const QString& u) const{
     Utente* temp = new Utente();
     map<QString,Utente*>::const_iterator it=dbUtenti.begin();
     for(;it!=dbUtenti.end();++it){
@@ -60,7 +60,7 @@ Utente* DB::find(const QString& u){
             return temp;
         }
     }
-    return temp;
+    return 0;
 }
 
 void DB::load() {

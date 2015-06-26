@@ -26,7 +26,7 @@ public:
     void load();
     bool search(const QString&);
     ~DB(); //DA FARE
-    Utente* find(const QString&);
+    Utente* find(const QString&) const;
 
 };
 

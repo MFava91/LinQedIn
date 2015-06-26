@@ -2,6 +2,7 @@
 
 AdminController::AdminController()
 {
+    user=0;
     db = new DB();
     db->load();
 }
@@ -16,6 +17,12 @@ void AdminController::removeUser(const Username& u){
     db->removeUtete(u);
 }
 
+bool AdminController::findUserForUsername(const QString &u){
+    user = db->find(u);
+    if(user)
+        return true;
+    return false;
+}
 
 
 AdminController::~AdminController(){
