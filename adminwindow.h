@@ -11,6 +11,7 @@
 #include<QLineEdit>
 #include<QToolTip>
 #include<QPoint>
+#include<QMessageBox>
 
 #include"admincontroller.h"
 #include"resultwindow.h"
@@ -87,7 +88,7 @@ public slots:
     void deleteUser();
     void searchUsername();
     void updateWindow();
-//    void searchName();
+    void searchName();
 };
 
 

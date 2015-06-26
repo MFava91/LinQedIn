@@ -14,7 +14,7 @@
 class ResultWindow : public QWidget{
     Q_OBJECT
 public:
-    ResultWindow(AdminController*, QWidget* = 0);
+    ResultWindow(Utente*, QWidget* = 0);
     ~ResultWindow();
     QGridLayout* resultLayout;
     QLabel* usernameRicercaLabel;

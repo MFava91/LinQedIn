@@ -2,7 +2,6 @@
 
 AdminController::AdminController()
 {
-    user=0;
     db = new DB();
     db->load();
 }
@@ -24,6 +23,12 @@ bool AdminController::findUserForUsername(const QString &u){
     return false;
 }
 
+bool AdminController::findUserForName(const QString& n, const QString& c){
+    utentiTrovati = db->findName(n,c);
+    if(!utentiTrovati.empty())
+        return true;
+    return false;
+}
 
 AdminController::~AdminController(){
 }

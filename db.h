@@ -27,6 +27,7 @@ public:
     bool search(const QString&);
     ~DB(); //DA FARE
     Utente* find(const QString&) const;
+    map<QString,Utente*> findName(const QString&, const QString&) const;
 
 };
 

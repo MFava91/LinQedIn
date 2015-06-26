@@ -9,13 +9,14 @@ private:
     DB* db;
 public:
     Utente* user;
+    map<QString,Utente*> utentiTrovati;
     AdminController();
     ~AdminController();
     bool searchUser(const QString&);
     void addUser();
     void removeUser(const Username&);
     bool findUserForUsername(const QString&);
-    Utente* findUserForName(const QString& =0, const QString& =0);
+    bool findUserForName(const QString& =0, const QString& =0);
 };
 
 #endif // ADMINCONTROLLER_H

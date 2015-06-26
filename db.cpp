@@ -63,6 +63,23 @@ Utente* DB::find(const QString& u) const{
     return 0;
 }
 
+map<QString,Utente*> DB::findName(const QString &n, const QString &c) const {
+    map<QString,Utente*> result;
+    map<QString,Utente*>::const_iterator it=dbUtenti.begin();
+    for(;it!=dbUtenti.end();++it){
+        if(n!="" && c!="" && (*it).second->getInfo().getDati().getNome()==n && (*it).second->getInfo().getDati().getCognome()==c){
+                result.insert(map<QString,Utente*>::value_type((*it).second->getLogin().getUsername(),(*it).second));
+        }
+        if(n!="" && c=="" && (*it).second->getInfo().getDati().getNome()==n){
+                result.insert(map<QString,Utente*>::value_type((*it).second->getLogin().getUsername(),(*it).second));
+        }
+        if(n=="" && c!="" && (*it).second->getInfo().getDati().getCognome()==c){
+                result.insert(map<QString,Utente*>::value_type((*it).second->getLogin().getUsername(),(*it).second));
+        }
+    }
+    return result;
+}
+
 void DB::load() {
     QString path("/home/mattia/Documenti/LinQuedln/input.xml");
     QFile file(path);

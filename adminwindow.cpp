@@ -73,15 +73,21 @@ AdminWindow::AdminWindow(QWidget *parent, AdminController* adminController) : QW
     findBox->setLayout(findLayout);
 
     //RESULT
+    resultBox = new QGroupBox("Risultati ricerca");
+    resultLayout = new QGridLayout();
+    nessunaRicerca = new QLabel("Nessuna ricerca effettuata");
+    resultLayout->addWidget(nessunaRicerca,0,0);
+    resultBox->setLayout(resultLayout);
 
     mainLayout->addWidget(editBox,0,0);
     mainLayout->addWidget(findBox,0,1);
-    searchUsername();
+    mainLayout->addWidget(resultBox,1,1);
+    setLayout(mainLayout);
 
     connect(newUserButton, SIGNAL(clicked()), this, SLOT(dialogAddNewUser()));
     connect(deleteUserButton, SIGNAL(clicked()), this, SLOT(dialogEraseUser()));
     connect(findUsernameButton, SIGNAL(clicked()), this, SLOT(searchUsername()));
-//    connect(findNameButton, SIGNAL(clicked()), this, SLOT(searchName()));
+    connect(findNameButton, SIGNAL(clicked()), this, SLOT(searchName()));
 }
 
 //DIALOG CREATE USER
@@ -141,6 +147,8 @@ void AdminWindow::updateWindow(){
 
 void AdminWindow::addNewUser(){
     //DA FARE
+    QString nomeConferma = "L'utente " + usernameNewUser->text() + " è stato aggiunto";
+    QMessageBox::information(this,"Conferma", nomeConferma);
 }
 
 void AdminWindow::deleteUser(){
@@ -151,19 +159,15 @@ void AdminWindow::deleteUser(){
         Username temp(eraseUser->text());
         adminCtrl->removeUser(temp);
         boxEraseUser->close();
+        QString nomeRimosso = "L'utente " + eraseUser->text() + " è stato rimosso";
+        QMessageBox::information(this,"Rimozione", nomeRimosso);
     }
     else
         QToolTip::showText(eraseUser->mapToGlobal(QPoint()), "L'utente scelto non esiste");
 }
 
 void AdminWindow::searchUsername(){
-    if(resultBox==0){
-        resultBox = new QGroupBox("Risultati ricerca");
-        resultLayout = new QGridLayout();
-        nessunaRicerca = new QLabel("Nessuna ricerca effettuata");
-        resultLayout->addWidget(nessunaRicerca,0,0);
-    }
-    else
+    if(resultBox!=0)
     {
         mainLayout->removeWidget(resultBox);
         delete resultBox;
@@ -172,8 +176,37 @@ void AdminWindow::searchUsername(){
         bool trovato = adminCtrl->findUserForUsername(findUsername->text());
         if(trovato)
         {
-            ResultWindow* result = new ResultWindow(adminCtrl,this);
+            ResultWindow* result = new ResultWindow(adminCtrl->user,this);
             resultLayout->addWidget(result,0,0);
+        }
+        else
+        {
+            nessunUtenteTrovato = new QLabel("Nessun utente trovato");
+            resultLayout->addWidget(nessunUtenteTrovato,0,0);
+        }
+    }
+    resultBox->setLayout(resultLayout);
+    mainLayout->addWidget(resultBox,1,1);
+    setLayout(mainLayout);
+}
+
+void AdminWindow::searchName(){
+    if(resultBox!=0)
+    {
+        mainLayout->removeWidget(resultBox);
+        delete resultBox;
+        resultBox = new QGroupBox("Risultati ricerca");
+        resultLayout = new QGridLayout();
+        bool trovato = adminCtrl->findUserForName(findName->text(),findSurname->text());
+        if(trovato)
+        {
+            int i=0;
+            for(std::map<QString,Utente*>::const_iterator it=adminCtrl->utentiTrovati.begin();it!=adminCtrl->utentiTrovati.end();++it)
+            {
+                ResultWindow* result = new ResultWindow((*it).second,this);
+                resultLayout->addWidget(result,i,0);
+                i++;
+            }
         }
         else
         {
