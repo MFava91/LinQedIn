@@ -20,14 +20,15 @@ private:
 public:
     DB();
     void addUtente(Username,Utente*);
+    void addNewUtente(const QString&, const QString&, const QString&);
     void removeUtete(Username);
     void updateUtente(Utente*);
     void save();
     void load();
     bool search(const QString&);
-    ~DB(); //DA FARE
     Utente* find(const QString&) const;
     map<QString,Utente*> findName(const QString&, const QString&) const;
+    ~DB(); //DA FARE
 
 };
 

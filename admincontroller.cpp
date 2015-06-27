@@ -12,6 +12,10 @@ bool AdminController::searchUser(const QString &u){
     return trovato;
 }
 
+void AdminController::addUser(const QString &u, const QString &n, const QString &c){
+    db->addNewUtente(u,n,c);
+}
+
 void AdminController::removeUser(const Username& u){
     db->removeUtete(u);
 }

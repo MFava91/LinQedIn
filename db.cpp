@@ -13,6 +13,14 @@ void DB::addUtente(Username u,Utente* p){
     dbUtenti.insert(map<QString,Utente*>::value_type(u.getUsername(),p));
 }
 
+void DB::addNewUtente(const QString &u, const QString &n, const QString &c){
+    Username x(u);
+    Utente *temp = new Utente(u);
+    temp->getInfo().setNomeDatiPersonali(n);
+    temp->getInfo().setCognomeDatiPersonali(c);
+    addUtente(x,temp);
+}
+
 void DB::removeUtete(Username u){
     for(std::map<QString,Utente*>::iterator it=dbUtenti.begin();it!=dbUtenti.end();++it)
     {

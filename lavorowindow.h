@@ -6,7 +6,7 @@
 #include<QTextEdit>
 #include<QLabel>
 #include<QLineEdit>
-#include<QDateTimeEdit>
+#include<QDateEdit>
 
 #include"lavoro.h"
 
@@ -27,8 +27,8 @@ public:
     QLineEdit* azienda;
     QLineEdit* titolo;
     QLineEdit* citta;
-    QDateTimeEdit* inizio;
-    QDateTimeEdit* fine;
+    QDateEdit* inizio;
+    QDateEdit* fine;
 
     QPushButton* modifyButtonLavoro;
     QPushButton* cancelButtonLavoro;

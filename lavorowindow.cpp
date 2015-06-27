@@ -17,9 +17,9 @@ LavoroWindow::LavoroWindow(const QString& nomeAzienda, const QString& mansione ,
     titolo->setReadOnly(true);
     citta = new QLineEdit(luogo);
     citta->setReadOnly(true);
-    inizio = new QDateTimeEdit(inizioLavoro);
+    inizio = new QDateEdit(inizioLavoro);
     inizio->setReadOnly(true);
-    fine = new QDateTimeEdit(fineLavoro);
+    fine = new QDateEdit(fineLavoro);
     fine->setReadOnly(true);
 
     modifyButtonLavoro = new QPushButton("Modifica",this);

@@ -18,6 +18,8 @@ public:
     void updateUserLaurea(const QString&, const QString&);
     void updateUserLavoro(const Lavoro&,const Lavoro&);
     void saveDatabase();
+    bool searchUser(const QString&);
+    bool searchLaurea(const QString&);
 };
 
 #endif // USERCONTROLLER_H

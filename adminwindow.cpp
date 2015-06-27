@@ -146,15 +146,19 @@ void AdminWindow::updateWindow(){
 }
 
 void AdminWindow::addNewUser(){
-    //DA FARE
-    QString nomeConferma = "L'utente " + usernameNewUser->text() + " è stato aggiunto";
-    QMessageBox::information(this,"Conferma", nomeConferma);
+    if(!adminCtrl->searchUser(usernameNewUser->text()))
+    {
+        adminCtrl->addUser(usernameNewUser->text(),nameNewUser->text(),surnameNewUser->text());
+        QString nomeConferma = "L'utente " + usernameNewUser->text() + " è stato aggiunto";
+        QMessageBox::information(this,"Conferma", nomeConferma);
+        boxNewUser->close();
+    }
+    else
+         QToolTip::showText(usernameNewUser->mapToGlobal(QPoint()), "L'username scelto già utilizzato");
 }
 
 void AdminWindow::deleteUser(){
-    bool trovato;
-    trovato = adminCtrl->searchUser(eraseUser->text());
-    if(trovato)
+    if(adminCtrl->searchUser(eraseUser->text()))
     {
         Username temp(eraseUser->text());
         adminCtrl->removeUser(temp);

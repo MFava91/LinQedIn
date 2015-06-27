@@ -13,7 +13,7 @@ public:
     AdminController();
     ~AdminController();
     bool searchUser(const QString&);
-    void addUser();
+    void addUser(const QString&, const QString&, const QString&);
     void removeUser(const Username&);
     bool findUserForUsername(const QString&);
     bool findUserForName(const QString& =0, const QString& =0);

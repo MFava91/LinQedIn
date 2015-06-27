@@ -22,10 +22,13 @@ public:
     void setTitoliStudio(const TitoliStudio&);
     void setLaurea(const QString&, const QString&);
     void setCurriculum(const Lavoro&, const Lavoro&);
+    void setNomeDatiPersonali(const QString&);
+    void setCognomeDatiPersonali(const QString&);
     void wipeLaurea(const QString&);
     void wiperLavoro(const Lavoro&);
     void aggiungiLaurea(const QString&);
     void aggiungiLavoro(const Lavoro&);
+    bool searchLaurea(const QString&);
     //void modificaProfilo() {}
     //Info* visualizzaProfilo() const {return 0; }
 };

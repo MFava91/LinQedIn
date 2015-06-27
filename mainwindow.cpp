@@ -65,14 +65,17 @@ void MainWindow::readCredentialAdmin() {
 
 void MainWindow::loginUser(const QString& u){
     userCtrl = new userController(u);
-    if(userCtrl->user->getLogin().getUsername() != "")
+    if(userCtrl->searchUser(u))
     {
         mainWidget = new UserWindow(this,userCtrl);
         setCentralWidget(mainWidget);
         statusBar->showMessage("Autenticato",1000);
     }
     else
+    {
+        delete userCtrl;
         statusBar->showMessage("Errore!",1000);
+    }
 }
 
 void MainWindow::loginAdmin(const QString& u){

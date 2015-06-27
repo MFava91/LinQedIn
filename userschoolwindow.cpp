@@ -7,10 +7,7 @@ UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : Q
     schoolLayout->setAlignment(Qt::AlignHCenter);
 
     //DIPLOMA
-    diplomaLayout = new QGridLayout();
-    diplomaLayout->setAlignment(Qt::AlignHCenter);
 
-    boxDiploma = new QGroupBox("Diploma");
     fetchDiploma();
 
     modifyButtonDiploma = new QPushButton("Aggiorna Diploma",this);
@@ -55,6 +52,10 @@ UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : Q
 }
 
 void UserSchoolWindow::fetchDiploma(){
+    diplomaLayout = new QGridLayout();
+    diplomaLayout->setAlignment(Qt::AlignHCenter);
+
+    boxDiploma = new QGroupBox("Diploma");
     diplomaLabel = new QLabel("Titolo:");
     diploma = new QLineEdit(clientCtrl->user->getInfo().getStudi().getDiploma());
     diploma->setReadOnly(true);
@@ -102,6 +103,10 @@ void UserSchoolWindow::fetchLaurea(){
             laureeLayout->addWidget(laurea,i,0);
         }
     }
+    else{
+        noLauree = new QLabel("Non è presente nessuna laurea.");
+        laureeLayout->addWidget(noLauree,0,0);
+    }
     boxLauree->setLayout(laureeLayout);
     schoolLayout->addWidget(boxLauree,1,0);
     setLayout(schoolLayout);
@@ -127,15 +132,22 @@ void UserSchoolWindow::dialogAddLaurea(){
 }
 
 void UserSchoolWindow::addLaurea(){
-    clientCtrl->user->getInfo().aggiungiLaurea(newLaurea->text());
-    boxAddLaurea->close();
-    fetchLaurea();
+    if(!clientCtrl->searchLaurea(newLaurea->text()))
+    {
+        clientCtrl->user->getInfo().aggiungiLaurea(newLaurea->text());
+        boxAddLaurea->close();
+        fetchLaurea();
+    }
+    else
+        QToolTip::showText(newLaurea->mapToGlobal(QPoint()), "La laurea che si vuole inserire è già presente");
 }
+
 
 void UserSchoolWindow::removeLaurea(LaureaWindow *l){
     laureeLayout->removeWidget(l);
     clientCtrl->user->getInfo().wipeLaurea(l->laurea->text());
     delete l;
+    fetchLaurea();
 }
 
 void UserSchoolWindow::updateLaurea(const QString& temp, const QString& laurea){

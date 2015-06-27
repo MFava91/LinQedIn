@@ -32,6 +32,11 @@ void UserWorkWindow::fetchLavoro(){
             lavoriLayout->addWidget(lavoro,i,0);
         }
     }
+    else
+    {
+        noLavori = new QLabel("Non è presente nessun lavoro.");
+        lavoriLayout->addWidget(noLavori,0,0);
+    }
     boxLavori->setLayout(lavoriLayout);
     workLayout->addWidget(boxLavori,0,0);
     setLayout(workLayout);
@@ -84,13 +89,13 @@ void UserWorkWindow::addLavoro(){
                 addInizio->date(),addFine->date());
     clientCtrl->user->getInfo().aggiungiLavoro(temp);
     boxAddLavoro->close();
-    //riflettere se qua va un delete o meno
     fetchLavoro();
 }
 
 void UserWorkWindow::removeLavoro(LavoroWindow* l){
     lavoriLayout->removeWidget(l);
-    clientCtrl->user->getInfo();
+    clientCtrl->user->getInfo().wiperLavoro(l->temp);
+    fetchLavoro();
 }
 
 void UserWorkWindow::modificaLavoro(const Lavoro& temp, const Lavoro& l){

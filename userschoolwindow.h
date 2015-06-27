@@ -9,6 +9,7 @@
 #include<QLineEdit>
 #include<QDateTimeEdit>
 #include<QDialog>
+#include<QToolTip>
 
 #include"usercontroller.h"
 #include"laureawindow.h"
@@ -26,6 +27,7 @@ public:
     QGroupBox* boxLauree;
 
     QLabel* diplomaLabel;
+    QLabel* noLauree;
 
     QPushButton* modifyButtonDiploma;
     QPushButton* updateButtonDiploma;

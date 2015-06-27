@@ -22,6 +22,7 @@ public:
     QGridLayout* lavoriLayout;
     QGroupBox* boxLavori;
     QPushButton* addButtonLavoro;
+    QLabel* noLavori;
 
     //DIALOG
     QDialog* boxAddLavoro;
