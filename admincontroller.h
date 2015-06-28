@@ -17,6 +17,8 @@ public:
     void removeUser(const Username&);
     bool findUserForUsername(const QString&);
     bool findUserForName(const QString& =0, const QString& =0);
+    QString searchUserType(const QString&);
+    void modifyUserType(const QString&,const QString&);
 };
 
 #endif // ADMINCONTROLLER_H

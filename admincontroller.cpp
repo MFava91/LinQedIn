@@ -34,5 +34,14 @@ bool AdminController::findUserForName(const QString& n, const QString& c){
     return false;
 }
 
+QString AdminController::searchUserType(const QString &u){
+    Utente* temp=db->find(u);
+    return temp->getInfo().getTipoAccount();
+}
+
+void AdminController::modifyUserType(const QString &u, const QString&t){
+    db->upgradeUtente(u,t);
+}
+
 AdminController::~AdminController(){
 }

@@ -23,6 +23,7 @@ public:
     void addNewUtente(const QString&, const QString&, const QString&);
     void removeUtete(Username);
     void updateUtente(Utente*);
+    void upgradeUtente(const QString&, const QString&);
     void save();
     void load();
     bool search(const QString&);

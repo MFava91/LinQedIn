@@ -19,6 +19,7 @@ void DB::addNewUtente(const QString &u, const QString &n, const QString &c){
     temp->getInfo().setNomeDatiPersonali(n);
     temp->getInfo().setCognomeDatiPersonali(c);
     addUtente(x,temp);
+    //manca tipo account
 }
 
 void DB::removeUtete(Username u){
@@ -37,14 +38,25 @@ void DB::removeUtete(Username u){
 
 void DB::updateUtente(Utente* u){
     QString user = u->getLogin().getUsername();
-    bool trovato=false;
     map<QString,Utente*>::iterator it=dbUtenti.begin();
-    for(;it!=dbUtenti.end() && !trovato ;++it)
+    for(;it!=dbUtenti.end();++it)
     {
         if(((*it).first)==user)
         {
             (*it).second = u;
-            trovato=true;
+            return;
+        }
+    }
+}
+
+void DB::upgradeUtente(const QString &u, const QString &t){
+    map<QString,Utente*>::iterator it=dbUtenti.begin();
+    for(;it!=dbUtenti.end();++it)
+    {
+        if(((*it).first)==u)
+        {
+            (*it).second->getInfo().setTipoAccount(t);
+            return;
         }
     }
 }
@@ -93,7 +105,7 @@ void DB::load() {
     QFile file(path);
     bool trovato=false;
     file.open(QIODevice::ReadOnly);
-    QString key,nome,cognome,email,lnascita,lresidenza,diploma,laur;
+    QString key,nome,cognome,email,lnascita,lresidenza,diploma,laur,type;
     QDate dnascita;
     vector<QString> lauree;
     vector<Lavoro> vlavoro;
@@ -114,6 +126,11 @@ void DB::load() {
         if(read.name()=="Username" && read.tokenType() != QXmlStreamReader::EndElement)
         {
             key=read.readElementText();
+            read.readNextStartElement();
+        }
+        if(read.name()=="TipoAccount" && read.tokenType() != QXmlStreamReader::EndElement)
+        {
+            type=read.readElementText();
             read.readNextStartElement();
         }
         if(read.name()=="DatiAnagrafici" && read.tokenType() != QXmlStreamReader::EndElement)
@@ -191,7 +208,7 @@ void DB::load() {
             DatiAnagrafici a(nome,cognome,email,dnascita,lnascita,lresidenza);
             TitoliStudio b(diploma,lauree);
             CompetenzeLavorative c(vlavoro);
-            Profilo p(a,b,c);
+            Profilo p(a,b,c,type);
             Rete r(rete);
             Utente* u=new Utente(key,p,r);
             //cout<<u->login.getUsername().toStdString();
@@ -221,6 +238,7 @@ void DB::save() {
         write.writeStartElement("Utente");
         write.writeStartElement("Profilo");
         write.writeTextElement("Username",(*it).second->getLogin().getUsername());
+        write.writeTextElement("TipoAccount",(*it).second->getInfo().getTipoAccount());
         write.writeStartElement("DatiAnagrafici");
         write.writeTextElement("Nome",(*it).second->getInfo().getDati().getNome());
         write.writeTextElement("Cognome",(*it).second->getInfo().getDati().getCognome());

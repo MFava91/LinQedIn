@@ -2,6 +2,7 @@
 #define USERINFOWINDOW_H
 #include<QPushButton>
 #include<QGridLayout>
+#include<QGroupBox>
 #include<QTextEdit>
 #include<QLabel>
 #include<QLineEdit>
@@ -14,8 +15,13 @@ class UserInfoWindow : public QWidget{
 public:
     UserInfoWindow();
     UserInfoWindow(QWidget *parent, userController*);
+    QGroupBox* accountBox;
+    QGroupBox* datiBox;
+    QGridLayout* profiloLayout;
     QGridLayout* datiLayout;
+    QGridLayout* accountLayout;
     QLineEdit* username;
+    QLineEdit* tipo;
     QLineEdit* nome;
     QLineEdit* cognome;
     QLineEdit* email;
@@ -24,6 +30,7 @@ public:
     QLineEdit* residenza;
 
     QLabel* usernameLabel;
+    QLabel* tipoLabel;
     QLabel* nomeLabel;
     QLabel* cognomeLabel;
     QLabel* emailLabel;

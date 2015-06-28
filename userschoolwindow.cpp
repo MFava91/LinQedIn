@@ -1,14 +1,36 @@
 #include "userschoolwindow.h"
 
 UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
+    boxDiploma = 0;
     boxLauree = 0;
     clientCtrl = userCtrl;
     schoolLayout = new QGridLayout();
     schoolLayout->setAlignment(Qt::AlignHCenter);
 
     //DIPLOMA
-
     fetchDiploma();
+    //LAUREE
+
+    fetchLaurea();
+    addButtonLaurea = new QPushButton("Aggiungi laurea",this);
+    addButtonLaurea->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    schoolLayout->addWidget(addButtonLaurea,3,0);
+    //INTERFACCIA GLOBALE
+
+    connect(addButtonLaurea, SIGNAL(clicked()), this, SLOT(dialogAddLaurea()));
+
+}
+
+void UserSchoolWindow::fetchDiploma()
+{
+    if(boxDiploma!=0){
+        schoolLayout->removeWidget(boxDiploma);
+        delete boxDiploma;
+    }
+    boxDiploma = new QGroupBox("Diploma");
+    diplomaLayout = new QGridLayout();
+    diplomaLayout->setAlignment(Qt::AlignHCenter);
 
     modifyButtonDiploma = new QPushButton("Aggiorna Diploma",this);
     modifyButtonDiploma->setGeometry(QRect(QPoint(100, 100),
@@ -24,43 +46,21 @@ UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : Q
                               QSize(200, 50)));
     deleteButtonDiploma->setVisible(false);
 
+    diplomaLabel = new QLabel("Titolo:");
+    diploma = new QLineEdit(clientCtrl->user->getInfo().getStudi().getDiploma());
+    diploma->setReadOnly(true);
 
     diplomaLayout->addWidget(modifyButtonDiploma,1,1);
     diplomaLayout->addWidget(deleteButtonDiploma,2,0);
     diplomaLayout->addWidget(updateButtonDiploma,2,1);
-    boxDiploma->setLayout(diplomaLayout);
-
     diplomaLayout->addWidget(diplomaLabel,0,0);
     diplomaLayout->addWidget(diploma,0,1);
     boxDiploma->setLayout(diplomaLayout);
-
     schoolLayout->addWidget(boxDiploma,0,0);
 
-    //LAUREE
-
-    fetchLaurea();
-    addButtonLaurea = new QPushButton("Aggiungi laurea",this);
-    addButtonLaurea->setGeometry(QRect(QPoint(100, 100),
-                              QSize(200, 50)));
-    schoolLayout->addWidget(addButtonLaurea,3,0);
-    //INTERFACCIA GLOBALE
     connect(modifyButtonDiploma, SIGNAL(clicked()), this, SLOT(enabledEditDiploma()));
     connect(deleteButtonDiploma, SIGNAL(clicked()), this, SLOT(disableEditDiploma()));
     connect(updateButtonDiploma, SIGNAL(clicked()), this, SLOT(updateDiploma()));
-    connect(addButtonLaurea, SIGNAL(clicked()), this, SLOT(dialogAddLaurea()));
-
-}
-
-void UserSchoolWindow::fetchDiploma(){
-    diplomaLayout = new QGridLayout();
-    diplomaLayout->setAlignment(Qt::AlignHCenter);
-
-    boxDiploma = new QGroupBox("Diploma");
-    diplomaLabel = new QLabel("Titolo:");
-    diploma = new QLineEdit(clientCtrl->user->getInfo().getStudi().getDiploma());
-    diploma->setReadOnly(true);
-    diplomaLayout->addWidget(diplomaLabel,0,0);
-    diplomaLayout->addWidget(diploma,0,1);
 }
 
 void UserSchoolWindow::enabledEditDiploma(){

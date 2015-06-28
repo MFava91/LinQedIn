@@ -86,6 +86,7 @@ AdminWindow::AdminWindow(QWidget *parent, AdminController* adminController) : QW
 
     connect(newUserButton, SIGNAL(clicked()), this, SLOT(dialogAddNewUser()));
     connect(deleteUserButton, SIGNAL(clicked()), this, SLOT(dialogEraseUser()));
+    connect(modifyUserButton, SIGNAL(clicked()), this, SLOT(dialogModifyUser()));
     connect(findUsernameButton, SIGNAL(clicked()), this, SLOT(searchUsername()));
     connect(findNameButton, SIGNAL(clicked()), this, SLOT(searchName()));
 }
@@ -120,6 +121,7 @@ void AdminWindow::dialogAddNewUser(){
     boxNewUser->exec();
 }
 
+//DIALOG CANCELLA
 void AdminWindow::dialogEraseUser(){
     boxEraseUser = new QDialog();
     eraseUserLayout = new QGridLayout(boxEraseUser);
@@ -138,6 +140,77 @@ void AdminWindow::dialogEraseUser(){
     connect(cancelEraseUserButton, SIGNAL(clicked()), boxEraseUser , SLOT(close()));
 
     boxEraseUser->exec();
+}
+
+//DIALOG MODIFICA
+void AdminWindow::dialogModifyUser(){
+    boxModifyUser = new QDialog();
+    modifyLayout = new QGridLayout(boxModifyUser);
+    modifyUsernameLabel = new QLabel("Username:");
+    modifyUsername = new QLineEdit();
+
+    confirmUserButton = new QPushButton("Modifica");
+
+    boxType = new QGroupBox("Tipologia account");
+    typeLayout = new QGridLayout();
+    modifyInfo = new QLabel("Tipo:");
+    basic = new QRadioButton("Basic");
+    business = new QRadioButton("Business");
+    executive = new QRadioButton("Executive");
+    confirmModifyUserButton = new QPushButton("Conferma");
+    cancelModifyUserButton = new QPushButton("Annulla");
+
+
+    typeLayout->addWidget(modifyInfo,0,0);
+    typeLayout->addWidget(basic,0,1);
+    typeLayout->addWidget(business,1,0);
+    typeLayout->addWidget(executive,1,1);
+    typeLayout->addWidget(confirmModifyUserButton,2,0);
+    typeLayout->addWidget(cancelModifyUserButton,2,1);
+    boxType->setLayout(typeLayout);
+    boxType->hide();
+
+
+    modifyLayout->addWidget(modifyUsernameLabel,0,0);
+    modifyLayout->addWidget(modifyUsername,0,1);
+    modifyLayout->addWidget(confirmUserButton,1,1);
+    modifyLayout->addWidget(boxType,2,1);
+    boxModifyUser->setLayout(modifyLayout);
+
+    connect(confirmUserButton, SIGNAL(clicked()), this, SLOT(searchModifyUser()));
+    connect(confirmModifyUserButton, SIGNAL(clicked()), this, SLOT(updateAccountType()));
+    connect(cancelModifyUserButton, SIGNAL(clicked()), boxModifyUser, SLOT(close()));
+    boxModifyUser->exec();
+}
+
+void AdminWindow::searchModifyUser(){
+    if(adminCtrl->findUserForUsername(modifyUsername->text()))
+    {
+        boxType->show();
+        confirmUserButton->hide();
+        modifyUsername->setReadOnly(true);
+        QString tipo = adminCtrl->searchUserType(modifyUsername->text());
+        if(tipo == "Basic")
+            basic->setChecked(true);
+        if(tipo == "Business")
+            business->setChecked(true);
+        if(tipo == "Executive")
+            executive->setChecked(true);
+    }
+    else
+        QToolTip::showText(modifyUsername->mapToGlobal(QPoint()), "L'username scelto non esiste");
+}
+
+void AdminWindow::updateAccountType(){
+    if(basic->isChecked())
+        adminCtrl->modifyUserType(modifyUsername->text(),"Basic");
+    if(business->isChecked())
+        adminCtrl->modifyUserType(modifyUsername->text(),"Business");
+    if(executive->isChecked())
+        adminCtrl->modifyUserType(modifyUsername->text(),"Executive");
+    QString nomeConferma = "La tipologia dell' account con username " + modifyUsername->text() + " è stata aggiornata";
+    QMessageBox::information(this,"Conferma", nomeConferma);
+    boxModifyUser->close();
 }
 
 void AdminWindow::updateWindow(){

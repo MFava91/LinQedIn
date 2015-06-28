@@ -3,6 +3,7 @@
     <Utente>
         <Profilo>
             <Username>Antonio</Username>
+            <TipoAccount></TipoAccount>
             <DatiAnagrafici>
                 <Nome>antonio</Nome>
                 <Cognome>Rossi</Cognome>
@@ -32,6 +33,7 @@
     <Utente>
         <Profilo>
             <Username>Gianni</Username>
+            <TipoAccount></TipoAccount>
             <DatiAnagrafici>
                 <Nome>Mario</Nome>
                 <Cognome>Rossi</Cognome>
@@ -61,11 +63,12 @@
     <Utente>
         <Profilo>
             <Username>mario</Username>
+            <TipoAccount>Basic</TipoAccount>
             <DatiAnagrafici>
-                <Nome>Mario</Nome>
-                <Cognome>Stronzo</Cognome>
+                <Nome>Enrico</Nome>
+                <Cognome>Infinity</Cognome>
                 <Email>einfinity@houncazzoenorme.com</Email>
-                <Data>mer feb 1 1995</Data>
+                <Data>sab feb 1 1992</Data>
                 <Luogo_Nascita>TrevisoLammoda</Luogo_Nascita>
                 <Residenza>CazzoVoglio</Residenza>
             </DatiAnagrafici>

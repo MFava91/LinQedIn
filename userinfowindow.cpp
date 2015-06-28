@@ -2,44 +2,44 @@
 
 UserInfoWindow::UserInfoWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
     clientCtrl = userCtrl;
-    datiLayout = new QGridLayout();
-    datiLayout->setAlignment(Qt::AlignHCenter);
+    datiBox = 0;
+    profiloLayout = new QGridLayout();
 
-    usernameLabel=new QLabel("Username:");
+    accountBox = new QGroupBox("Informazioni account");
+    accountLayout = new QGridLayout();
+
+    usernameLabel = new QLabel("Username:");
     username = new QLineEdit(clientCtrl->user->getLogin().getUsername());
     username->setReadOnly(true);
 
-    modifyButton = new QPushButton("Modifica Dati",this);
-    modifyButton->setGeometry(QRect(QPoint(100, 100),
-                              QSize(200, 50)));
+    tipoLabel = new QLabel("Tipo account:");
+    tipo = new QLineEdit(clientCtrl->user->getInfo().getTipoAccount());
+    tipo->setReadOnly(true);
 
-    updateButton = new QPushButton("Aggiorna Dati",this);
-    updateButton->setGeometry(QRect(QPoint(100, 100),
-                              QSize(200, 50)));
-    updateButton->setVisible(false);
+    accountLayout->addWidget(usernameLabel,0,0);
+    accountLayout->addWidget(username,0,1);
+    accountLayout->addWidget(tipoLabel,0,2);
+    accountLayout->addWidget(tipo,0,3);
+    accountBox->setLayout(accountLayout);
 
-    deleteButton = new QPushButton("Annulla",this);
-    deleteButton->setGeometry(QRect(QPoint(100, 100),
-                              QSize(200, 50)));
-    deleteButton->setVisible(false);
-
-    datiLayout->addWidget(usernameLabel,0,0);
-    datiLayout->addWidget(username,0,1);
-    datiLayout->addWidget(modifyButton,7,1);
-    datiLayout->addWidget(deleteButton,8,0);
-    datiLayout->addWidget(updateButton,8,1);
 
     fetchDati();
 
-    connect(modifyButton, SIGNAL(clicked()), this, SLOT(enableEdit()));
-    connect(deleteButton, SIGNAL(clicked()), this, SLOT(disableEdit()));
-    connect(updateButton, SIGNAL(clicked()), this, SLOT(updateInfo()));
+    profiloLayout->addWidget(accountBox,0,0);
+    setLayout(profiloLayout);
+
     connect(this, SIGNAL(signalSave()), parent, SLOT(saveDb()));
 }
 
 void UserInfoWindow::fetchDati(){
     //FETCH DATI PERSONALI
-
+    if(datiBox!=0)
+    {
+        profiloLayout->removeWidget(datiBox);
+        delete datiBox;
+    }
+    datiBox = new QGroupBox("Profilo");
+    datiLayout = new QGridLayout();
     nomeLabel = new QLabel("Nome:");
     nome = new QLineEdit(clientCtrl->user->getInfo().getDati().getNome());
     nome->setReadOnly(true);
@@ -64,25 +64,49 @@ void UserInfoWindow::fetchDati(){
     residenza = new QLineEdit(clientCtrl->user->getInfo().getDati().getResidenza());
     residenza->setReadOnly(true);
 
-    datiLayout->addWidget(nomeLabel,1,0);
-    datiLayout->addWidget(nome,1,1);
+    modifyButton = new QPushButton("Modifica Dati",this);
+    modifyButton->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
 
-    datiLayout->addWidget(cognomeLabel,2,0);
-    datiLayout->addWidget(cognome,2,1);
+    updateButton = new QPushButton("Aggiorna Dati",this);
+    updateButton->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    updateButton->setVisible(false);
 
-    datiLayout->addWidget(emailLabel,3,0);
-    datiLayout->addWidget(email,3,1);
+    deleteButton = new QPushButton("Annulla",this);
+    deleteButton->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    deleteButton->setVisible(false);
 
-    datiLayout->addWidget(dataLabel,4,0);
-    datiLayout->addWidget(dataNascita,4,1);
+    datiLayout->addWidget(nomeLabel,0,0);
+    datiLayout->addWidget(nome,0,1);
 
-    datiLayout->addWidget(luogoLabel,5,0);
-    datiLayout->addWidget(luogoNascita,5,1);
+    datiLayout->addWidget(cognomeLabel,1,0);
+    datiLayout->addWidget(cognome,1,1);
 
-    datiLayout->addWidget(residenzaLabel,6,0);
-    datiLayout->addWidget(residenza,6,1);
+    datiLayout->addWidget(emailLabel,2,0);
+    datiLayout->addWidget(email,2,1);
 
-    setLayout(datiLayout);
+    datiLayout->addWidget(dataLabel,3,0);
+    datiLayout->addWidget(dataNascita,3,1);
+
+    datiLayout->addWidget(luogoLabel,4,0);
+    datiLayout->addWidget(luogoNascita,4,1);
+
+    datiLayout->addWidget(residenzaLabel,5,0);
+    datiLayout->addWidget(residenza,5,1);
+
+    datiLayout->addWidget(modifyButton,6,1);
+    datiLayout->addWidget(deleteButton,7,0);
+    datiLayout->addWidget(updateButton,7,1);
+
+
+    datiBox->setLayout(datiLayout);
+    profiloLayout->addWidget(datiBox,1,0);
+
+    connect(modifyButton, SIGNAL(clicked()), this, SLOT(enableEdit()));
+    connect(deleteButton, SIGNAL(clicked()), this, SLOT(disableEdit()));
+    connect(updateButton, SIGNAL(clicked()), this, SLOT(updateInfo()));
 }
 
 void UserInfoWindow::enableEdit(){
@@ -125,19 +149,5 @@ void UserInfoWindow::updateInfo(){
 }
 
 UserInfoWindow::~UserInfoWindow(){
-//    delete username;
-//    delete nome;
-//    delete cognome;
-//    delete email;
-//    delete luogoNascita;
-//    delete residenza;
-//    delete usernameLabel;
-//    delete nomeLabel;
-//    delete cognomeLabel;
-//    delete emailLabel;
-//    delete dataLabel;
-//    delete luogoLabel;
-//    delete residenzaLabel;
-//    delete datiLayout;
 }
 

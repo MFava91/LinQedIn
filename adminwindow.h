@@ -80,13 +80,29 @@ public:
 
     //DIALOG MODIFY USER
     QDialog* boxModifyUser;
+    QGridLayout* modifyLayout;
+    QGroupBox* boxType;
+    QGridLayout* typeLayout;
+    QLabel* modifyUsernameLabel;
+    QLineEdit* modifyUsername;
+    QLabel* modifyInfo;
+    QRadioButton* basic;
+    QRadioButton* business;
+    QRadioButton* executive;
+    QPushButton* confirmUserButton;
+    QPushButton* confirmModifyUserButton;
+    QPushButton* cancelModifyUserButton;
 
 public slots:
     void dialogAddNewUser();
     void addNewUser();
     void dialogEraseUser();
     void deleteUser();
+    void dialogModifyUser();
+    void searchModifyUser();
+
     void searchUsername();
+    void updateAccountType();
     void updateWindow();
     void searchName();
 };
