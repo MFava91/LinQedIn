@@ -14,7 +14,7 @@
 #include<QMessageBox>
 
 #include"admincontroller.h"
-#include"resultwindow.h"
+#include"searchwindow.h"
 
 class AdminWindow : public QWidget{
     Q_OBJECT
@@ -23,36 +23,17 @@ private:
 public:
     AdminWindow(QWidget *, AdminController*);
     ~AdminWindow();
+    SearchWindow* ricerca;
     Utente* utenteTrovato;
     QGridLayout* mainLayout;
     QGridLayout* editLayout;
-    QGridLayout* findLayout;
-    QGridLayout* findForUsernameLayout;
-    QGridLayout* findForNameLayout;
-    QGridLayout* resultLayout;
     QGroupBox* editBox;
-    QGroupBox* findBox;
-    QGroupBox* findForUsernameBox;
-    QGroupBox* findForNameBox;
-    QGroupBox* resultBox;
 
     QPushButton* newUserButton;
     QPushButton* deleteUserButton;
     QPushButton* modifyUserButton;
-    QPushButton* findUsernameButton;
-    QPushButton* findNameButton;
 
-    //RICERCA
-    QLabel* findUsernameLabel;
-    QLabel* findNameLabel;
-    QLabel* findSurnameLabel;
-    QLineEdit* findUsername;
-    QLineEdit* findName;
-    QLineEdit* findSurname;
 
-    //RISULTATI
-    QLabel* nessunaRicerca;
-    QLabel* nessunUtenteTrovato;
 
 
     //DIALOG CREATE USER
@@ -100,11 +81,7 @@ public slots:
     void deleteUser();
     void dialogModifyUser();
     void searchModifyUser();
-
-    void searchUsername();
     void updateAccountType();
-    void updateWindow();
-    void searchName();
 };
 
 

@@ -20,18 +20,14 @@ void AdminController::removeUser(const Username& u){
     db->removeUtete(u);
 }
 
-bool AdminController::findUserForUsername(const QString &u){
+Utente* AdminController::findUserForUsername(const QString &u){
     user = db->find(u);
-    if(user)
-        return true;
-    return false;
+    return user;
 }
 
-bool AdminController::findUserForName(const QString& n, const QString& c){
+map<QString,Utente*> AdminController::findUserForName(const QString& n, const QString& c){
     utentiTrovati = db->findName(n,c);
-    if(!utentiTrovati.empty())
-        return true;
-    return false;
+    return utentiTrovati;
 }
 
 QString AdminController::searchUserType(const QString &u){

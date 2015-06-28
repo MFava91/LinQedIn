@@ -2,9 +2,9 @@
 #define ADMINCONTROLLER_H
 
 #include"db.h"
+#include"controller.h"
 
-class AdminController
-{
+class AdminController : public virtual Controller {
 private:
     DB* db;
 public:
@@ -15,8 +15,8 @@ public:
     bool searchUser(const QString&);
     void addUser(const QString&, const QString&, const QString&);
     void removeUser(const Username&);
-    bool findUserForUsername(const QString&);
-    bool findUserForName(const QString& =0, const QString& =0);
+    Utente* findUserForUsername(const QString&);
+    map<QString,Utente*> findUserForName(const QString& =0, const QString& =0);
     QString searchUserType(const QString&);
     void modifyUserType(const QString&,const QString&);
 };

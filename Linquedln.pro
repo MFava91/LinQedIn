@@ -37,7 +37,9 @@ SOURCES += main.cpp\
     userworkwindow.cpp \
     lavorowindow.cpp \
     admincontroller.cpp \
-    resultwindow.cpp
+    resultwindow.cpp \
+    controller.cpp \
+    searchwindow.cpp
 
 HEADERS  += mainwindow.h \
     info.h \
@@ -62,7 +64,9 @@ HEADERS  += mainwindow.h \
     userworkwindow.h \
     lavorowindow.h \
     admincontroller.h \
-    resultwindow.h
+    resultwindow.h \
+    controller.h \
+    searchwindow.h
 
 FORMS    += mainwindow.ui
 
