@@ -64,6 +64,7 @@ void UserInfoWindow::fetchDati(){
     residenza = new QLineEdit(clientCtrl->user->getInfo().getDati().getResidenza());
     residenza->setReadOnly(true);
 
+    buttonLayout = new QGridLayout();
     modifyButton = new QPushButton("Modifica Dati",this);
     modifyButton->setGeometry(QRect(QPoint(100, 100),
                               QSize(200, 50)));
@@ -96,10 +97,10 @@ void UserInfoWindow::fetchDati(){
     datiLayout->addWidget(residenzaLabel,5,0);
     datiLayout->addWidget(residenza,5,1);
 
-    datiLayout->addWidget(modifyButton,6,1);
-    datiLayout->addWidget(deleteButton,7,0);
-    datiLayout->addWidget(updateButton,7,1);
-
+    buttonLayout->addWidget(modifyButton,0,0);
+    buttonLayout->addWidget(deleteButton,1,0);
+    buttonLayout->addWidget(updateButton,1,1);
+    datiLayout->addLayout(buttonLayout,6,1);
 
     datiBox->setLayout(datiLayout);
     profiloLayout->addWidget(datiBox,1,0);

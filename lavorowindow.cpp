@@ -22,25 +22,6 @@ LavoroWindow::LavoroWindow(const QString& nomeAzienda, const QString& mansione ,
     fine = new QDateEdit(fineLavoro);
     fine->setReadOnly(true);
 
-    modifyButtonLavoro = new QPushButton("Modifica",this);
-    modifyButtonLavoro->setGeometry(QRect(QPoint(100, 100),
-                              QSize(200, 50)));
-
-    cancelButtonLavoro = new QPushButton("Annulla",this);
-    cancelButtonLavoro->setGeometry(QRect(QPoint(100, 100),
-                              QSize(200, 50)));
-    cancelButtonLavoro->setVisible(false);
-
-    updateButtonLavoro = new QPushButton("Aggiorna",this);
-    updateButtonLavoro->setGeometry(QRect(QPoint(100, 100),
-                              QSize(200, 50)));
-    updateButtonLavoro->setVisible(false);
-
-    deleteButtonLavoro = new QPushButton("Cancella",this);
-    deleteButtonLavoro->setGeometry(QRect(QPoint(100, 100),
-                              QSize(200, 50)));
-    deleteButtonLavoro->setVisible(false);
-
     lavoroLayout->addWidget(aziendaLabel,0,0);
     lavoroLayout->addWidget(azienda,0,1);
     lavoroLayout->addWidget(titoloLabel,1,0);
@@ -51,20 +32,48 @@ LavoroWindow::LavoroWindow(const QString& nomeAzienda, const QString& mansione ,
     lavoroLayout->addWidget(inizio,3,1);
     lavoroLayout->addWidget(fineLabel,4,0);
     lavoroLayout->addWidget(fine,4,1);
-    lavoroLayout->addWidget(modifyButtonLavoro,5,1);
-    lavoroLayout->addWidget(cancelButtonLavoro,6,0);
-    lavoroLayout->addWidget(deleteButtonLavoro,6,1);
-    lavoroLayout->addWidget(updateButtonLavoro,6,2);
 
+
+    if(parent->windowTitle()=="infoWork"){
+        displayButton();
+        lavoroLayout->addLayout(buttonsLayout,5,1);
+        connect(modifyButtonLavoro, SIGNAL(clicked()), this, SLOT(enableEditLavoro()));
+        connect(cancelButtonLavoro, SIGNAL(clicked()), this, SLOT(disableEditLavoro()));
+        connect(cancelButtonLavoro, SIGNAL(clicked()), parent, SLOT(fetchLavoro()));
+        connect(deleteButtonLavoro,SIGNAL(clicked()),this, SLOT(deleteLavoro()));
+        connect(this, SIGNAL(signalDeleteLavoro(LavoroWindow*)), parent, SLOT(removeLavoro(LavoroWindow*)));
+        connect(updateButtonLavoro, SIGNAL(clicked()), this, SLOT(updateLavoro()));
+        connect(this, SIGNAL(signalUpdateLavoro(const Lavoro&, const Lavoro&)), parent, SLOT(modificaLavoro(const Lavoro&, const Lavoro&)));
+    }
     setLayout(lavoroLayout);
+}
 
-    connect(modifyButtonLavoro, SIGNAL(clicked()), this, SLOT(enableEditLavoro()));
-    connect(cancelButtonLavoro, SIGNAL(clicked()), this, SLOT(disableEditLavoro()));
-    connect(cancelButtonLavoro, SIGNAL(clicked()), parent, SLOT(fetchLavoro()));
-    connect(deleteButtonLavoro,SIGNAL(clicked()),this, SLOT(deleteLavoro()));
-    connect(this, SIGNAL(signalDeleteLavoro(LavoroWindow*)), parent, SLOT(removeLavoro(LavoroWindow*)));
-    connect(updateButtonLavoro, SIGNAL(clicked()), this, SLOT(updateLavoro()));
-    connect(this, SIGNAL(signalUpdateLavoro(const Lavoro&, const Lavoro&)), parent, SLOT(modificaLavoro(const Lavoro&, const Lavoro&)));
+void LavoroWindow::displayButton(){
+    buttonsLayout = new QGridLayout();
+    modifyButtonLavoro = new QPushButton("Modifica",this);
+    modifyButtonLavoro->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+
+    cancelButtonLavoro = new QPushButton("Annulla Modifica",this);
+    cancelButtonLavoro->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    cancelButtonLavoro->setVisible(false);
+
+    updateButtonLavoro = new QPushButton("Aggiorna Lavoro",this);
+    updateButtonLavoro->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    updateButtonLavoro->setVisible(false);
+
+    deleteButtonLavoro = new QPushButton("Cancella Lavoro",this);
+    deleteButtonLavoro->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    deleteButtonLavoro->setVisible(false);
+
+
+    buttonsLayout->addWidget(modifyButtonLavoro,0,0);
+    buttonsLayout->addWidget(cancelButtonLavoro,1,0);
+    buttonsLayout->addWidget(deleteButtonLavoro,1,1);
+    buttonsLayout->addWidget(updateButtonLavoro,1,2);
 }
 
 void LavoroWindow::enableEditLavoro(){

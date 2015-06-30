@@ -1,6 +1,7 @@
 #include "userschoolwindow.h"
 
 UserSchoolWindow::UserSchoolWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
+    setWindowTitle("infoSchool");
     boxDiploma = 0;
     boxLauree = 0;
     clientCtrl = userCtrl;
@@ -32,6 +33,11 @@ void UserSchoolWindow::fetchDiploma()
     diplomaLayout = new QGridLayout();
     diplomaLayout->setAlignment(Qt::AlignHCenter);
 
+    diplomaLabel = new QLabel("Titolo:");
+    diploma = new QLineEdit(clientCtrl->user->getInfo().getStudi().getDiploma());
+    diploma->setReadOnly(true);
+
+    buttonLayout = new QGridLayout();
     modifyButtonDiploma = new QPushButton("Aggiorna Diploma",this);
     modifyButtonDiploma->setGeometry(QRect(QPoint(100, 100),
                               QSize(200, 50)));
@@ -46,15 +52,13 @@ void UserSchoolWindow::fetchDiploma()
                               QSize(200, 50)));
     deleteButtonDiploma->setVisible(false);
 
-    diplomaLabel = new QLabel("Titolo:");
-    diploma = new QLineEdit(clientCtrl->user->getInfo().getStudi().getDiploma());
-    diploma->setReadOnly(true);
+    buttonLayout->addWidget(modifyButtonDiploma,0,0);
+    buttonLayout->addWidget(deleteButtonDiploma,1,0);
+    buttonLayout->addWidget(updateButtonDiploma,1,1);
 
-    diplomaLayout->addWidget(modifyButtonDiploma,1,1);
-    diplomaLayout->addWidget(deleteButtonDiploma,2,0);
-    diplomaLayout->addWidget(updateButtonDiploma,2,1);
     diplomaLayout->addWidget(diplomaLabel,0,0);
     diplomaLayout->addWidget(diploma,0,1);
+    diplomaLayout->addLayout(buttonLayout,1,1);
     boxDiploma->setLayout(diplomaLayout);
     schoolLayout->addWidget(boxDiploma,0,0);
 

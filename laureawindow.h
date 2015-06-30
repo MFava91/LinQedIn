@@ -15,6 +15,7 @@ public:
     ~LaureaWindow();
     QString temp;
     QGridLayout* laureaLayout;
+    QGridLayout* buttonsLayout;
     QLabel* laureaLabel;
     QLineEdit* laurea;
 
@@ -26,6 +27,7 @@ signals:
     void signalDeleteLaurea(LaureaWindow*);
     void signalUpdateLaurea(const QString&, const QString&);
 public slots:
+    void displayButton();
     void enableEditLaurea();
     void disableEditLaurea();
     void deleteLaurea();

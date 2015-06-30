@@ -20,6 +20,7 @@ public:
     QGridLayout* profiloLayout;
     QGridLayout* datiLayout;
     QGridLayout* accountLayout;
+    QGridLayout* buttonLayout;
     QLineEdit* username;
     QLineEdit* tipo;
     QLineEdit* nome;

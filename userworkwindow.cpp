@@ -1,6 +1,7 @@
 #include "userworkwindow.h"
 
 UserWorkWindow::UserWorkWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
+    setWindowTitle("infoWork");
     boxLavori = 0;
     clientCtrl = userCtrl;
     workLayout = new QGridLayout();

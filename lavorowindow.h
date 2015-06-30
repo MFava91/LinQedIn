@@ -18,6 +18,7 @@ public:
     ~LavoroWindow();
     Lavoro temp;
     QGridLayout* lavoroLayout;
+    QGridLayout* buttonsLayout;
     QLabel* aziendaLabel;
     QLabel* titoloLabel;
     QLabel* cittaLabel;
@@ -39,6 +40,7 @@ signals:
     void signalUpdateLavoro(const Lavoro&, const Lavoro&);
 
 public slots:
+    void displayButton();
     void enableEditLavoro();
     void disableEditLavoro();
     void deleteLavoro();

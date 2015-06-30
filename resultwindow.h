@@ -9,13 +9,16 @@
 #include<QLabel>
 #include<QLineEdit>
 
-#include"admincontroller.h"
+#include"utente.h"
+#include"laureawindow.h"
+#include"lavorowindow.h"
 
 class ResultWindow : public QWidget{
     Q_OBJECT
 public:
     ResultWindow(Utente*, QWidget* = 0);
     ~ResultWindow();
+    Utente* user;
     QGridLayout* resultLayout;
     QLabel* usernameRicercaLabel;
     QLabel* nameRicercaLabel;
@@ -23,6 +26,40 @@ public:
     QLabel* usernameRicerca;
     QLabel* nameRicerca;
     QLabel* surnameRicerca;
+    QPushButton* showProfileButton;
+
+    //DIALOG SHOWPROFILE
+    QDialog* showProfileDialog;
+    QGridLayout* showProfileLayout;
+    QGridLayout* topLayout;
+    QGroupBox* infoBox;
+    QGroupBox* schoolBox;
+    QGroupBox* workBox;
+    QGridLayout* infoLayout;
+    QGridLayout* schoolLayout;
+    QGridLayout* workLayout;
+
+    QLabel  * usernameLabel,
+            * nomeLabel,
+            * cognomeLabel,
+            * emailLabel,
+            * dataLabel,
+            * luogoLabel,
+            * residenzaLabel,
+            * diplomaLabel;
+
+    QLineEdit   * username,
+                * nome,
+                * cognome,
+                * email,
+                * dataNascita,
+                * luogoNascita,
+                * residenza,
+                * diploma;
+
+
+public slots:
+    void showProfile();
 };
 
 #endif // RESULTWINDOW_H

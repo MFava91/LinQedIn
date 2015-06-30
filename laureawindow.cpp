@@ -1,47 +1,56 @@
 #include "laureawindow.h"
 
 LaureaWindow::LaureaWindow(const QString& name, QWidget *parent) : QWidget(parent){
-    laureaLayout = new QGridLayout(this);
-
-    laureaLabel = new QLabel("Titolo:");
+     laureaLayout = new QGridLayout(this);
+     laureaLabel = new QLabel("Titolo:");
      laurea = new QLineEdit(name);
      laurea->setReadOnly(true);
 
-     modifyButtonLaurea = new QPushButton("Modifica",this);
-     modifyButtonLaurea->setGeometry(QRect(QPoint(100, 100),
-                               QSize(200, 50)));
-
-     cancelButtonLaurea = new QPushButton("Annulla",this);
-     cancelButtonLaurea->setGeometry(QRect(QPoint(100, 100),
-                               QSize(200, 50)));
-     cancelButtonLaurea->setVisible(false);
-
-     updateButtonLaurea = new QPushButton("Aggiorna",this);
-     updateButtonLaurea->setGeometry(QRect(QPoint(100, 100),
-                               QSize(200, 50)));
-     updateButtonLaurea->setVisible(false);
-
-     deleteButtonLaurea = new QPushButton("Cancella",this);
-     deleteButtonLaurea->setGeometry(QRect(QPoint(100, 100),
-                               QSize(200, 50)));
-     deleteButtonLaurea->setVisible(false);
 
      laureaLayout->addWidget(laureaLabel,0,0);
      laureaLayout->addWidget(laurea,0,1);
-     laureaLayout->addWidget(modifyButtonLaurea,1,1);
-     laureaLayout->addWidget(cancelButtonLaurea,2,0);
-     laureaLayout->addWidget(deleteButtonLaurea,2,1);
-     laureaLayout->addWidget(updateButtonLaurea,2,2);
+
+
+     if(parent->windowTitle()=="infoSchool"){
+         displayButton();
+         laureaLayout->addLayout(buttonsLayout,1,1);
+         connect(modifyButtonLaurea, SIGNAL(clicked()), this, SLOT(enableEditLaurea()));
+         connect(cancelButtonLaurea, SIGNAL(clicked()), this, SLOT(disableEditLaurea()));
+         connect(cancelButtonLaurea, SIGNAL(clicked()), parent, SLOT(fetchLaurea()));
+         connect(deleteButtonLaurea, SIGNAL(clicked()), this, SLOT(deleteLaurea()));
+         connect(this, SIGNAL(signalDeleteLaurea(LaureaWindow*)), parent, SLOT(removeLaurea(LaureaWindow*)));
+         connect(updateButtonLaurea, SIGNAL(clicked()), this, SLOT(modifyLaurea()));
+         connect(this, SIGNAL(signalUpdateLaurea(const QString&, const QString&)), parent, SLOT(updateLaurea(const QString&, const QString&)));
+     }
 
      setLayout(laureaLayout);
+}
 
-     connect(modifyButtonLaurea, SIGNAL(clicked()), this, SLOT(enableEditLaurea()));
-     connect(cancelButtonLaurea, SIGNAL(clicked()), this, SLOT(disableEditLaurea()));
-     connect(cancelButtonLaurea, SIGNAL(clicked()), parent, SLOT(fetchLaurea()));
-     connect(deleteButtonLaurea, SIGNAL(clicked()), this, SLOT(deleteLaurea()));
-     connect(this, SIGNAL(signalDeleteLaurea(LaureaWindow*)), parent, SLOT(removeLaurea(LaureaWindow*)));
-     connect(updateButtonLaurea, SIGNAL(clicked()), this, SLOT(modifyLaurea()));
-     connect(this, SIGNAL(signalUpdateLaurea(const QString&, const QString&)), parent, SLOT(updateLaurea(const QString&, const QString&)));
+void LaureaWindow::displayButton(){
+    buttonsLayout = new QGridLayout();
+    modifyButtonLaurea = new QPushButton("Modifica Laurea",this);
+    modifyButtonLaurea->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+
+    cancelButtonLaurea = new QPushButton("Annulla Modifiche",this);
+    cancelButtonLaurea->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    cancelButtonLaurea->setVisible(false);
+
+    updateButtonLaurea = new QPushButton("Aggiorna Laurea",this);
+    updateButtonLaurea->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    updateButtonLaurea->setVisible(false);
+
+    deleteButtonLaurea = new QPushButton("Cancella Laurea",this);
+    deleteButtonLaurea->setGeometry(QRect(QPoint(100, 100),
+                              QSize(200, 50)));
+    deleteButtonLaurea->setVisible(false);
+    buttonsLayout->addWidget(modifyButtonLaurea,0,1);
+    buttonsLayout->addWidget(cancelButtonLaurea,1,0);
+    buttonsLayout->addWidget(deleteButtonLaurea,1,1);
+    buttonsLayout->addWidget(updateButtonLaurea,1,2);
+
 }
 
 void LaureaWindow::enableEditLaurea(){

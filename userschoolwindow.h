@@ -22,6 +22,7 @@ public:
     QGridLayout* schoolLayout;
     QGridLayout* diplomaLayout;
     QGridLayout* laureeLayout;
+    QGridLayout* buttonLayout;
     QLineEdit* diploma;
     QGroupBox* boxDiploma;
     QGroupBox* boxLauree;

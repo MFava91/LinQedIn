@@ -9,6 +9,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     statusBar = new QStatusBar(this);
     setStatusBar(statusBar);
 
+    menuBar = new QMenuBar(this);
+    fileMenu = new QMenu("File");
+    logoutAction = new QAction ("Logout",this);
+    fileMenu->addAction(logoutAction);
+    menuBar->addMenu(fileMenu);
+    setMenuBar(menuBar);
+
+
     mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
 
