@@ -2,7 +2,7 @@
 
 UserWorkWindow::UserWorkWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
     setWindowTitle("infoWork");
-    boxLavori = 0;
+    scrollArea = 0;
     clientCtrl = userCtrl;
     workLayout = new QGridLayout();
     workLayout->setAlignment(Qt::AlignHCenter);
@@ -10,19 +10,22 @@ UserWorkWindow::UserWorkWindow(QWidget *parent,userController* userCtrl) : QWidg
     addButtonLavoro = new QPushButton("Aggiungi lavoro",this);
     addButtonLavoro->setGeometry(QRect(QPoint(100, 100),
                               QSize(200, 50)));
-    workLayout->addWidget(addButtonLavoro,1,0);
+    titolo = new QLabel("Esperienze lavorative");
+    workLayout->addWidget(titolo,0,0);
+    workLayout->addWidget(addButtonLavoro,2,0);
 
     connect(addButtonLavoro, SIGNAL(clicked()), this, SLOT(dialogAddLavoro()));
 }
 
 void UserWorkWindow::fetchLavoro(){
-    if(boxLavori!=0){
-        workLayout->removeWidget(boxLavori);
-        delete boxLavori;
+    if(scrollArea!=0){
+        workLayout->removeWidget(scrollArea);
+        delete scrollArea;
     }
-    boxLavori = new QGroupBox("Lavori");
+    scrollArea = new QScrollArea();
+    widget = new QWidget(scrollArea);
     lavoriLayout = new QGridLayout();
-    lavoriLayout->setAlignment(Qt::AlignHCenter);
+    lavoriLayout->setAlignment(Qt::AlignTop);
     vector<Lavoro> lavori = clientCtrl->user->getInfo().getLavori().getEsperienze();
     int size = lavori.size();
     if(size){
@@ -36,10 +39,21 @@ void UserWorkWindow::fetchLavoro(){
     else
     {
         noLavori = new QLabel("Non è presente nessun lavoro.");
+        noLavori->setAlignment(Qt::AlignHCenter);
         lavoriLayout->addWidget(noLavori,0,0);
     }
-    boxLavori->setLayout(lavoriLayout);
-    workLayout->addWidget(boxLavori,0,0);
+
+    widget->setLayout(lavoriLayout);
+    scrollArea->setWidget(widget);
+    scrollArea->setWidgetResizable(true);
+//    mainLayout = new QGridLayout();
+//    mainLayout->addWidget(scrollArea);
+
+    //boxLavori->setLayout(mainLayout);
+    //workLayout->addWidget(boxLavori,0,0);
+    workLayout->addWidget(scrollArea,1,0);
+
+
     setLayout(workLayout);
 }
 

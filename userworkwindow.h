@@ -9,6 +9,7 @@
 #include<QLineEdit>
 #include<QDateTimeEdit>
 #include<QDialog>
+#include<QScrollArea>
 
 #include"usercontroller.h"
 #include"lavorowindow.h"
@@ -20,9 +21,12 @@ public:
     UserWorkWindow(QWidget *parent, userController*);
     QGridLayout* workLayout;
     QGridLayout* lavoriLayout;
-    QGroupBox* boxLavori;
     QPushButton* addButtonLavoro;
+    QLabel* titolo;
     QLabel* noLavori;
+    QScrollArea* scrollArea;
+    QWidget* widget;
+    QGridLayout* mainLayout;
 
     //DIALOG
     QDialog* boxAddLavoro;

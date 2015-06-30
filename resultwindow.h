@@ -8,6 +8,7 @@
 #include<QPushButton>
 #include<QLabel>
 #include<QLineEdit>
+#include<QScrollArea>
 
 #include"utente.h"
 #include"laureawindow.h"
@@ -34,10 +35,11 @@ public:
     QGridLayout* topLayout;
     QGroupBox* infoBox;
     QGroupBox* schoolBox;
-    QGroupBox* workBox;
     QGridLayout* infoLayout;
     QGridLayout* schoolLayout;
     QGridLayout* workLayout;
+    QScrollArea* scrollArea;
+    QWidget* widget;
 
     QLabel  * usernameLabel,
             * nomeLabel,
@@ -46,7 +48,8 @@ public:
             * dataLabel,
             * luogoLabel,
             * residenzaLabel,
-            * diplomaLabel;
+            * diplomaLabel,
+            * titoloLavori;
 
     QLineEdit   * username,
                 * nome,

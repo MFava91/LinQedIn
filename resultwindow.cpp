@@ -92,9 +92,11 @@ void ResultWindow::showProfile(){
     }
     schoolBox->setLayout(schoolLayout);
 
+    scrollArea = new QScrollArea();
+    widget = new QWidget(scrollArea);
 
-    workBox = new QGroupBox("Esperienze lavorative");
     workLayout = new QGridLayout();
+    workLayout->setAlignment(Qt::AlignTop);
     vector<Lavoro> lavori = user->getInfo().getLavori().getEsperienze();
     int size = lavori.size();
     if(size){
@@ -105,12 +107,16 @@ void ResultWindow::showProfile(){
             workLayout->addWidget(lavoro,i,0);
         }
     }
-    workBox->setLayout(workLayout);
+    widget->setLayout(workLayout);
+    scrollArea->setWidget(widget);
+    scrollArea->setWidgetResizable(true);
     topLayout = new QGridLayout();
     topLayout->addWidget(infoBox,0,0);
     topLayout->addWidget(schoolBox,0,1);
+    titoloLavori = new QLabel("Esperienze lavorative");
     showProfileLayout->addLayout(topLayout,0,0);
-    showProfileLayout->addWidget(workBox,1,0);
+    showProfileLayout->addWidget(titoloLavori,1,0);
+    showProfileLayout->addWidget(scrollArea,2,0);
     showProfileDialog->setLayout(showProfileLayout);
     showProfileDialog->exec();
 }
