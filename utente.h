@@ -1,7 +1,10 @@
 #ifndef UTENTE_H
 #define UTENTE_H
+#include<map>
 #include"rete.h"
 #include"profilo.h"
+
+using std::map;
 
 class Utente
 {
@@ -17,8 +20,8 @@ public:
     //vedere se è il caso di fare così o meno
     Profilo& getInfo();
     Rete getRete() const;
-    //virtual ~Utente();
-    //virtual void find(const QString& =" ", const QString& =" " ) =0;
+    virtual map<QString,Utente*> findUsername(const QString& ="") =0;
+    virtual ~Utente();
 };
 
 

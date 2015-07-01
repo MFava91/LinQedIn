@@ -1,6 +1,7 @@
 #ifndef ADMINCONTROLLER_H
 #define ADMINCONTROLLER_H
 
+#include<typeinfo>
 #include"db.h"
 #include"controller.h"
 
@@ -15,8 +16,7 @@ public:
     bool searchUser(const QString&);
     void addUser(const QString&, const QString&, const QString&);
     void removeUser(const Username&);
-    Utente* findUserForUsername(const QString&);
-    map<QString,Utente*> findUserForName(const QString& =0, const QString& =0);
+    map<QString,Utente*> findUser(const QString& =0, const QString& =0, const QString& =0);
     QString searchUserType(const QString&);
     void modifyUserType(const QString&,const QString&);
 };

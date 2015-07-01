@@ -65,20 +65,20 @@ SearchWindow::SearchWindow(QWidget *parent, Controller* control) : QWidget(paren
 void SearchWindow::searchUsername(){
     if(resultBox!=0)
     {
-        mainLayout->removeWidget(resultBox);
-        delete resultBox;
-        resultBox = new QGroupBox("Risultati ricerca");
-        resultLayout = new QGridLayout();
-        if(Ctrl->findUserForUsername(findUsername->text()))
-        {
-            ResultWindow* result = new ResultWindow(Ctrl->findUserForUsername(findUsername->text()),this);
-            resultLayout->addWidget(result,0,0);
-        }
-        else
-        {
-            nessunUtenteTrovato = new QLabel("Nessun utente trovato");
-            resultLayout->addWidget(nessunUtenteTrovato,0,0);
-        }
+//        mainLayout->removeWidget(resultBox);
+//        delete resultBox;
+//        resultBox = new QGroupBox("Risultati ricerca");
+//        resultLayout = new QGridLayout();
+//        if(Ctrl->findUserForUsername(findUsername->text()))
+//        {
+//            ResultWindow* result = new ResultWindow(Ctrl->findUserForUsername(findUsername->text()),this);
+//            resultLayout->addWidget(result,0,0);
+//        }
+//        else
+//        {
+//            nessunUtenteTrovato = new QLabel("Nessun utente trovato");
+//            resultLayout->addWidget(nessunUtenteTrovato,0,0);
+//        }
     }
     resultBox->setLayout(resultLayout);
     mainLayout->addWidget(resultBox,1,0);
@@ -88,26 +88,26 @@ void SearchWindow::searchUsername(){
 void SearchWindow::searchName(){
     if(resultBox!=0)
     {
-        mainLayout->removeWidget(resultBox);
-        delete resultBox;
-        resultBox = new QGroupBox("Risultati ricerca");
-        resultLayout = new QGridLayout();
-        map<QString,Utente*> trovato = Ctrl->findUserForName(findName->text(),findSurname->text());
-        if(!trovato.empty())
-        {
-            int i=0;
-            for(std::map<QString,Utente*>::const_iterator it=trovato.begin();it!=trovato.end();++it)
-            {
-                ResultWindow* result = new ResultWindow((*it).second,this);
-                resultLayout->addWidget(result,i,0);
-                i++;
-            }
-        }
-        else
-        {
-            nessunUtenteTrovato = new QLabel("Nessun utente trovato");
-            resultLayout->addWidget(nessunUtenteTrovato,0,0);
-        }
+//        mainLayout->removeWidget(resultBox);
+//        delete resultBox;
+//        resultBox = new QGroupBox("Risultati ricerca");
+//        resultLayout = new QGridLayout();
+//        map<QString,Utente*> trovato = Ctrl->findUserForName(findName->text(),findSurname->text());
+//        if(!trovato.empty())
+//        {
+//            int i=0;
+//            for(std::map<QString,Utente*>::const_iterator it=trovato.begin();it!=trovato.end();++it)
+//            {
+//                ResultWindow* result = new ResultWindow((*it).second,this);
+//                resultLayout->addWidget(result,i,0);
+//                i++;
+//            }
+//        }
+//        else
+//        {
+//            nessunUtenteTrovato = new QLabel("Nessun utente trovato");
+//            resultLayout->addWidget(nessunUtenteTrovato,0,0);
+//        }
     }
     resultBox->setLayout(resultLayout);
     mainLayout->addWidget(resultBox,1,0);

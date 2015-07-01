@@ -13,7 +13,13 @@ UserInfoWindow::UserInfoWindow(QWidget *parent,userController* userCtrl) : QWidg
     username->setReadOnly(true);
 
     tipoLabel = new QLabel("Tipo account:");
-    tipo = new QLineEdit(clientCtrl->user->getInfo().getTipoAccount());
+    if(typeid(*clientCtrl->user) == typeid(UtenteBasic))
+        tipo = new QLineEdit("Basic");
+    if(typeid(*clientCtrl->user) == typeid(UtenteBusiness))
+        tipo = new QLineEdit("Business");
+    if(typeid(*clientCtrl->user) == typeid(UtenteExecutive))
+        tipo = new QLineEdit("Executive");
+
     tipo->setReadOnly(true);
 
     accountLayout->addWidget(usernameLabel,0,0);

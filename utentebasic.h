@@ -1,15 +1,17 @@
 #ifndef UTENTEBASIC_H
 #define UTENTEBASIC_H
 
-//#include"utente.h"
+#include"utente.h"
 
-/*class UtenteBasic: public Utente
+class UtenteBasic: public Utente
 {
 public:
-    virtual void find(const QString& =" ",const QString& =" ");
-
+    UtenteBasic(const QString&);
+    UtenteBasic(const QString &, const Profilo&, const Rete&);
+    virtual map<QString,Utente*> findUsername(const QString&);
+    ~UtenteBasic();
 };
-*/
+
 
 #endif // UTENTEBASIC_H
 

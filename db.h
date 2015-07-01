@@ -5,11 +5,13 @@
 #include<QString>
 #include<map>
 #include"utente.h"
+#include"utenteexecutive.h"
 
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QFile>
 #include <QTextStream>
+#include<typeinfo>
 
 using std::map;
 

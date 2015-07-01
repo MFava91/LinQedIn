@@ -138,21 +138,21 @@ void AdminWindow::dialogModifyUser(){
 }
 
 void AdminWindow::searchModifyUser(){
-    if(adminCtrl->findUserForUsername(modifyUsername->text()))
-    {
-        boxType->show();
-        confirmUserButton->hide();
-        modifyUsername->setReadOnly(true);
-        QString tipo = adminCtrl->searchUserType(modifyUsername->text());
-        if(tipo == "Basic")
-            basic->setChecked(true);
-        if(tipo == "Business")
-            business->setChecked(true);
-        if(tipo == "Executive")
-            executive->setChecked(true);
-    }
-    else
-        QToolTip::showText(modifyUsername->mapToGlobal(QPoint()), "L'username scelto non esiste");
+//    if(adminCtrl->findUserForUsername(modifyUsername->text()))
+//    {
+//        boxType->show();
+//        confirmUserButton->hide();
+//        modifyUsername->setReadOnly(true);
+//        QString tipo = adminCtrl->searchUserType(modifyUsername->text());
+//        if(tipo == "Basic")
+//            basic->setChecked(true);
+//        if(tipo == "Business")
+//            business->setChecked(true);
+//        if(tipo == "Executive")
+//            executive->setChecked(true);
+//    }
+//    else
+//        QToolTip::showText(modifyUsername->mapToGlobal(QPoint()), "L'username scelto non esiste");
 }
 
 void AdminWindow::updateAccountType(){

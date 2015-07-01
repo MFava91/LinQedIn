@@ -11,8 +11,8 @@ class Controller
 public:
     Controller();
     virtual ~Controller() = 0;
-    virtual Utente* findUserForUsername(const QString&) = 0;
-    virtual map<QString,Utente*> findUserForName(const QString& =0, const QString& =0) = 0;
+    virtual bool searchUser(const QString&) =0;
+    virtual map<QString,Utente*> findUser(const QString& =0, const QString& =0, const QString& =0) = 0;
 };
 
 #endif // CONTROLLER_H

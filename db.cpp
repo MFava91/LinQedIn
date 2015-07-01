@@ -15,7 +15,7 @@ void DB::addUtente(Username u,Utente* p){
 
 void DB::addNewUtente(const QString &u, const QString &n, const QString &c){
     Username x(u);
-    Utente *temp = new Utente(u);
+    UtenteBasic *temp = new UtenteBasic(u);
     temp->getInfo().setNomeDatiPersonali(n);
     temp->getInfo().setCognomeDatiPersonali(c);
     addUtente(x,temp);
@@ -53,11 +53,7 @@ void DB::upgradeUtente(const QString &u, const QString &t){
     map<QString,Utente*>::iterator it=dbUtenti.begin();
     for(;it!=dbUtenti.end();++it)
     {
-        if(((*it).first)==u)
-        {
-            (*it).second->getInfo().setTipoAccount(t);
-            return;
-        }
+        //DA RIFARE
     }
 }
 
@@ -72,12 +68,12 @@ bool DB::search(const QString &u){
 }
 
 Utente* DB::find(const QString& u) const{
-    Utente* temp = new Utente();
+    //Utente* temp = new Utente();
     map<QString,Utente*>::const_iterator it=dbUtenti.begin();
     for(;it!=dbUtenti.end();++it){
         if(((*it).first)==u){
-            temp=(*it).second;
-            return temp;
+            return (*it).second;
+            //return temp;
         }
     }
     return 0;
@@ -208,11 +204,20 @@ void DB::load() {
             DatiAnagrafici a(nome,cognome,email,dnascita,lnascita,lresidenza);
             TitoliStudio b(diploma,lauree);
             CompetenzeLavorative c(vlavoro);
-            Profilo p(a,b,c,type);
+            Profilo p(a,b,c);
             Rete r(rete);
-            Utente* u=new Utente(key,p,r);
-            //cout<<u->login.getUsername().toStdString();
+            if(type=="Basic"){
+                UtenteBasic* u = new UtenteBasic(key,p,r);
             addUtente(u->getLogin(),u);
+            }
+            if(type=="Business"){
+                UtenteBusiness* u = new UtenteBusiness(key,p,r);
+                addUtente(u->getLogin(),u);
+            }
+            if(type=="Executive"){
+                UtenteExecutive* u = new UtenteExecutive(key,p,r);
+                addUtente(u->getLogin(),u);
+            }
             trovato=false;
             lauree.clear(); //pulire il vector
             vlavoro.clear();
@@ -238,7 +243,12 @@ void DB::save() {
         write.writeStartElement("Utente");
         write.writeStartElement("Profilo");
         write.writeTextElement("Username",(*it).second->getLogin().getUsername());
-        write.writeTextElement("TipoAccount",(*it).second->getInfo().getTipoAccount());
+        if(typeid(*(*it).second) == typeid(UtenteBasic))
+            write.writeTextElement("TipoAccount","Basic");
+        if(typeid(*(*it).second) == typeid(UtenteBusiness))
+            write.writeTextElement("TipoAccount","Business");
+        if(typeid(*(*it).second) == typeid(UtenteExecutive))
+            write.writeTextElement("TipoAccount","Executive");
         write.writeStartElement("DatiAnagrafici");
         write.writeTextElement("Nome",(*it).second->getInfo().getDati().getNome());
         write.writeTextElement("Cognome",(*it).second->getInfo().getDati().getCognome());

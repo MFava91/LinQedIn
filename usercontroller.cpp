@@ -1,14 +1,17 @@
 #include "usercontroller.h"
 
-userController::userController(const QString& username, DB* database){
-    if(database==0){  //DA RIVEDERE QUESTO IF
-        db = new DB();
-        db->load();
-    }
-    else
-        //db = database;
-        db->load();
-    db->save();
+userController::userController(const QString& username){
+//    if(db==0){  //DA RIVEDERE QUESTO IF
+//        db = new DB();
+//        db->load();
+//    }
+//    else
+//        //db = database;
+//        db->load();
+//    //db->save();
+//    loadUser(username);
+    db = new DB();
+    db->load();
     loadUser(username);
 }
 
@@ -50,4 +53,10 @@ bool userController::searchUser(const QString &u){
     bool trovato;
     trovato=db->search(u);
     return trovato;
+}
+
+map<QString,Utente*> userController::findUser(const QString& u , const QString& n, const QString& c){
+}
+
+userController::~userController(){
 }

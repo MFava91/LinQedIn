@@ -20,19 +20,19 @@ void AdminController::removeUser(const Username& u){
     db->removeUtete(u);
 }
 
-Utente* AdminController::findUserForUsername(const QString &u){
-    user = db->find(u);
-    return user;
-}
-
-map<QString,Utente*> AdminController::findUserForName(const QString& n, const QString& c){
+map<QString,Utente*> AdminController::findUser(const QString& u, const QString& n, const QString& c){
     utentiTrovati = db->findName(n,c);
     return utentiTrovati;
 }
 
 QString AdminController::searchUserType(const QString &u){
     Utente* temp=db->find(u);
-    return temp->getInfo().getTipoAccount();
+    if(typeid(*temp) == typeid(UtenteBasic))
+        return "Basic";
+    if(typeid(*temp) == typeid(UtenteBusiness))
+        return "Business";
+    if(typeid(*temp) == typeid(UtenteExecutive))
+        return "Executive";
 }
 
 void AdminController::modifyUserType(const QString &u, const QString&t){

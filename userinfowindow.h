@@ -7,6 +7,7 @@
 #include<QLabel>
 #include<QLineEdit>
 #include<QDateTimeEdit>
+#include<typeinfo>
 
 #include"usercontroller.h"
 

@@ -22,4 +22,4 @@ Rete Utente::getRete() const {
     return rete;
 }
 
-//Utente::~Utente() {}
+Utente::~Utente() {}

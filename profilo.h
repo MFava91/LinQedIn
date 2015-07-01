@@ -12,10 +12,9 @@ private:
     DatiAnagrafici datiPersonali;
     TitoliStudio studi;
     CompetenzeLavorative curriculum;
-    QString tipoAccount;
 public:
     Profilo();
-    Profilo(const DatiAnagrafici&, const TitoliStudio&, const CompetenzeLavorative&, const QString& ="Basic");
+    Profilo(const DatiAnagrafici&, const TitoliStudio&, const CompetenzeLavorative&);
     DatiAnagrafici getDati() const;
     TitoliStudio getStudi() const;
     CompetenzeLavorative getLavori() const;
