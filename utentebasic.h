@@ -2,13 +2,14 @@
 #define UTENTEBASIC_H
 
 #include"utente.h"
+using std::map;
 
-class UtenteBasic: public Utente
+class UtenteBasic : public Utente
 {
 public:
     UtenteBasic(const QString&);
     UtenteBasic(const QString &, const Profilo&, const Rete&);
-    virtual map<QString,Utente*> findUsername(const QString&);
+    map<QString,Utente*> find(const InfoSearch&,map<QString,Utente*>*);
     ~UtenteBasic();
 };
 

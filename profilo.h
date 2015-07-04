@@ -1,7 +1,6 @@
 #ifndef PROFILO_H
 #define PROFILO_H
 
-#include"info.h"
 #include"datianagrafici.h"
 #include"titolistudio.h"
 #include"competenzelavorative.h"

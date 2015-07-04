@@ -1,4 +1,7 @@
 #include "userinfowindow.h"
+#include"utentebasic.h"
+#include"utentebusiness.h"
+#include"utenteexecutive.h"
 
 UserInfoWindow::UserInfoWindow(QWidget *parent,userController* userCtrl) : QWidget(parent){
     clientCtrl = userCtrl;

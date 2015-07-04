@@ -22,4 +22,12 @@ Rete Utente::getRete() const {
     return rete;
 }
 
+void Utente::aggiungiUtenteRete(const QString &u){
+    rete.addFollow(u);
+}
+
+void Utente::rimuoviUteteRete(const QString&u){
+    rete.removeFollow(u);
+}
+
 Utente::~Utente() {}

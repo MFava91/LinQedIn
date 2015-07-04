@@ -12,7 +12,11 @@ public:
     Controller();
     virtual ~Controller() = 0;
     virtual bool searchUser(const QString&) =0;
-    virtual map<QString,Utente*> findUser(const QString& =0, const QString& =0, const QString& =0) = 0;
+    virtual map<QString,Utente*> findUser(const InfoSearch&) = 0;
+    virtual QString tipoUtente() const = 0;
+    virtual void updateReteContatti(const QString&) = 0;
+    virtual void removeReteContatti(const QString&) = 0;
+    virtual bool checkUtenteRete(const QString&) = 0;
 };
 
 #endif // CONTROLLER_H

@@ -4,15 +4,13 @@
 #include<iostream>
 #include<QString>
 #include<map>
-#include"utente.h"
-#include"utenteexecutive.h"
-
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QFile>
 #include <QTextStream>
 #include<typeinfo>
 
+#include"utente.h"
 using std::map;
 
 class DB
@@ -21,11 +19,14 @@ private:
     map<QString,Utente*> dbUtenti; //perchè non ho passato un USERNAME?
 public:
     DB();
+    map<QString,Utente*>* getDb();
     void addUtente(Username,Utente*);
     void addNewUtente(const QString&, const QString&, const QString&);
     void removeUtete(Username);
     void updateUtente(Utente*);
     void upgradeUtente(const QString&, const QString&);
+    void updateReteFollower(const QString&,const QString&);
+    void removeReteFollower(const QString&,const QString&);
     void save();
     void load();
     bool search(const QString&);

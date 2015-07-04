@@ -1,4 +1,7 @@
 #include "admincontroller.h"
+#include"utentebasic.h"
+#include"utentebusiness.h"
+#include"utenteexecutive.h"
 
 AdminController::AdminController()
 {
@@ -20,9 +23,7 @@ void AdminController::removeUser(const Username& u){
     db->removeUtete(u);
 }
 
-map<QString,Utente*> AdminController::findUser(const QString& u, const QString& n, const QString& c){
-    utentiTrovati = db->findName(n,c);
-    return utentiTrovati;
+map<QString,Utente*> AdminController::findUser(const InfoSearch& info){
 }
 
 QString AdminController::searchUserType(const QString &u){
@@ -38,6 +39,14 @@ QString AdminController::searchUserType(const QString &u){
 void AdminController::modifyUserType(const QString &u, const QString&t){
     db->upgradeUtente(u,t);
 }
+
+QString AdminController::tipoUtente() const{
+    return "Admin";
+}
+
+void AdminController::updateReteContatti(const QString&){}
+void AdminController::removeReteContatti(const QString&) {}
+bool AdminController::checkUtenteRete(const QString&){}
 
 AdminController::~AdminController(){
 }

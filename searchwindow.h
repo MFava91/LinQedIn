@@ -24,34 +24,38 @@ public:
     Controller* Ctrl;
     QGridLayout* mainLayout;
     QGridLayout* findLayout;
-    QGridLayout* findForUsernameLayout;
-    QGridLayout* findForNameLayout;
     QGridLayout* resultLayout;
     QGroupBox* findBox;
-    QGroupBox* findForUsernameBox;
-    QGroupBox* findForNameBox;
     QGroupBox* resultBox;
 
-    QPushButton* findUsernameButton;
-    QPushButton* findNameButton;
+    QPushButton* findButton;
 
     //RICERCA
     QLabel* findUsernameLabel;
     QLabel* findNameLabel;
     QLabel* findSurnameLabel;
+    QLabel* findLuogoNascitaLabel;
+    QLabel* findResidenzaLabel;
+    QLabel* findDiplomaLabel;
+    QLabel* findLaureaLabel;
+    QLabel* findAziendaLabel;
+    QLabel* findTitoloLabel;
     QLineEdit* findUsername;
     QLineEdit* findName;
     QLineEdit* findSurname;
+    QLineEdit* findLuogoNascita;
+    QLineEdit* findResidenza;
+    QLineEdit* findDiploma;
+    QLineEdit* findLaurea;
+    QLineEdit* findAzienda;
+    QLineEdit* findTitolo;
 
     //RISULTATI
     QLabel* nessunaRicerca;
     QLabel* nessunUtenteTrovato;
 
 public slots:
-    void searchUsername();
-    void searchName();
-
-
+    void search();
 };
 
 #endif // SEARCHWINDOW_H

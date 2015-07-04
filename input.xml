@@ -5,8 +5,8 @@
             <Username>gianni</Username>
             <TipoAccount>Executive</TipoAccount>
             <DatiAnagrafici>
-                <Nome>Enricodwdwadw</Nome>
-                <Cognome>Infinity</Cognome>
+                <Nome>gianni</Nome>
+                <Cognome>bianchi</Cognome>
                 <Email>einfinity@houncazzoenorme.com</Email>
                 <Data>sab feb 1 1992</Data>
                 <Luogo_Nascita>TrevisoLammoda</Luogo_Nascita>
@@ -35,8 +35,38 @@
             <Username>mario</Username>
             <TipoAccount>Basic</TipoAccount>
             <DatiAnagrafici>
-                <Nome>Enricodwdwadw</Nome>
-                <Cognome>Infinity</Cognome>
+                <Nome>mario</Nome>
+                <Cognome>rossi</Cognome>
+                <Email>einfinity@houncazzoenorme.com</Email>
+                <Data>sab feb 1 1992</Data>
+                <Luogo_Nascita>TrevisoLammoda</Luogo_Nascita>
+                <Residenza>CazzoVoglio</Residenza>
+            </DatiAnagrafici>
+            <Titoli_Studio>
+                <Diploma>infinito</Diploma>
+                <Laurea>tutte</Laurea>
+            </Titoli_Studio>
+            <Esperienze_Lavorative>
+                <Lavoro>
+                    <Azienda>infinitech</Azienda>
+                    <Titolo>CEO</Titolo>
+                    <Citta>Treviso</Citta>
+                    <Inizio>dom gen 1 2012</Inizio>
+                    <Fine>lun gen 2 2012</Fine>
+                </Lavoro>
+            </Esperienze_Lavorative>
+        </Profilo>
+        <Rete_Follow>
+            <Follow>gianni</Follow>
+        </Rete_Follow>
+    </Utente>
+    <Utente>
+        <Profilo>
+            <Username>toni</Username>
+            <TipoAccount>Business</TipoAccount>
+            <DatiAnagrafici>
+                <Nome>gianni</Nome>
+                <Cognome>verdi</Cognome>
                 <Email>einfinity@houncazzoenorme.com</Email>
                 <Data>sab feb 1 1992</Data>
                 <Luogo_Nascita>TrevisoLammoda</Luogo_Nascita>

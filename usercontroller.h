@@ -20,7 +20,11 @@ public:
     void saveDatabase();
     bool searchUser(const QString&);
     bool searchLaurea(const QString&);
-    map<QString,Utente*> findUser(const QString& =0, const QString& =0, const QString& =0);
+    map<QString,Utente*> findUser(const InfoSearch&);
+    virtual QString tipoUtente() const;
+    virtual void updateReteContatti(const QString&);
+    virtual void removeReteContatti(const QString&);
+    bool checkUtenteRete(const QString&);
     ~userController();
 };
 

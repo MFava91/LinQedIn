@@ -3,7 +3,7 @@
 #include<map>
 #include"rete.h"
 #include"profilo.h"
-
+#include"infosearch.h"
 using std::map;
 
 class Utente
@@ -20,8 +20,10 @@ public:
     //vedere se è il caso di fare così o meno
     Profilo& getInfo();
     Rete getRete() const;
-    virtual map<QString,Utente*> findUsername(const QString& ="") =0;
-    virtual ~Utente();
+    void aggiungiUtenteRete(const QString&);
+    void rimuoviUteteRete(const QString&);
+    virtual map<QString,Utente*> find(const InfoSearch&,map<QString,Utente*>*) =0;
+    virtual ~Utente() =0;
 };
 
 

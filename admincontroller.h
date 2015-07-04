@@ -16,9 +16,13 @@ public:
     bool searchUser(const QString&);
     void addUser(const QString&, const QString&, const QString&);
     void removeUser(const Username&);
-    map<QString,Utente*> findUser(const QString& =0, const QString& =0, const QString& =0);
+    map<QString,Utente*> findUser(const InfoSearch&);
     QString searchUserType(const QString&);
     void modifyUserType(const QString&,const QString&);
+    virtual QString tipoUtente() const;
+    virtual void updateReteContatti(const QString&);
+    virtual void removeReteContatti(const QString&);
+    virtual bool checkUtenteRete(const QString&);
 };
 
 #endif // ADMINCONTROLLER_H

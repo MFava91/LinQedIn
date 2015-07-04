@@ -15,7 +15,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    info.cpp \
     profilo.cpp \
     rete.cpp \
     username.cpp \
@@ -39,10 +38,10 @@ SOURCES += main.cpp\
     admincontroller.cpp \
     resultwindow.cpp \
     controller.cpp \
-    searchwindow.cpp
+    searchwindow.cpp \
+    infosearch.cpp
 
 HEADERS  += mainwindow.h \
-    info.h \
     profilo.h \
     rete.h \
     username.h \
@@ -66,7 +65,8 @@ HEADERS  += mainwindow.h \
     admincontroller.h \
     resultwindow.h \
     controller.h \
-    searchwindow.h
+    searchwindow.h \
+    infosearch.h
 
 FORMS    += mainwindow.ui
 

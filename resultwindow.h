@@ -9,17 +9,20 @@
 #include<QLabel>
 #include<QLineEdit>
 #include<QScrollArea>
+#include<typeinfo>
 
 #include"utente.h"
 #include"laureawindow.h"
 #include"lavorowindow.h"
+#include"controller.h"
 
 class ResultWindow : public QWidget{
     Q_OBJECT
 public:
-    ResultWindow(Utente*, QWidget* = 0);
+    ResultWindow(Utente*, Controller*, QWidget* = 0);
     ~ResultWindow();
     Utente* user;
+    Controller* ctrl;
     QGridLayout* resultLayout;
     QLabel* usernameRicercaLabel;
     QLabel* nameRicercaLabel;
@@ -28,11 +31,16 @@ public:
     QLabel* nameRicerca;
     QLabel* surnameRicerca;
     QPushButton* showProfileButton;
+    QPushButton* addReteButton;
+    QPushButton* removeReteButton;
 
     //DIALOG SHOWPROFILE
     QDialog* showProfileDialog;
     QGridLayout* showProfileLayout;
     QGridLayout* topLayout;
+    QGridLayout* usernameLayout;
+    QGridLayout* profileLayout;
+    QGridLayout* diplomaLayout;
     QGroupBox* infoBox;
     QGroupBox* schoolBox;
     QGridLayout* infoLayout;
@@ -60,9 +68,13 @@ public:
                 * residenza,
                 * diploma;
 
+signals:
+    void signalFetchResult();
 
 public slots:
     void showProfile();
+    void addRete();
+    void removeRete();
 };
 
 #endif // RESULTWINDOW_H

@@ -1,5 +1,8 @@
 #include "db.h"
 #include<iostream>
+#include"utentebasic.h"
+#include"utentebusiness.h"
+#include"utenteexecutive.h"
 
 using std::cout;
 using std::endl;
@@ -9,13 +12,17 @@ DB::DB()
 {
 }
 
+map<QString,Utente*>* DB::getDb(){
+    return &dbUtenti;
+}
+
 void DB::addUtente(Username u,Utente* p){
     dbUtenti.insert(map<QString,Utente*>::value_type(u.getUsername(),p));
 }
 
 void DB::addNewUtente(const QString &u, const QString &n, const QString &c){
     Username x(u);
-    UtenteBasic *temp = new UtenteBasic(u);
+    Utente *temp = new UtenteBasic(u);
     temp->getInfo().setNomeDatiPersonali(n);
     temp->getInfo().setCognomeDatiPersonali(c);
     addUtente(x,temp);
@@ -54,6 +61,27 @@ void DB::upgradeUtente(const QString &u, const QString &t){
     for(;it!=dbUtenti.end();++it)
     {
         //DA RIFARE
+    }
+}
+
+void DB::updateReteFollower(const QString &follow, const QString &follower){
+    for(std::map<QString,Utente*>::iterator it=dbUtenti.begin();it!=dbUtenti.end();++it){
+        if((*it).second->getLogin().getUsername() == follower)
+        {
+            (*it).second->aggiungiUtenteRete(follow);
+            return;
+        }
+    }
+}
+
+
+void DB::removeReteFollower(const QString &follow,const QString &follower){
+    for(std::map<QString,Utente*>::iterator it=dbUtenti.begin();it!=dbUtenti.end();++it){
+        if((*it).second->getLogin().getUsername() == follower)
+        {
+            (*it).second->rimuoviUteteRete(follow);
+            return;
+        }
     }
 }
 
