@@ -19,7 +19,7 @@ using std::map;
 class DB
 {
 private:
-    map<QString,Utente*> dbUtenti; //perchè non ho passato un USERNAME?
+    map<QString,Utente*> dbUtenti;
 public:
     DB();
     QString path;

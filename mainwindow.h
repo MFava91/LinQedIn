@@ -4,11 +4,11 @@
 #include<QMainWindow>
 #include<QStatusBar>
 #include<QMenuBar>
-#include<QAction>
 #include<QWidget>
 #include<QPushButton>
 #include<QLineEdit>
 #include<QGridLayout>
+#include<QGroupBox>
 #include<QCloseEvent>
 #include"db.h"
 #include"adminwindow.h"
@@ -25,6 +25,10 @@ private:
 
     QAction *logoutAction;
     QGridLayout* layout;
+    QGridLayout* userLoginLayout;
+    QGridLayout* adminLoginLayout;
+    QGroupBox* userLoginBox;
+    QGroupBox* adminLoginBox;
     QPushButton *userSubmit;
     QPushButton *adminSubmit;
     QLineEdit *userUsername;

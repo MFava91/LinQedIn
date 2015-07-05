@@ -30,8 +30,6 @@ public:
     void aggiungiLaurea(const QString&);
     void aggiungiLavoro(const Lavoro&);
     bool searchLaurea(const QString&);
-    //void modificaProfilo() {}
-    //Info* visualizzaProfilo() const {return 0; }
 };
 
 #endif // PROFILO_H

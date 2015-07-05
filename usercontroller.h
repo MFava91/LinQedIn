@@ -10,7 +10,6 @@ private:
 public:
     Utente* user;
     map<QString,Utente*> utentiTrovati;
-    //metodi
     userController(const QString&);
     void loadUser(const QString&);
     void updateUserInfo(const DatiAnagrafici&);

@@ -97,6 +97,12 @@ void SearchWindow::search(){
                 resultLayout->addWidget(result,i,0);
                 i++;
             }
+            else{
+                if(Ctrl->findUser(info).size()==1){
+                    nessunUtenteTrovato = new QLabel("Nessun utente trovato");
+                    resultLayout->addWidget(nessunUtenteTrovato,0,0);
+                }
+            }
         }
     }
     else

@@ -15,30 +15,28 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     setCentralWidget(mainWidget);
 
     layout = new QGridLayout(mainWidget);
-    layout->setAlignment(Qt::AlignHCenter);
+    layout->setAlignment(Qt::AlignCenter);
     //USER LOGIN
+    userLoginBox = new QGroupBox("User");
+    userLoginLayout = new QGridLayout();
     userUsername = new QLineEdit(this);
-    userUsername->setGeometry(QRect(QPoint(200, 200),
-                                 QSize(200, 50)));
+    userSubmit = new QPushButton("login",this);
 
-    userSubmit = new QPushButton("user",this);
-    userSubmit->setGeometry(QRect(QPoint(100, 100),
-                                 QSize(200, 50)));
-
+    userLoginLayout->addWidget(userUsername,0,0);
+    userLoginLayout->addWidget(userSubmit,1,0);
+    userLoginBox->setLayout(userLoginLayout);
     //ADMIN LOGIN
+    adminLoginBox = new QGroupBox("Admin");
+    adminLoginLayout = new QGridLayout();
     adminUsername = new QLineEdit(this);
-    adminUsername->setGeometry(QRect(QPoint(200, 200),
-                                 QSize(200, 50)));
+    adminSubmit = new QPushButton("login",this);
 
-    adminSubmit = new QPushButton("admin",this);
-    adminSubmit->setGeometry(QRect(QPoint(100, 100),
-                                 QSize(200, 50)));
+    adminLoginLayout->addWidget(adminUsername,0,0);
+    adminLoginLayout->addWidget(adminSubmit,1,0);
+    adminLoginBox->setLayout(adminLoginLayout);
 
-    layout->addWidget(userUsername,0,0);
-    layout->addWidget(userSubmit,2,0);
-
-    layout->addWidget(adminUsername,0,1);
-    layout->addWidget(adminSubmit,2,1);
+    layout->addWidget(userLoginBox,0,0);
+    layout->addWidget(adminLoginBox,0,1);
     mainWidget->setLayout(layout);
 
     connect(userSubmit, SIGNAL(clicked()),this, SLOT(readCredentialUser()));
@@ -46,8 +44,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
 
     connect(adminSubmit, SIGNAL(clicked()),this, SLOT(readCredentialAdmin()));
     connect(this, SIGNAL(signalPasswordAdmin(QString)), this, SLOT(loginAdmin(const QString&)));
-    //salvataggio nel db da fare
-
 }
 
 MainWindow::~MainWindow(){

@@ -15,15 +15,10 @@ private:
     QString luogoNascita;
     QString residenza;
 public:
-    //Costruttore
     DatiAnagrafici();
     DatiAnagrafici(const QString&,const QString&,const QString&,const QDate&,const QString&,const QString&);
-    //Controlli
     bool operator==(const DatiAnagrafici&) const;
-    //Assegnazione
     DatiAnagrafici operator=(const DatiAnagrafici&);
-    //bool operator!=(const DatiAnagrafici&) const;
-    //Selettori
     QString getNome() const;
     QString getCognome() const;
     QString getEmail() const;
@@ -37,7 +32,6 @@ public:
     void setDataNascita(const QDate&);
     void setLuogoNascita(const QString&);
     void setResidenza(const QString&);
-    //distruttore standard
 };
 
 #endif // DATIANAGRAFICI_H

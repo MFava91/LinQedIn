@@ -135,7 +135,7 @@ map<QString,Utente*> DB::findUsername(const InfoSearch& info) const {
 }
 
 void DB::load() {
-    path = ("/home/mattia/Documenti/LinQuedln/input.xml");
+    path = ("/home/mattia/Documenti/LinQuedln/db.xml");
     QFile file(path);
     while(!file.open(QIODevice::ReadOnly)){
         QMessageBox box;

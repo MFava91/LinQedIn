@@ -87,7 +87,6 @@ void UserSchoolWindow::updateDiploma(){
     TitoliStudio x(diploma->text());
     clientCtrl->updateUserDiploma(x);
     disableEditDiploma();
-    //manca scrittura sul database
 }
 
 void UserSchoolWindow::fetchLaurea(){

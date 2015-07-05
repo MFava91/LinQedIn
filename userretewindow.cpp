@@ -4,7 +4,7 @@ UserReteWindow::UserReteWindow(){}
 
 UserReteWindow::UserReteWindow(QWidget *parent, userController* userCtrl) : QWidget(parent){
     setWindowTitle("UserReteWindow");
-
+    setMinimumWidth(700);
     reteBox = new QGroupBox("Rete di contatti");
     reteLayout = new QGridLayout();
     connectLayout = new QGridLayout();
@@ -20,5 +20,4 @@ UserReteWindow::UserReteWindow(QWidget *parent, userController* userCtrl) : QWid
     setLayout(connectLayout);
 }
 
-UserReteWindow::~UserReteWindow(){
-}
+UserReteWindow::~UserReteWindow(){}

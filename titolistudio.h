@@ -19,7 +19,6 @@ public:
     void AggiungiLaurea(const QString&);
     void removeLaurea(const QString&);
     void modificaLaurea(const QString&,const QString&);
-    //distruttore di default
 };
 
 #endif // TITOLISTUDIO_H
