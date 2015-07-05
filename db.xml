@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db>
+    <Utente>
+        <Profilo>
+            <Username>gianni</Username>
+            <TipoAccount>Basic</TipoAccount>
+            <DatiAnagrafici>
+                <Nome>gianni</Nome>
+                <Cognome>bianchi</Cognome>
+                <Email>gianni@gmail.com</Email>
+                <Data>mer gen 1 1975</Data>
+                <Luogo_Nascita>Padova</Luogo_Nascita>
+                <Residenza>Padova</Residenza>
+            </DatiAnagrafici>
+            <Titoli_Studio>
+                <Diploma>Liceo Aristico</Diploma>
+            </Titoli_Studio>
+            <Esperienze_Lavorative>
+                <Lavoro>
+                    <Azienda>Bianchi &amp; Co</Azienda>
+                    <Titolo>Muratore</Titolo>
+                    <Citta>Padova</Citta>
+                    <Inizio>lun gen 1 1990</Inizio>
+                    <Fine>gio feb 5 2015</Fine>
+                </Lavoro>
+            </Esperienze_Lavorative>
+        </Profilo>
+        <Rete_Follow>
+            <Follow>mario</Follow>
+            <Follow>toni</Follow>
+        </Rete_Follow>
+    </Utente>
+    <Utente>
+        <Profilo>
+            <Username>mario</Username>
+            <TipoAccount>Executive</TipoAccount>
+            <DatiAnagrafici>
+                <Nome>mario</Nome>
+                <Cognome>rossi</Cognome>
+                <Email>mario@gmail.com</Email>
+                <Data>mer gen 1 1975</Data>
+                <Luogo_Nascita>Vicenza</Luogo_Nascita>
+                <Residenza>Vicenza</Residenza>
+            </DatiAnagrafici>
+            <Titoli_Studio>
+                <Diploma>Perito elettronico</Diploma>
+                <Laurea>Robotica</Laurea>
+            </Titoli_Studio>
+            <Esperienze_Lavorative>
+                <Lavoro>
+                    <Azienda>Rob.ot</Azienda>
+                    <Titolo>Ingegnere</Titolo>
+                    <Citta>Roma</Citta>
+                    <Inizio>ven gen 1 2010</Inizio>
+                    <Fine>gio giu 11 2015</Fine>
+                </Lavoro>
+            </Esperienze_Lavorative>
+        </Profilo>
+        <Rete_Follow>
+            <Follow>gianni</Follow>
+        </Rete_Follow>
+    </Utente>
+    <Utente>
+        <Profilo>
+            <Username>mario01</Username>
+            <TipoAccount>Basic</TipoAccount>
+            <DatiAnagrafici>
+                <Nome>mario</Nome>
+                <Cognome>Verdini</Cognome>
+                <Email>verdini88@gmail.com</Email>
+                <Data>sab set 10 1988</Data>
+                <Luogo_Nascita>Verona</Luogo_Nascita>
+                <Residenza>Padova</Residenza>
+            </DatiAnagrafici>
+            <Titoli_Studio>
+                <Diploma>Perito elettronico</Diploma>
+            </Titoli_Studio>
+            <Esperienze_Lavorative>
+                <Lavoro>
+                    <Azienda>Muri</Azienda>
+                    <Titolo>Muratore</Titolo>
+                    <Citta>Rimini</Citta>
+                    <Inizio>mer set 10 2003</Inizio>
+                    <Fine>sab ott 11 2014</Fine>
+                </Lavoro>
+            </Esperienze_Lavorative>
+        </Profilo>
+        <Rete_Follow>
+            <Follow>toni</Follow>
+        </Rete_Follow>
+    </Utente>
+    <Utente>
+        <Profilo>
+            <Username>toni</Username>
+            <TipoAccount>Business</TipoAccount>
+            <DatiAnagrafici>
+                <Nome>toni</Nome>
+                <Cognome>menego</Cognome>
+                <Email>menego@hotmail.it</Email>
+                <Data>sab apr 4 1964</Data>
+                <Luogo_Nascita>Roma</Luogo_Nascita>
+                <Residenza>Venezia</Residenza>
+            </DatiAnagrafici>
+            <Titoli_Studio>
+                <Diploma>Liceo Scentifico</Diploma>
+                <Laurea>Scienze politiche</Laurea>
+                <Laurea>Medicina</Laurea>
+            </Titoli_Studio>
+            <Esperienze_Lavorative>
+                <Lavoro>
+                    <Azienda>Governo italiano</Azienda>
+                    <Titolo>porta borse</Titolo>
+                    <Citta>Roma</Citta>
+                    <Inizio>mer dic 25 2002</Inizio>
+                    <Fine>gio dic 26 2002</Fine>
+                </Lavoro>
+            </Esperienze_Lavorative>
+        </Profilo>
+        <Rete_Follow>
+            <Follow>gianni</Follow>
+            <Follow>mario01</Follow>
+        </Rete_Follow>
+    </Utente>
+</db>
