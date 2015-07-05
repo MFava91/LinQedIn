@@ -15,6 +15,7 @@
 #include"userworkwindow.h"
 #include"searchwindow.h"
 #include"resultwindow.h"
+#include"userretewindow.h"
 
 class UserWindow : public QWidget{
     Q_OBJECT
@@ -30,11 +31,13 @@ public:
     QWidget* userInfo;
     QWidget* userSchool;
     QWidget* userWork;
+    QWidget* userRete;
     QWidget* userSearch;
 
     QPushButton* info;
     QPushButton* school;
     QPushButton* work;
+    QPushButton* rete;
     QPushButton* search;
 
 
@@ -42,6 +45,7 @@ public slots:
     void loadUserInfo();
     void loadUserSchool();
     void loadUserWork();
+    void loadUserRete();
     void loadUserSearch();
     void saveDb();
 };

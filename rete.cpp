@@ -10,6 +10,7 @@ set<QString> Rete::getFollow() const{
 
 void Rete::addFollow(Username u){
     follow.insert(u.getUsername());
+
 }
 
 void Rete::removeFollow(Username u){

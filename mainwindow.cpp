@@ -5,17 +5,11 @@ QString MainWindow::adminUser = "admin";
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     setWindowTitle("Linqedin");
     setGeometry(0,0,800,600);
+    adminCtrl = 0;
+    userCtrl = 0;
 
     statusBar = new QStatusBar(this);
     setStatusBar(statusBar);
-
-    menuBar = new QMenuBar(this);
-    fileMenu = new QMenu("File");
-    logoutAction = new QAction ("Logout",this);
-    fileMenu->addAction(logoutAction);
-    menuBar->addMenu(fileMenu);
-    setMenuBar(menuBar);
-
 
     mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
@@ -58,6 +52,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
 
 MainWindow::~MainWindow(){
     delete mainWidget;
+    if(userCtrl!=0)
+        delete userCtrl;
+    if(adminCtrl!=0)
+        delete adminCtrl;
 }
 
 

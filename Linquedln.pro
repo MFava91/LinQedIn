@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     resultwindow.cpp \
     controller.cpp \
     searchwindow.cpp \
-    infosearch.cpp
+    infosearch.cpp \
+    userretewindow.cpp
 
 HEADERS  += mainwindow.h \
     profilo.h \
@@ -66,7 +67,8 @@ HEADERS  += mainwindow.h \
     resultwindow.h \
     controller.h \
     searchwindow.h \
-    infosearch.h
+    infosearch.h \
+    userretewindow.h
 
 FORMS    += mainwindow.ui
 

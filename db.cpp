@@ -18,6 +18,7 @@ map<QString,Utente*>* DB::getDb(){
 
 void DB::addUtente(Username u,Utente* p){
     dbUtenti.insert(map<QString,Utente*>::value_type(u.getUsername(),p));
+    save();
 }
 
 void DB::addNewUtente(const QString &u, const QString &n, const QString &c){
@@ -26,21 +27,22 @@ void DB::addNewUtente(const QString &u, const QString &n, const QString &c){
     temp->getInfo().setNomeDatiPersonali(n);
     temp->getInfo().setCognomeDatiPersonali(c);
     addUtente(x,temp);
-    //manca tipo account
+    save();
 }
 
-void DB::removeUtete(Username u){
-    for(std::map<QString,Utente*>::iterator it=dbUtenti.begin();it!=dbUtenti.end();++it)
+void DB::removeUtete(const QString& u){
+    Utente* user = find(u);
+    set<QString> followati = user->getRete().getFollow();
+    for(set<QString>::iterator it=followati.begin();it!=followati.end();++it)
     {
-        for(std::set<QString>::iterator itf=(*it).second->getRete().getFollow().begin();itf!=(*it).second->getRete().getFollow().end();++itf)
+        for(map<QString,Utente*>::iterator itf=dbUtenti.begin();itf!=dbUtenti.end();++itf)
         {
-            if((*itf)==u.getUsername())
-                (*it).second->getRete().removeFollow(u);
+            if((*itf).first==(*it))
+                (*itf).second->rimuoviUteteRete(u);
         }
     }
-    dbUtenti.erase(u.getUsername());
-
-    //eliminare utete dalla rete amici.
+    dbUtenti.erase(u);
+    save();
 }
 
 void DB::updateUtente(Utente* u){
@@ -57,11 +59,22 @@ void DB::updateUtente(Utente* u){
 }
 
 void DB::upgradeUtente(const QString &u, const QString &t){
-    map<QString,Utente*>::iterator it=dbUtenti.begin();
-    for(;it!=dbUtenti.end();++it)
-    {
-        //DA RIFARE
+    Utente* user = find(u);
+    Utente* temp;
+    if(t=="Basic"){
+        temp = new UtenteBasic(u);
+        *temp = *user;
     }
+    if(t=="Business"){
+        temp = new UtenteBusiness(u);
+        *temp = *user;
+    }
+    if(t=="Executive"){
+        temp = new UtenteExecutive(u);
+        *temp = *user;
+    }
+    removeUtete(u);
+    addUtente(u,temp);
 }
 
 void DB::updateReteFollower(const QString &follow, const QString &follower){
@@ -101,27 +114,24 @@ Utente* DB::find(const QString& u) const{
     for(;it!=dbUtenti.end();++it){
         if(((*it).first)==u){
             return (*it).second;
-            //return temp;
         }
     }
     return 0;
 }
 
-map<QString,Utente*> DB::findName(const QString &n, const QString &c) const {
-    map<QString,Utente*> result;
-    map<QString,Utente*>::const_iterator it=dbUtenti.begin();
-    for(;it!=dbUtenti.end();++it){
-        if(n!="" && c!="" && (*it).second->getInfo().getDati().getNome()==n && (*it).second->getInfo().getDati().getCognome()==c){
-                result.insert(map<QString,Utente*>::value_type((*it).second->getLogin().getUsername(),(*it).second));
-        }
-        if(n!="" && c=="" && (*it).second->getInfo().getDati().getNome()==n){
-                result.insert(map<QString,Utente*>::value_type((*it).second->getLogin().getUsername(),(*it).second));
-        }
-        if(n=="" && c!="" && (*it).second->getInfo().getDati().getCognome()==c){
-                result.insert(map<QString,Utente*>::value_type((*it).second->getLogin().getUsername(),(*it).second));
-        }
+map<QString,Utente*> DB::findUsername(const InfoSearch& info) const {
+    map<QString,Utente*> trovati;
+    for(map<QString,Utente*>::const_iterator it=dbUtenti.begin(); it!=dbUtenti.end();++it)
+    {
+        if(info.getUsername()!="" && (*it).first != info.getUsername())
+            continue;
+        if(info.getNome()!="" && (*it).second->getInfo().getDati().getNome() != info.getNome())
+            continue;
+        if(info.getCognome()!="" && (*it).second->getInfo().getDati().getCognome() != info.getCognome())
+            continue;
+        trovati.insert(std::pair<QString,Utente*>((*it).first,(*it).second));
     }
-    return result;
+    return trovati;
 }
 
 void DB::load() {

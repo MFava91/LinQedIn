@@ -22,8 +22,6 @@ class MainWindow: public QMainWindow {
 private:
     QStatusBar *statusBar;
     QWidget *mainWidget;
-    QMenuBar *menuBar;
-    QMenu *fileMenu;
 
     QAction *logoutAction;
     QGridLayout* layout;

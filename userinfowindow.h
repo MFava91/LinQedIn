@@ -14,7 +14,6 @@
 class UserInfoWindow : public QWidget{
     Q_OBJECT
 public:
-    UserInfoWindow();
     UserInfoWindow(QWidget *parent, userController*);
     QGroupBox* accountBox;
     QGroupBox* datiBox;

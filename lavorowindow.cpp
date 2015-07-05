@@ -18,8 +18,10 @@ LavoroWindow::LavoroWindow(const QString& nomeAzienda, const QString& mansione ,
     citta = new QLineEdit(luogo);
     citta->setReadOnly(true);
     inizio = new QDateEdit(inizioLavoro);
+    inizio->setDisplayFormat("dd.MM.yyyy");
     inizio->setReadOnly(true);
     fine = new QDateEdit(fineLavoro);
+    fine->setDisplayFormat("dd.MM.yyyy");
     fine->setReadOnly(true);
 
     lavoroLayout->addWidget(aziendaLabel,0,0);

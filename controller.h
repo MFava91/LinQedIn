@@ -17,6 +17,7 @@ public:
     virtual void updateReteContatti(const QString&) = 0;
     virtual void removeReteContatti(const QString&) = 0;
     virtual bool checkUtenteRete(const QString&) = 0;
+    virtual QString getUsername() const = 0;
 };
 
 #endif // CONTROLLER_H

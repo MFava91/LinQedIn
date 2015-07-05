@@ -24,6 +24,8 @@ public:
     virtual QString tipoUtente() const;
     virtual void updateReteContatti(const QString&);
     virtual void removeReteContatti(const QString&);
+    virtual QString getUsername() const;
+    Utente* returnUtenteFromUsername(const QString&);
     bool checkUtenteRete(const QString&);
     ~userController();
 };

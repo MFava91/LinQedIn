@@ -2,92 +2,64 @@
 <db>
     <Utente>
         <Profilo>
-            <Username>gianni</Username>
-            <TipoAccount>Executive</TipoAccount>
-            <DatiAnagrafici>
-                <Nome>gianni</Nome>
-                <Cognome>bianchi</Cognome>
-                <Email>einfinity@houncazzoenorme.com</Email>
-                <Data>sab feb 1 1992</Data>
-                <Luogo_Nascita>TrevisoLammoda</Luogo_Nascita>
-                <Residenza>CazzoVoglio</Residenza>
-            </DatiAnagrafici>
-            <Titoli_Studio>
-                <Diploma>infinito</Diploma>
-                <Laurea>tutte</Laurea>
-            </Titoli_Studio>
-            <Esperienze_Lavorative>
-                <Lavoro>
-                    <Azienda>infinitech</Azienda>
-                    <Titolo>CEO</Titolo>
-                    <Citta>Treviso</Citta>
-                    <Inizio>dom gen 1 2012</Inizio>
-                    <Fine>lun gen 2 2012</Fine>
-                </Lavoro>
-            </Esperienze_Lavorative>
-        </Profilo>
-        <Rete_Follow>
-            <Follow>mariomariomario</Follow>
-        </Rete_Follow>
-    </Utente>
-    <Utente>
-        <Profilo>
             <Username>mario</Username>
-            <TipoAccount>Basic</TipoAccount>
+            <TipoAccount>Executive</TipoAccount>
             <DatiAnagrafici>
                 <Nome>mario</Nome>
                 <Cognome>rossi</Cognome>
-                <Email>einfinity@houncazzoenorme.com</Email>
-                <Data>sab feb 1 1992</Data>
-                <Luogo_Nascita>TrevisoLammoda</Luogo_Nascita>
-                <Residenza>CazzoVoglio</Residenza>
+                <Email>prova@gmail.co</Email>
+                <Data>sab gen 1 2000</Data>
+                <Luogo_Nascita>padova</Luogo_Nascita>
+                <Residenza>padova</Residenza>
             </DatiAnagrafici>
             <Titoli_Studio>
-                <Diploma>infinito</Diploma>
-                <Laurea>tutte</Laurea>
+                <Diploma>dwfawfwa</Diploma>
+                <Laurea>fawfwafwafa</Laurea>
+                <Laurea>FQQsQD</Laurea>
+                <Laurea>dwadwd</Laurea>
             </Titoli_Studio>
             <Esperienze_Lavorative>
                 <Lavoro>
-                    <Azienda>infinitech</Azienda>
-                    <Titolo>CEO</Titolo>
-                    <Citta>Treviso</Citta>
-                    <Inizio>dom gen 1 2012</Inizio>
-                    <Fine>lun gen 2 2012</Fine>
+                    <Azienda>wfaw</Azienda>
+                    <Titolo>fwfaw</Titolo>
+                    <Citta>fwfawf</Citta>
+                    <Inizio>mer gen 1 2014</Inizio>
+                    <Fine>gio gen 2 2014</Fine>
                 </Lavoro>
             </Esperienze_Lavorative>
         </Profilo>
         <Rete_Follow>
-            <Follow>gianni</Follow>
+            <Follow>toni</Follow>
         </Rete_Follow>
     </Utente>
     <Utente>
         <Profilo>
             <Username>toni</Username>
-            <TipoAccount>Business</TipoAccount>
+            <TipoAccount>Basic</TipoAccount>
             <DatiAnagrafici>
-                <Nome>gianni</Nome>
-                <Cognome>verdi</Cognome>
-                <Email>einfinity@houncazzoenorme.com</Email>
-                <Data>sab feb 1 1992</Data>
-                <Luogo_Nascita>TrevisoLammoda</Luogo_Nascita>
-                <Residenza>CazzoVoglio</Residenza>
+                <Nome>toni</Nome>
+                <Cognome>mengo</Cognome>
+                <Email>tonimenego@gmai.coim</Email>
+                <Data>sab gen 10 1998</Data>
+                <Luogo_Nascita>Padova</Luogo_Nascita>
+                <Residenza>Padova</Residenza>
             </DatiAnagrafici>
             <Titoli_Studio>
-                <Diploma>infinito</Diploma>
-                <Laurea>tutte</Laurea>
+                <Diploma>Liceo Scentifico</Diploma>
+                <Laurea>ingegneria meccanica</Laurea>
             </Titoli_Studio>
             <Esperienze_Lavorative>
                 <Lavoro>
                     <Azienda>infinitech</Azienda>
-                    <Titolo>CEO</Titolo>
-                    <Citta>Treviso</Citta>
-                    <Inizio>dom gen 1 2012</Inizio>
-                    <Fine>lun gen 2 2012</Fine>
+                    <Titolo>spazzino</Titolo>
+                    <Citta>padova</Citta>
+                    <Inizio>gio gen 10 2013</Inizio>
+                    <Fine>sab gen 10 2015</Fine>
                 </Lavoro>
             </Esperienze_Lavorative>
         </Profilo>
         <Rete_Follow>
-            <Follow>mariomariomario</Follow>
+            <Follow>mario</Follow>
         </Rete_Follow>
     </Utente>
 </db>

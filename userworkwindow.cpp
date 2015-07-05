@@ -46,11 +46,6 @@ void UserWorkWindow::fetchLavoro(){
     widget->setLayout(lavoriLayout);
     scrollArea->setWidget(widget);
     scrollArea->setWidgetResizable(true);
-//    mainLayout = new QGridLayout();
-//    mainLayout->addWidget(scrollArea);
-
-    //boxLavori->setLayout(mainLayout);
-    //workLayout->addWidget(boxLavori,0,0);
     workLayout->addWidget(scrollArea,1,0);
 
 
@@ -60,6 +55,7 @@ void UserWorkWindow::fetchLavoro(){
 void UserWorkWindow::dialogAddLavoro(){
     boxAddLavoro = new QDialog();
     addLavoroLayout = new QGridLayout(boxAddLavoro);
+    buttonLayout = new QGridLayout;
     addAziendaLabel = new QLabel("Nome azienda:");
     addTitoloLabel = new QLabel("Titolo:");
     addCittaLabel = new QLabel("Città:");
@@ -69,8 +65,13 @@ void UserWorkWindow::dialogAddLavoro(){
     addAzienda = new QLineEdit();
     addTitolo = new QLineEdit();
     addCitta = new QLineEdit();
-    addInizio = new QDateTimeEdit();
-    addFine = new QDateTimeEdit();
+    addInizio = new QDateEdit();
+    addInizio->setMinimumDate(clientCtrl->user->getInfo().getDati().getDataNascita().addYears(14));
+    addInizio->setDisplayFormat("dd.MM.yyyy");
+    addFine = new QDateEdit();
+    addFine->setMinimumDate(clientCtrl->user->getInfo().getDati().getDataNascita().addYears(14).addDays(1));
+    addFine->setMaximumDate(QDate::currentDate());
+    addFine->setDisplayFormat("dd.MM.yyyy");
 
     cancelButtonNewLavoro = new QPushButton("Annulla",this);
     cancelButtonNewLavoro->setGeometry(QRect(QPoint(100, 100),
@@ -79,6 +80,9 @@ void UserWorkWindow::dialogAddLavoro(){
     addButtonNewLavoro = new QPushButton("Aggiorna",this);
     addButtonNewLavoro->setGeometry(QRect(QPoint(100, 100),
                               QSize(200, 50)));
+
+    buttonLayout->addWidget(addButtonNewLavoro,0,0);
+    buttonLayout->addWidget(cancelButtonNewLavoro,0,1);
 
     addLavoroLayout->addWidget(addAziendaLabel,0,0);
     addLavoroLayout->addWidget(addAzienda,0,1);
@@ -90,8 +94,7 @@ void UserWorkWindow::dialogAddLavoro(){
     addLavoroLayout->addWidget(addInizio,3,1);
     addLavoroLayout->addWidget(addFineLabel,4,0);
     addLavoroLayout->addWidget(addFine,4,1);
-    addLavoroLayout->addWidget(cancelButtonNewLavoro,5,0);
-    addLavoroLayout->addWidget(addButtonNewLavoro,5,1);
+    addLavoroLayout->addLayout(buttonLayout,5,1);
     boxAddLavoro->setLayout(addLavoroLayout);
 
     connect(addButtonNewLavoro, SIGNAL(clicked()), this, SLOT(addLavoro()));
@@ -105,16 +108,19 @@ void UserWorkWindow::addLavoro(){
     clientCtrl->user->getInfo().aggiungiLavoro(temp);
     boxAddLavoro->close();
     fetchLavoro();
+    clientCtrl->saveDatabase();
 }
 
 void UserWorkWindow::removeLavoro(LavoroWindow* l){
     lavoriLayout->removeWidget(l);
     clientCtrl->user->getInfo().wiperLavoro(l->temp);
     fetchLavoro();
+    clientCtrl->saveDatabase();
 }
 
 void UserWorkWindow::modificaLavoro(const Lavoro& temp, const Lavoro& l){
     clientCtrl->updateUserLavoro(temp,l);
+    clientCtrl->saveDatabase();
 }
 
 UserWorkWindow::~UserWorkWindow(){

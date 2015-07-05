@@ -64,6 +64,7 @@ void UserInfoWindow::fetchDati(){
     dataLabel = new QLabel("Data di Nascita:");
     dataNascita = new QDateTimeEdit(clientCtrl->user->getInfo().getDati().getDataNascita());
     dataNascita->setReadOnly(true);
+    dataNascita->setDisplayFormat("dd.MM.yyyy");
 
     luogoLabel = new QLabel("Luogo di Nascita:");
     luogoNascita = new QLineEdit(clientCtrl->user->getInfo().getDati().getLuogoNascita());

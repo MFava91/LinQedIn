@@ -31,6 +31,7 @@ public:
     //DIALOG
     QDialog* boxAddLavoro;
     QGridLayout* addLavoroLayout;
+    QGridLayout* buttonLayout;
     QLabel* addAziendaLabel;
     QLabel* addTitoloLabel;
     QLabel* addCittaLabel;
@@ -39,8 +40,8 @@ public:
     QLineEdit* addAzienda;
     QLineEdit* addTitolo;
     QLineEdit* addCitta;
-    QDateTimeEdit* addInizio;
-    QDateTimeEdit* addFine;
+    QDateEdit* addInizio;
+    QDateEdit* addFine;
     QPushButton* addButtonNewLavoro;
     QPushButton* cancelButtonNewLavoro;
 

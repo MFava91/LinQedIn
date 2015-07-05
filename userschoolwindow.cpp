@@ -120,14 +120,16 @@ void UserSchoolWindow::fetchLaurea(){
 void UserSchoolWindow::dialogAddLaurea(){
     boxAddLaurea = new QDialog();
     addLaureaLayout = new QGridLayout(boxAddLaurea);
+    buttonAddLaureaLayout = new QGridLayout;
     addLaureaLabel = new QLabel("Titolo:");
     newLaurea = new QLineEdit();
     addButtonNewLaurea = new QPushButton("Aggiungi");
     cancelButtonNewLaurea = new QPushButton("Annulla");
+    buttonAddLaureaLayout->addWidget(addButtonNewLaurea,0,0);
+    buttonAddLaureaLayout->addWidget(cancelButtonNewLaurea,0,1);
     addLaureaLayout->addWidget(addLaureaLabel,0,0);
     addLaureaLayout->addWidget(newLaurea,0,1);
-    addLaureaLayout->addWidget(addButtonNewLaurea,1,0);
-    addLaureaLayout->addWidget(cancelButtonNewLaurea,1,1);
+    addLaureaLayout->addLayout(buttonAddLaureaLayout,1,1);
     boxAddLaurea->setLayout(addLaureaLayout);
 
     connect(addButtonNewLaurea, SIGNAL(clicked()), this, SLOT(addLaurea()));
@@ -141,6 +143,7 @@ void UserSchoolWindow::addLaurea(){
         clientCtrl->user->getInfo().aggiungiLaurea(newLaurea->text());
         boxAddLaurea->close();
         fetchLaurea();
+        clientCtrl->saveDatabase();
     }
     else
         QToolTip::showText(newLaurea->mapToGlobal(QPoint()), "La laurea che si vuole inserire è già presente");
@@ -152,10 +155,12 @@ void UserSchoolWindow::removeLaurea(LaureaWindow *l){
     clientCtrl->user->getInfo().wipeLaurea(l->laurea->text());
     delete l;
     fetchLaurea();
+    clientCtrl->saveDatabase();
 }
 
 void UserSchoolWindow::updateLaurea(const QString& temp, const QString& laurea){
     clientCtrl->updateUserLaurea(temp,laurea);
+    clientCtrl->saveDatabase();
 }
 
 UserSchoolWindow::~UserSchoolWindow(){

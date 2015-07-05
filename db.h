@@ -22,7 +22,7 @@ public:
     map<QString,Utente*>* getDb();
     void addUtente(Username,Utente*);
     void addNewUtente(const QString&, const QString&, const QString&);
-    void removeUtete(Username);
+    void removeUtete(const QString&);
     void updateUtente(Utente*);
     void upgradeUtente(const QString&, const QString&);
     void updateReteFollower(const QString&,const QString&);
@@ -31,7 +31,7 @@ public:
     void load();
     bool search(const QString&);
     Utente* find(const QString&) const;
-    map<QString,Utente*> findName(const QString&, const QString&) const;
+    map<QString,Utente*> findUsername(const InfoSearch&) const;
     ~DB(); //DA FARE
 
 };

@@ -6,7 +6,7 @@
 SearchWindow::SearchWindow(QWidget *parent, Controller* control) : QWidget(parent){
     resultBox = 0;
     Ctrl = control;
-
+    setWindowTitle("SearchWindow");
     mainLayout = new QGridLayout();
     //SEZIONE FIND
     findBox = new QGroupBox("Ricerca");
@@ -45,7 +45,7 @@ SearchWindow::SearchWindow(QWidget *parent, Controller* control) : QWidget(paren
         findLayout->addWidget(findSurname,1,3);
     }
     if(Ctrl->tipoUtente() == "Business"
-            || Ctrl->tipoUtente() == "Executive" || Ctrl->tipoUtente() == "Admin"){
+            || Ctrl->tipoUtente() == "Executive"){
          findLayout->addWidget(findLuogoNascitaLabel,2,0);
          findLayout->addWidget(findLuogoNascita,2,1);
          findLayout->addWidget(findResidenzaLabel,2,2);
@@ -55,7 +55,7 @@ SearchWindow::SearchWindow(QWidget *parent, Controller* control) : QWidget(paren
          findLayout->addWidget(findLaureaLabel,3,2);
          findLayout->addWidget(findLaurea,3,3);
     }
-    if(Ctrl->tipoUtente() == "Executive" || Ctrl->tipoUtente() == "Admin"){
+    if(Ctrl->tipoUtente() == "Executive"){
         findLayout->addWidget(findAziendaLabel,4,0);
         findLayout->addWidget(findAzienda,4,1);
         findLayout->addWidget(findTitoloLabel,4,2);
@@ -92,9 +92,11 @@ void SearchWindow::search(){
         int i = 0;
         for(std::map<QString,Utente*>::iterator it=trovati.begin();it!=trovati.end();++it)
         {
-            ResultWindow* result = new ResultWindow((*it).second,Ctrl,this);
-            resultLayout->addWidget(result,i,0);
-            i++;
+            if(Ctrl->getUsername()!=(*it).first){
+                ResultWindow* result = new ResultWindow((*it).second,Ctrl,this);
+                resultLayout->addWidget(result,i,0);
+                i++;
+            }
         }
     }
     else

@@ -4,15 +4,6 @@
 #include"utenteexecutive.h"
 
 userController::userController(const QString& username){
-//    if(db==0){  //DA RIVEDERE QUESTO IF
-//        db = new DB();
-//        db->load();
-//    }
-//    else
-//        //db = database;
-//        db->load();
-//    //db->save();
-//    loadUser(username);
     db = new DB();
     db->load();
     loadUser(username);
@@ -24,14 +15,17 @@ void userController::loadUser(const QString& username){
 
 void userController::updateUserInfo(const DatiAnagrafici & dati){
     user->getInfo().setDatiPersonali(dati);
+    saveDatabase();
 }
 
 void userController::updateUserDiploma(const TitoliStudio & diploma){
     user->getInfo().setTitoliStudio(diploma);
+    saveDatabase();
 }
 
 void userController::updateUserLaurea(const QString& temp, const QString& l){
     user->getInfo().setLaurea(temp,l);
+    saveDatabase();
 }
 
 bool userController::searchLaurea(const QString& l){
@@ -45,6 +39,7 @@ bool userController::searchLaurea(const QString& l){
 
 void userController::updateUserLavoro(const Lavoro &temp, const Lavoro & lavoro){
     user->getInfo().setCurriculum(temp,lavoro);
+    saveDatabase();
 }
 
 void userController::saveDatabase(){
@@ -74,11 +69,13 @@ QString userController::tipoUtente() const{
 void userController::updateReteContatti(const QString &u){
     user->aggiungiUtenteRete(u);
     db->updateReteFollower(user->getLogin().getUsername(),u);
+    saveDatabase();
 }
 
 void userController::removeReteContatti(const QString &u){
     user->rimuoviUteteRete(u);
     db->removeReteFollower(user->getLogin().getUsername(),u);
+    saveDatabase();
 }
 
 bool userController::checkUtenteRete(const QString &u){
@@ -88,6 +85,14 @@ bool userController::checkUtenteRete(const QString &u){
             return true;
     }
     return false;
+}
+
+Utente* userController::returnUtenteFromUsername(const QString& u){
+    return db->find(u);
+}
+
+QString userController::getUsername() const{
+    return user->getLogin().getUsername();
 }
 
 userController::~userController(){

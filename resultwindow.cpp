@@ -3,9 +3,9 @@
 #include"utentebusiness.h"
 #include"utenteexecutive.h"
 #include"usercontroller.h"
+#include"admincontroller.h"
 
 ResultWindow::ResultWindow(Utente* u, Controller* c,QWidget* parent){
-    setWindowTitle("resultSearch");
     showProfileLayout = 0;
     user = u;
     ctrl = c;
@@ -18,15 +18,19 @@ ResultWindow::ResultWindow(Utente* u, Controller* c,QWidget* parent){
     nameRicerca = new QLabel(user->getInfo().getDati().getNome());
     surnameRicerca = new QLabel(user->getInfo().getDati().getCognome());
     showProfileButton = new QPushButton("Visualizza profilo");
-    addReteButton = new QPushButton("Aggiungi amico");
-    removeReteButton = new QPushButton("Rimuovi amico");
-    if(ctrl->checkUtenteRete(user->getLogin().getUsername()) == true){
-        addReteButton->setVisible(false);
-        removeReteButton->setVisible(true);
-    }
-    else{
-        addReteButton->setVisible(true);
-        removeReteButton->setVisible(false);
+    if(parent->windowTitle()=="SearchWindow" && typeid(*ctrl)!=typeid(AdminController))
+    {
+        addReteButton = new QPushButton("Aggiungi amico");
+        removeReteButton = new QPushButton("Rimuovi amico");
+        if(ctrl->checkUtenteRete(user->getLogin().getUsername()) == true){
+            addReteButton->setVisible(false);
+            removeReteButton->setVisible(true);
+
+        }
+        else{
+            addReteButton->setVisible(true);
+            removeReteButton->setVisible(false);
+        }
     }
     resultLayout->addWidget(usernameRicercaLabel,0,0);
     resultLayout->addWidget(usernameRicerca,0,1);
@@ -34,15 +38,21 @@ ResultWindow::ResultWindow(Utente* u, Controller* c,QWidget* parent){
     resultLayout->addWidget(nameRicerca,0,3);
     resultLayout->addWidget(surnameRicercaLabel,0,4);
     resultLayout->addWidget(surnameRicerca,0,5);
-    resultLayout->addWidget(addReteButton,0,6);
-    resultLayout->addWidget(removeReteButton,0,7);
     resultLayout->addWidget(showProfileButton,0,8);
     setLayout(resultLayout);
 
     connect(showProfileButton, SIGNAL(clicked()), this, SLOT(showProfile()));
-    connect(addReteButton, SIGNAL(clicked()), this, SLOT(addRete()));
-    connect(removeReteButton, SIGNAL(clicked()), this, SLOT(removeRete()));
-    connect(this, SIGNAL(signalFetchResult()), parent, SLOT(search()));
+
+    if(parent->windowTitle()=="SearchWindow")
+    {
+        if(typeid(*ctrl)!=typeid(AdminController)){
+            resultLayout->addWidget(addReteButton,0,6);
+            resultLayout->addWidget(removeReteButton,0,7);
+            connect(addReteButton, SIGNAL(clicked()), this, SLOT(addRete()));
+            connect(removeReteButton, SIGNAL(clicked()), this, SLOT(removeRete()));
+        }
+        connect(this, SIGNAL(signalFetchResult()), parent, SLOT(search()));
+    }
 }
 
 void ResultWindow::showProfile(){
@@ -57,7 +67,7 @@ void ResultWindow::showProfile(){
     infoLayout = new QGridLayout();
 
 
-    if(ctrl->tipoUtente() == "Basic" || ctrl->tipoUtente() == "Business" || ctrl->tipoUtente() == "Executive"){
+    if(ctrl->tipoUtente() == "Basic" || ctrl->tipoUtente() == "Business" || ctrl->tipoUtente() == "Executive" || typeid(*ctrl)==typeid(AdminController)){
         usernameLabel = new QLabel("Username:");
         nomeLabel = new QLabel("Nome:");
         cognomeLabel = new QLabel("Cognome:");
@@ -81,7 +91,7 @@ void ResultWindow::showProfile(){
     }
 
 
-    if(ctrl->tipoUtente() == "Business" || ctrl->tipoUtente() == "Executive"){
+    if(ctrl->tipoUtente() == "Business" || ctrl->tipoUtente() == "Executive" || typeid(*ctrl)==typeid(AdminController)){
         dataLabel = new QLabel("Data di Nascita:");
         luogoLabel = new QLabel("Luogo di nascita:");
         residenzaLabel = new QLabel("Residenza:");
@@ -95,12 +105,14 @@ void ResultWindow::showProfile(){
         luogoNascita->setReadOnly(true);
         residenza = new QLineEdit(user->getInfo().getDati().getResidenza());
         residenza->setReadOnly(true);
-        infoLayout->addWidget(dataLabel,0,0);
-        infoLayout->addWidget(dataNascita,0,1);
-        infoLayout->addWidget(luogoLabel,1,0);
-        infoLayout->addWidget(luogoNascita,1,1);
-        infoLayout->addWidget(residenzaLabel,2,0);
-        infoLayout->addWidget(residenza,2,1);
+        infoLayout->addWidget(emailLabel,0,0);
+        infoLayout->addWidget(email,0,1);
+        infoLayout->addWidget(dataLabel,1,0);
+        infoLayout->addWidget(dataNascita,1,1);
+        infoLayout->addWidget(luogoLabel,2,0);
+        infoLayout->addWidget(luogoNascita,2,1);
+        infoLayout->addWidget(residenzaLabel,3,0);
+        infoLayout->addWidget(residenza,3,1);
 
         schoolBox = new QGroupBox("Percorso scolastico");
         schoolLayout = new QGridLayout();
@@ -127,7 +139,7 @@ void ResultWindow::showProfile(){
         topLayout->addWidget(schoolBox,0,2);
     }
 
-    if(ctrl->tipoUtente() == "Executive"){
+    if(ctrl->tipoUtente() == "Executive" || typeid(*ctrl)==typeid(AdminController)){
         titoloLavori = new QLabel("Esperienze lavorative");
         scrollArea = new QScrollArea();
         widget = new QWidget(scrollArea);
@@ -166,7 +178,5 @@ void ResultWindow::removeRete(){
     emit signalFetchResult();
 }
 
-ResultWindow::~ResultWindow(){
-
-}
+ResultWindow::~ResultWindow(){}
 
