@@ -2,6 +2,36 @@
 <db>
     <Utente>
         <Profilo>
+            <Username>ciccio</Username>
+            <TipoAccount>Executive</TipoAccount>
+            <DatiAnagrafici>
+                <Nome>aronne</Nome>
+                <Cognome>cesco</Cognome>
+                <Email>uyguyg</Email>
+                <Data>sab gen 1 2000</Data>
+                <Luogo_Nascita>ohuygui</Luogo_Nascita>
+                <Residenza>ukybuygb</Residenza>
+            </DatiAnagrafici>
+            <Titoli_Studio>
+                <Diploma>uygoiunlnkhbuybljk</Diploma>
+                <Laurea>ygouyhlyhgyu</Laurea>
+                <Laurea>jhblhkjnlkj</Laurea>
+                <Laurea>kjnl</Laurea>
+            </Titoli_Studio>
+            <Esperienze_Lavorative>
+                <Lavoro>
+                    <Azienda>yhoiuniuhli</Azienda>
+                    <Titolo>fytgiut</Titolo>
+                    <Citta>54fytigytg</Citta>
+                    <Inizio>mer gen 1 2014</Inizio>
+                    <Fine>gio gen 2 2014</Fine>
+                </Lavoro>
+            </Esperienze_Lavorative>
+        </Profilo>
+        <Rete_Follow/>
+    </Utente>
+    <Utente>
+        <Profilo>
             <Username>mario</Username>
             <TipoAccount>Executive</TipoAccount>
             <DatiAnagrafici>

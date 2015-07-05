@@ -9,6 +9,9 @@
 #include <QFile>
 #include <QTextStream>
 #include<typeinfo>
+#include<QFile>
+#include<QMessageBox>
+#include<QFileDialog>
 
 #include"utente.h"
 using std::map;
@@ -19,6 +22,7 @@ private:
     map<QString,Utente*> dbUtenti; //perchè non ho passato un USERNAME?
 public:
     DB();
+    QString path;
     map<QString,Utente*>* getDb();
     void addUtente(Username,Utente*);
     void addNewUtente(const QString&, const QString&, const QString&);

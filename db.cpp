@@ -135,10 +135,22 @@ map<QString,Utente*> DB::findUsername(const InfoSearch& info) const {
 }
 
 void DB::load() {
-    QString path("/home/mattia/Documenti/LinQuedln/input.xml");
+    path = ("/home/mattia/Documenti/LinQuedln/input.xml");
     QFile file(path);
+    while(!file.open(QIODevice::ReadOnly)){
+        QMessageBox box;
+        box.setWindowTitle("Attenzione");
+        box.setText("Database non trovato. Seleziona un database.");
+        box.setIcon(QMessageBox::Warning);
+        box.setStandardButtons(QMessageBox::Ok);
+        int choose = box.exec();
+        switch(choose){
+            case QMessageBox::Ok:
+                path = QFileDialog::getOpenFileName(0,"Open File","/home","Xml (*.xml)");
+                file.setFileName(path);
+        }
+    }
     bool trovato=false;
-    file.open(QIODevice::ReadOnly);
     QString key,nome,cognome,email,lnascita,lresidenza,diploma,laur,type;
     QDate dnascita;
     vector<QString> lauree;
@@ -146,16 +158,7 @@ void DB::load() {
     set<QString> rete;
     QXmlStreamReader read(&file);
     QXmlStreamReader lines(&file);
-    /*
-    while (!lines.isEndDocument() && !lines.hasError())
-    {
-        cout<<lines.lineNumber()<<" ";
-        lines.readNext();
-        lines.readNext();
-    }
-    */
-    //std::map<QString,Utente*>::iterator it=dbUtenti.begin();
-    while (!read.atEnd() /*&& !read.hasError()*/)
+    while (!read.atEnd())
     {
         if(read.name()=="Username" && read.tokenType() != QXmlStreamReader::EndElement)
         {
@@ -268,7 +271,6 @@ void DB::load() {
 
 
 void DB::save() {
-    QString path("/home/mattia/Documenti/LinQuedln/input.xml");
     QFile file(path);
     file.open(QFile::WriteOnly);
 

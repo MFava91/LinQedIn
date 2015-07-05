@@ -17,7 +17,6 @@ public:
     Utente(const Username&);
     Utente(const Username&, const Profilo&, const Rete&);
     Username getLogin() const;
-    //vedere se è il caso di fare così o meno
     Profilo& getInfo();
     Rete getRete() const;
     void aggiungiUtenteRete(const QString&);
