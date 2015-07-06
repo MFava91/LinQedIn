@@ -15,7 +15,9 @@ private:
     QString lavoro;
     QString titolo;
 public:
-    InfoSearch(const QString& = "",const QString& = "",const QString& = "",const QString& = "",const QString& = "",const QString& = "",const QString& = "",const QString& = "",const QString& = "");
+    InfoSearch(const QString& = "",const QString& = "",const QString& = "",
+               const QString& = "",const QString& = "",const QString& = "",
+               const QString& = "",const QString& = "",const QString& = "");
     void setUsername(const QString&);
     void setNome(const QString&);
     void setCognome(const QString&);

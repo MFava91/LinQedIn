@@ -1,8 +1,11 @@
 #include "infosearch.h"
 
-InfoSearch::InfoSearch(const QString& user, const QString& n, const QString& c, const QString& ln, const QString& r,
-                       const QString& d,const QString& l,const QString& w, const QString& t) :
-    username(user),nome(n),cognome(c),luogoNascita(ln),residenza(r),diploma(d),laurea(l),lavoro(w),titolo(t){}
+InfoSearch::InfoSearch(const QString& user, const QString& n, const QString& c,
+                       const QString& ln, const QString& r, const QString& d,
+                       const QString& l,const QString& w, const QString& t):
+    username(user),nome(n),cognome(c),
+    luogoNascita(ln),residenza(r),diploma(d),
+    laurea(l),lavoro(w),titolo(t){}
 
 void InfoSearch::setUsername(const QString& user){
     username = user;

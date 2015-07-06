@@ -26,7 +26,6 @@
             </Esperienze_Lavorative>
         </Profilo>
         <Rete_Follow>
-            <Follow>mario</Follow>
             <Follow>toni</Follow>
         </Rete_Follow>
     </Utente>
@@ -56,9 +55,7 @@
                 </Lavoro>
             </Esperienze_Lavorative>
         </Profilo>
-        <Rete_Follow>
-            <Follow>gianni</Follow>
-        </Rete_Follow>
+        <Rete_Follow/>
     </Utente>
     <Utente>
         <Profilo>

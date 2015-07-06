@@ -39,7 +39,7 @@ void TitoliStudio::removeLaurea(const QString& l){
         if(laurea[i]==l)
         {
             laurea.erase(laurea.begin()+i);
-            trovato==true;
+            trovato=true;
         }
     }
 }
@@ -51,7 +51,7 @@ void TitoliStudio::modificaLaurea(const QString& temp, const QString& l){
         if(laurea[i]==temp)
         {
             laurea[i]=l;
-            trovato==true;
+            trovato=true;
         }
     }
 }

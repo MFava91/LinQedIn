@@ -9,7 +9,7 @@ class UtenteBusiness: public UtenteBasic
 public:
     UtenteBusiness(const QString&);
     UtenteBusiness(const QString &, const Profilo&, const Rete&);
-    virtual map<QString,Utente*> findUsername(const InfoSearch&, map<QString,Utente*>*);
+    virtual map<QString,Utente*> find(const InfoSearch&, map<QString,Utente*>*);
     ~UtenteBusiness();
 };
 

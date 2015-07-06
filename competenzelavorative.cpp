@@ -21,7 +21,7 @@ void CompetenzeLavorative::removeLavoro(const Lavoro &l){
         if(esperienze[i]==l)
         {
             esperienze.erase(esperienze.begin()+i);
-            trovato==true;
+            trovato=true;
         }
     }
 }
@@ -37,7 +37,7 @@ void CompetenzeLavorative::editEsperienze(const Lavoro & temp, const Lavoro & l)
         if(esperienze[i]==temp)
         {
             esperienze[i]=l;
-            trovato==true;
+            trovato=true;
         }
     }
 }
