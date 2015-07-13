@@ -1,7 +1,5 @@
  #include "titolistudio.h"
 
-//TitoliStudio::TitoliStudio() {} //Usa costruttore standard del vector e del QString
-
 TitoliStudio::TitoliStudio(const QString& d, const QString& l){
     if(d!="")
         diploma=d;
